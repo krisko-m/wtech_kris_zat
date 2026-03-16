@@ -17,7 +17,7 @@
 
 .login-title {
     font-family: 'DM Sans', sans-serif;
-    font-size:  28px;
+    font-size:  30px;
     font-weight: 700;
     text-align: center;
     margin-bottom: 10px;
@@ -53,10 +53,43 @@
 .login-forgot {
     text-align: right;
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
+    font-size: 16px;
     color: #888888;
+    margin-bottom: 10px;
 }
 
 .login-forgot:hover {
     color: #444444;
+}
+
+.login-button{
+    background-color: var(--accent);
+    color: var(--dark);
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 26px;
+    margin: 20px;
+    transition: transform 0.2s, font-weight 0.1s;
+}
+
+.login-button:hover {
+    font-weight: 700;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.login-signup{
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.login-signup:hover {
+    color: var(--accent);
+    transform: scale(1.05);
 }
