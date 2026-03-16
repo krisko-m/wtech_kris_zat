@@ -1,5 +1,8 @@
 .product-container {
+    display: flex;
+    flex-direction: row;
     padding: 50px 150px;
+    gap: 40px;
 }
 
 .product-photos {
@@ -27,4 +30,27 @@
     height: 350px;
     object-fit: cover;
     border-radius: 8px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.product-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.product-showmore {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.product-showmore:hover {
+    text-decoration: underline;
 }
