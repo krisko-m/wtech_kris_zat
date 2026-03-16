@@ -93,3 +93,26 @@
     color: var(--accent);
     transform: scale(1.05);
 }
+
+.login-back {
+    padding: 20px;
+}
+
+.back-button {
+    background-color: lightgray;
+    border: none;
+    color: #888888;
+    padding: 10px 10px;
+    font-size: 26px;
+    font-family: 'DM Sans', sans-serif;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: transform 0.2s, font-weight 0.1s;
+}
+
+.back-button:hover {
+    font-weight: 700;
+    color: #444444;
+    transform: scale(1.05);
+    cursor: pointer;
+}
