@@ -1,0 +1,30 @@
+.product-container {
+    padding: 50px 150px;
+}
+
+.product-photos {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.secondary-photos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px
+}
+
+.secondary-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.main-photo {
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+}
