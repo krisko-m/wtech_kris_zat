@@ -12,6 +12,9 @@ body {
     background: var(--light-bg);
     color: var(--dark);
     margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Navbar */
@@ -19,62 +22,43 @@ body {
     background: var(--dark);
     padding: 14px 32px;
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 20px;
 }
 
-.search-wrap {
-    width: 500px;
-    margin: 0 auto;
-    position: relative;
+.top-navbar > a {
+    width: fit-content;
 }
 
-.search-wrap input {
+.search-wrap {
     width: 100%;
-    border: none;
-    border-radius: 30px;
-    padding: 10px 44px 10px 16px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+
+.search-wrap .form-control {
     background: #2a2a2a;
     color: #fff;
-    outline: none;
-    transition: background 0.2s;
+    border: none;
+    padding-right: 44px;
 }
 
-.search-wrap input::placeholder { color: #666; }
-.search-wrap input:focus { background: #333; }
-
-.search-wrap .search-icon {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #666;
-    font-size: 1rem;
-    pointer-events: none;
-}
-
-.nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-    justify-content: flex-end;
+.search-wrap .form-control::placeholder { color: #666; }
+.search-wrap .form-control:focus {
+    background: #333;
+    box-shadow: none;
+    color: #fff;
 }
 
 .btn-nav {
     background: transparent;
     border-color: transparent;
     color: #ccc;
-    border-radius: 365px;
     font-family: 'DM Sans', sans-serif;
     font-size: 0.88rem;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 7px;
     transition: all 0.2s;
 }
 
@@ -90,7 +74,8 @@ body {
     padding: 0 32px;
     display: flex;
     gap: 0;
-    overflow-x: auto;
+    overflow-x: visible;
+    overflow-y: visible;
     justify-content: center;
 }
 
@@ -111,12 +96,26 @@ body {
     gap: 8px;
 }
 
+
 .cat-item:hover, .cat-item.active {
     color: var(--accent);
     border-bottom-color: var(--accent);
 }
 
 .cat-item .cat-icon { font-size: 1.1rem; }
+
+.dropdown-menu {
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+}
+
+.dropdown-item:hover {
+    color: var(--accent);
+    background: var(--light-bg);
+}
 
 /* Banner */
 .banner {
@@ -155,13 +154,6 @@ body {
 }
 
 /* Products */
-.section-header {
-    padding: 8px 32px 16px;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-}
-
 .section-title {
     font-family: 'Syne', sans-serif;
     font-weight: 800;
@@ -175,13 +167,6 @@ body {
     font-weight: 500;
     cursor: pointer;
     text-decoration: none;
-}
-
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 18px;
-    padding: 0 32px 40px;
 }
 
 .product-card {
@@ -232,10 +217,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-.product-info {
-    padding: 14px 16px 18px;
-}
-
 .product-name {
     font-family: 'Syne', sans-serif;
     font-weight: 600;
@@ -244,11 +225,6 @@ body {
     color: var(--dark);
 }
 
-.product-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
 .product-price {
     font-family: 'Syne', sans-serif;
@@ -261,12 +237,6 @@ body {
 footer {
     background: var(--dark);
     color: #aaa;
-    padding: 28px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
 }
 
 .footer-links {
@@ -288,4 +258,44 @@ footer {
 .footer-copy {
     font-size: 0.82rem;
     color: #555;
+}
+
+@media (max-width: 992px) {
+    .top-navbar {
+        padding: 10px 16px;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-navbar {
+        padding: 8px 10px;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 992px) {
+    .top-navbar img[height="40"] {
+        height: 30px;
+    }
+    .top-navbar img[height="70"] {
+        height: 50px;
+    }
+    .cat-item {
+        padding: 16px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-navbar img[height="40"] {
+        height: 24px;
+    }
+    .top-navbar img[height="70"] {
+        height: 40px;
+    }
+    .cat-item {
+        padding: 12px 8px;
+        font-size: 0.75rem;
+    }
 }
