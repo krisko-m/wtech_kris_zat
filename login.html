@@ -17,26 +17,31 @@
         <img src = "assets/kockac-logo-rec.png" alt="Kockáč" height="70">
     </div>
     <!--Login Card-->
-    <div class="login-container">
+    <div class="login-container d-flex justify-content-center">
         <div class = "login-card">
             <h2 class="login-title">Login</h2>
 
             <!--Email input-->
-            <input id="email" type="text" class="login-input" placeholder="Email / Username">
-
+            <div class="mb-3">
+                <input id="email" type="text" class="login-input w-100" placeholder="Email / Username">
+            </div>
             <!--Password input-->
-            <input type="password" class="login-input" placeholder="Password">
-
+            <div class="mb-3">
+                <input type="password" class="login-input w-100" placeholder="Password">
+            </div>
             <!--Forgot password-->
-            <a href="#" class="login-forgot">Forgot Password?</a>
+            <div class="text-start">
+                <a href="#" class="login-forgot">Forgot Password?</a>
+            </div>
 
             <!--Login button-->
-            <button class="login-button">LOG IN</button>
+            <div class="d-grid gap-2"> <button class="login-button">LOG IN</button> </div>
 
             <!--SignUp link-->
-            <a href="#" class="login-signup">SIGN UP</a>
+            <div class="text-center mt-3">
+                <a href="#" class="login-signup">SIGN UP</a>
+            </div>
         </div>
-
     </div>
 </main>
 
