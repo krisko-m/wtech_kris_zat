@@ -12,6 +12,7 @@ body {
     background: var(--light-bg);
     color: var(--dark);
     margin: 0;
+    padding: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -29,6 +30,10 @@ body::before {
     background-size: 80px;
     opacity: 0.05;
     z-index: -1;
+}
+
+main {
+    flex: 1;
 }
 
 /* Navbar */
@@ -251,6 +256,7 @@ body::before {
 footer {
     background: var(--dark);
     color: #aaa;
+    margin-top: 0;
 }
 
 .footer-links {
