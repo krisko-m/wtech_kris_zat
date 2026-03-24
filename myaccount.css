@@ -124,5 +124,5 @@ body::before {
 .account-save-btn:hover {
     transform: scale(1.03);
     box-shadow: 0 4px 14px rgba(255, 63, 91, 0.35);
-    color: #fff;
+    color: var(--accent);
 }
