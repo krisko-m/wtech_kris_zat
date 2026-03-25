@@ -126,3 +126,23 @@ body::before {
     box-shadow: 0 4px 14px rgba(255, 63, 91, 0.35);
     color: var(--accent);
 }
+
+/* Back button */
+.account-back-btn {
+    background-color: var(--dark);
+    color: lightgray;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 10px 28px;
+    border-radius: 8px;
+    border: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.account-back-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    background-color: lightgray;
+    color: #888888;
+}
