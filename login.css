@@ -12,11 +12,6 @@ body::before {
     z-index: -1;
 }
 
-
-.login-container {
-    padding: 20px;
-}
-
 .login-card {
     background-color: var(--card-bg);
     padding: 40px;
