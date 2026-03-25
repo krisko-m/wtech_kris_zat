@@ -80,35 +80,42 @@
     <!--Product Section-->
     <div class="row justify-content-center product-container">
         <!--Photos-->
-        <div class="col-md-6 product-photos d-flex align-items-center mb-4">
-            <div class="secondary-photos">
-                <img src="assets/product-bang.png" alt="Product photo" class="secondary-photo">
-                <img src="assets/product-bang.png" alt="Product photo" class="secondary-photo">
-                <img src="assets/product-bang.png" alt="Product photo" class="secondary-photo">
+        <div class="col-md-6 d-flex flex-row align-items-center mb-4 gap-1">
+            <div class="d-flex flex-column mb-3">
+                <img src="assets/product-bang.png" alt="Product photo" class="img-fluid secondary-photo mb-3">
+                <img src="assets/product-bang.png" alt="Product photo" class="img-fluid secondary-photo mb-3">
+                <img src="assets/product-bang.png" alt="Product photo" class="img-fluid secondary-photo mb-3">
             </div>
-            <img src="assets/product-bang.png" alt="Main product photo" class="main-photo">
+            <div class="d-flex flex-column mb-3 align-items-center">
+                <img src="assets/product-bang.png" alt="Main product photo" class="main-photo">
+                <div class="d-flex flex-row gap-2 mt-4">
+                    <button class="dot active"></button>
+                    <button class="dot"></button>
+                    <button class="dot"></button>
+                </div>
+            </div>
         </div>
 
         <!--Product Info-->
-        <div class="col-md-6 product-info d-flex mb-4">
+        <div class="col-md-6 product-info d-flex flex-column gap-3 mb-4">
             <h1 class="product-name align-items-left">Bang!</h1>
             <p class="product-description">Bang! is a frantic card shootout for 4-7 players that will take you on
                 an excursion to the Wild West! The irresistible atmosphere of the "Spaghetti Western" and the constant...
-                <a href="#" class="product-showmore">Show more</a>
+                <a href="#" class="expandable-text">Show more</a>
             </p>
 
             <!--Details Card-->
             <div class="w-110 detail-card">
                 <div class="row w-120">
-                    <div class="col-4 detail-item">
+                    <div class="col-4 d-flex flex-column gap-2">
                         <span class="detail-label">Recommended age:</span>
                         <span class="detail-value">10 years</span>
                     </div>
-                    <div class="col-4 detail-item">
+                    <div class="col-4 d-flex flex-column gap-2">
                         <span class="detail-label">Duration of a game:</span>
                         <span class="detail-value">15 to 45 min.</span>
                     </div>
-                    <div class="col-4 detail-item">
+                    <div class="col-4 d-flex flex-column gap-2">
                         <span class="detail-label">Number of players:</span>
                         <span class="detail-value">4 to 5 players</span>
                     </div>
@@ -132,10 +139,9 @@
 
     <hr/>
     <!--Description Section-->
-    <div class="row description-container">
+    <div class="row d-flex flex-column gap-3">
         <div class="col-12">
-            <!--Description Buttons-->
-            <div class="detail-btns d-flex gap-2 mb-3">
+            <div class="d-flex flex-row gap-3 mb-3 p-2">
                 <button class="btn btn-outline-secondary">Product Details</button>
                 <button class="btn btn-outline-secondary">Reviews</button>
             </div>
@@ -201,7 +207,9 @@
                                         <p>BANG! is, in my opinion, one of the best games I've ever played. It combines elements
                                             of classic card matching (strategy, what to use and on whom and what to keep in your hand)
                                             with the gradual revelation of the true intentions of your teammates. There are three groups,
-                                            each with a different goal. The bandits want to kill...</p>
+                                            each with a different goal. The bandits want to kill...
+                                            <a href="#" class="expandable-text">Show whole review</a>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -294,8 +302,6 @@
                                     <button class="btn btn-outline-secondary">Write a review</button>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>

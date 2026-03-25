@@ -12,19 +12,6 @@ body::before {
     z-index: -1;
 }
 
-.product-photos {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-
-.secondary-photos {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin: 15px
-}
-
 .secondary-photo {
     width: 100px;
     height: 100px;
@@ -39,12 +26,6 @@ body::before {
     border-radius: 8px;
 }
 
-.product-info {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 .product-name {
     font-family: 'DM Sans', sans-serif;
     font-size: 30px;
@@ -52,13 +33,13 @@ body::before {
     color: var(--dark);
 }
 
-.product-showmore {
+.expandable-text {
     color: var(--dark);
     text-decoration: none;
     font-weight: 600;
 }
 
-.product-showmore:hover {
+.expandable-text:hover {
     text-decoration: underline;
 }
 
@@ -71,10 +52,19 @@ body::before {
     text-align: center;
 }
 
-.detail-item {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.detail-card img {
+    max-height: 90px;
+    width: auto;
+}
+
+.detail-card.cart {
+    transition: transform 0.2s;
+}
+
+.detail-card.cart:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    border: 1px solid var(--accent);
 }
 
 .detail-label {
@@ -83,7 +73,7 @@ body::before {
 
 .detail-value {
     color: var(--dark);
-    font-weight: 700;
+    font-weight: bold;
 }
 
 .add-to-cart{
@@ -124,13 +114,6 @@ body::before {
     gap: 40px;
 }
 
-.detail-btns {
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-    gap: 40px;
-}
-
 .description-heading {
     font-family: 'DM Sans', sans-serif;
     font-size: 30px;
@@ -141,4 +124,31 @@ body::before {
 .description-text {
     font-family: 'DM Sans', sans-serif;
     text-align: left;
+}
+
+.form-check-input {
+    border-color: var(--dark);
+}
+
+.form-check-input:checked {
+    border-color: var(--dark);
+    background-color: var(--accent);
+}
+
+.form-check-input:checked + .form-check-label {
+    font-weight: bold;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: var(--accent);
 }
