@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="assets/kocka-tab.png">
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="product-detail.css">
 </head>
 <body>
 <main>
@@ -68,12 +69,30 @@
 
         </div>
     </div>
+
+    <div class="login-container d-flex justify-content-center">
+        <div class="checkout-card">
+            <h2 class="login-title">Payment Method</h2>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Credit/Debit Card
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Cash on Delivery
+                </label>
+            </div>
+        </div>
+    </div>
 </main>
 
 <!-- Buttons -->
 <div class="d-flex justify-content-between m-3">
     <button onclick="location.href='shopping-cart.html'" class="back-button">Back to Cart</button>
-    <button onclick="location.href='#'" class="back-button red">Continue to Payment</button>
+    <button onclick="location.href='#'" class="back-button red">Confirm Order</button>
 </div>
 
 <!--Footer-->
