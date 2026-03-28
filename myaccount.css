@@ -146,3 +146,27 @@ body::before {
     background-color: lightgray;
     color: #888888;
 }
+
+.order-card {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+    width: 100%;
+    text-align: center;
+}
+
+.order-card img {
+    max-height: 90px;
+    width: auto;
+}
+
+.order-card.cart {
+    transition: transform 0.2s;
+}
+
+.order-card.cart:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    border: 1px solid var(--accent);
+}
