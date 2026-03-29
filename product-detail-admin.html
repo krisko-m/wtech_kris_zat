@@ -122,6 +122,7 @@
 
         <!--Product Info-->
         <div class="col-md-6 product-info d-flex flex-column gap-3 mb-4">
+            <!--Product Name & Short Description-->
             <div class="d-flex flex-row mb-3 justify-content-left">
                 <h1 class="product-name align-items-left editable-text" contenteditable="true">Bang!</h1>
                 <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
@@ -169,12 +170,14 @@
                     <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                 </div>
 
+                <!--Quantity-->
                 <div class="d-flex align-items-center gap-3">
                     <button class="btn btn-outline-secondary">-</button>
                     <span class="quantity-value">0</span>
                     <button class="btn btn-outline-secondary">+</button>
                 </div>
 
+                <!--Add to Cart Button-->
                 <button class="add-to-cart btn-sm py-2 px-3">Add to Cart</button>
             </div>
         </div>
@@ -184,6 +187,7 @@
     <!--Description Section-->
     <div class="row d-flex flex-column gap-3">
         <div class="col-12">
+            <!--Navigation Buttons-->
             <div class="d-flex flex-row gap-3 mb-3 p-2">
                 <button class="btn btn-outline-secondary">Product Details</button>
                 <button class="btn btn-outline-secondary">Reviews</button>
@@ -192,6 +196,8 @@
             <!--Description Card-->
             <div class="detail-card w-100 d-block text-start mb-3">
                 <h1>Game Description & Contents</h1>
+
+                <!--Game Description-->
                 <div class="description-content p-2">
                     <div class="d-flex flex-row">
                         <h2 class="description-heading me-3">Game Description</h2>
@@ -211,6 +217,8 @@
                         The Italian card names and the gunslingers inspired by famous characters from the Wild West (the names are humorously garbled)
                         nicely illustrate the atmosphere of the game. Simply Bang! is a good game.
                     </p>
+
+                    <!--Gameplay Description-->
                     <div class="d-flex flex-row">
                         <h2 class="description-heading me-3">Gameplay</h2>
                         <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
@@ -230,6 +238,8 @@
                         the game wonderfully. It often happens that a gunslinger in a seemingly hopeless situation unexpectedly "comes to life" thanks to
                         lucky cards, and on the contrary, a player who feels almost immortal dies within one round!
                     </p>
+
+                    <!--Game Content Description-->
                     <div class="d-flex flex-row">
                         <h2 class="description-heading me-3">Game Content</h2>
                         <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
@@ -238,6 +248,12 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!--Save & Discard Button-->
+    <div class="d-flex flex-row justify-content-end">
+        <button class="btn btn-outline-secondary me-2">Discard Changes</button>
+        <button class="add-to-cart btn-sm py-2 px-3 ms-2">Save Changes</button>
     </div>
 
 </main>
