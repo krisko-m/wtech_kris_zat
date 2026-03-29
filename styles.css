@@ -86,6 +86,14 @@ main {
     color: #fff;
 }
 
+#accountModal .modal-dialog {
+    position: absolute;
+    top: 80px;
+    right: 16px;
+    max-width: 260px;
+    margin: 0;
+}
+
 /* Categories */
 .categories-bar {
     background: #fff;
@@ -285,16 +293,6 @@ footer {
         padding: 10px 16px;
         gap: 12px;
     }
-}
-
-@media (max-width: 768px) {
-    .top-navbar {
-        padding: 8px 10px;
-        gap: 8px;
-    }
-}
-
-@media (max-width: 992px) {
     .top-navbar img[height="40"] {
         height: 30px;
     }
@@ -305,9 +303,30 @@ footer {
         padding: 16px 12px;
         font-size: 0.85rem;
     }
+    #accountModal .modal-dialog {
+        top: 64px;
+        right: 12px;
+        max-width: 220px;
+    }
+    #accountModal .modal-content {
+        font-size: 0.88rem;
+    }
+    #accountModal .modal-header {
+        padding: 10px 12px;
+    }
+    #accountModal .modal-body {
+        padding: 6px 12px;
+    }
+    .dropdown-menu {
+        font-size: 0.85rem;
+    }
 }
 
 @media (max-width: 768px) {
+    .top-navbar {
+        padding: 8px 10px;
+        gap: 8px;
+    }
     .top-navbar img[height="40"] {
         height: 24px;
     }
@@ -316,6 +335,23 @@ footer {
     }
     .cat-item {
         padding: 12px 8px;
+        font-size: 0.75rem;
+    }
+    #accountModal .modal-dialog {
+        top: 50px;
+        right: 8px;
+        max-width: 190px;
+    }
+    #accountModal .modal-content {
+        font-size: 0.82rem;
+    }
+    #accountModal .modal-header {
+        padding: 8px 10px;
+    }
+    #accountModal .modal-body {
+        padding: 4px 10px;
+    }
+    .dropdown-menu{
         font-size: 0.75rem;
     }
 }
