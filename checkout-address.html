@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kockac</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="assets/kocka-tab.png">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<body>
+<main>
+    <!--Logo at the top-->
+    <div class="text-center mt-4">
+        <img src = "assets/kockac-logo-rec.png" alt="Kockáč" height="70">
+    </div>
+    <!--Address Card-->
+    <div class="login-container d-flex justify-content-center">
+        <div class="checkout-card">
+            <h2 class="login-title">Delivery Address</h2>
+
+            <!--First & Last Name-->
+            <div class="row gy-3 mb-3">
+                <!--First Name input-->
+                <div class="col-md-6">
+                    <h5>First Name</h5>
+                    <input id="first-name" type="text" class="form-control login-input w-100">
+                </div>
+
+                <!--Last Name input-->
+                <div class="col-md-6">
+                    <h5>Last Name</h5>
+                    <input id="last-name" type="text" class="form-control login-input w-100">
+                </div>
+            </div>
+
+            <!--Address & Additional Details-->
+            <div class="row gy-3 mb-3">
+                <!--Address input-->
+                <div class="col-md-6">
+                    <h5>Address</h5>
+                    <input id="address" type="text" class="form-control login-input w-100">
+                </div>
+
+                <!--Additional Details input-->
+                <div class="col-md-6">
+                    <h5>Additional Details</h5>
+                    <input id="additional-details" type="text" class="form-control login-input w-100">
+                </div>
+            </div>
+
+            <!--Postal Code & City-->
+            <div class="row gy-3 mb-3">
+                <!--Postal Code input-->
+                <div class="col-md-6">
+                    <h5>Postal Code</h5>
+                    <input id="postal-code" type="text" class="form-control login-input w-100">
+                </div>
+
+                <!--City input-->
+                <div class="col-md-6">
+                    <h5>City</h5>
+                    <input id="city" type="text" class="form-control login-input w-100">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<!-- Buttons -->
+<div class="d-flex justify-content-between m-3">
+    <button onclick="location.href='shopping-cart.html'" class="back-button">Back to Cart</button>
+    <button onclick="location.href='#'" class="back-button red">Continue to Payment</button>
+</div>
+
+<!--Footer-->
+<footer class="py-4 px-4">
+    <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <a href="index.html">
+            <img src="assets/kockac-logo-rec.png" alt="Kockáč" height="50">
+        </a>
+        <div class="footer-links d-flex gap-4">
+            <a href="#">Terms &amp; Conditions</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <div class="footer-copy">© 2026 Kockac.com · All rights reserved.</div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

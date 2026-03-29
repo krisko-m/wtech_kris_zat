@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kockac</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="icon" type="image/x-icon" href="assets/kocka-tab.png">
+  <link rel="stylesheet" type="text/css" href="styles.css" />
+  <link rel="stylesheet" type="text/css" href="login.css" />
+  <link rel="stylesheet" type="text/css" href="product-detail.css" />
+</head>
+<body>
+<!--Navbar-->
+<nav class="top-navbar">
+  <a href="index.html">
+    <img src="assets/kockac-logo-rec.png" alt="Kockáč" height="70">
+  </a>
+
+  <form class="search-wrap" role="search">
+    <div class="input-group">
+      <input type="text" class="form-control rounded-pill ps-4" placeholder="Search...">
+      <button class="btn position-absolute end-0 top-50 translate-middle-y pe-3" type="submit" style="z-index: 5; background: transparent; border: none;">
+        <img src="assets/icon-search.png" alt="Search" height="18">
+      </button>
+    </div>
+  </form>
+
+  <div class="d-flex align-items-center justify-content-end gap-2">
+    <button onclick="location.href='login.html'" class="btn btn-nav rounded-pill">
+      <img src="assets/icon-user.png" alt="User" height="40">
+    </button>
+    <button onclick="location.href='shopping-cart.html'" class="btn btn-nav rounded-pill">
+      <img src="assets/icon-trolley.png" alt="Cart" height="40">
+    </button>
+  </div>
+</nav>
+
+<!--Categories-->
+<div class="categories-bar d-flex justify-content-center">
+  <a href="productoverview.html" class="cat-item">All Games</a>
+
+  <div class="dropdown">
+    <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Genre</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Family</a></li>
+      <li><a class="dropdown-item" href="#">Puzzle</a></li>
+      <li><a class="dropdown-item" href="#">Card Games</a></li>
+      <li><a class="dropdown-item" href="#">Strategic</a></li>
+      <li><a class="dropdown-item" href="#">Party</a></li>
+    </ul>
+  </div>
+
+  <div class="dropdown">
+    <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Complexity</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Beginner</a></li>
+      <li><a class="dropdown-item" href="#">Gateway</a></li>
+      <li><a class="dropdown-item" href="#">Intermediate</a></li>
+      <li><a class="dropdown-item" href="#">Expert</a></li>
+      <li><a class="dropdown-item" href="#">Hardcore</a></li>
+    </ul>
+  </div>
+
+  <div class="dropdown">
+    <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Players</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Solo</a></li>
+      <li><a class="dropdown-item" href="#">Two Players</a></li>
+      <li><a class="dropdown-item" href="#">Small Group</a></li>
+      <li><a class="dropdown-item" href="#">Family</a></li>
+      <li><a class="dropdown-item" href="#">Large Group</a></li>
+    </ul>
+  </div>
+
+  <a href="#" class="cat-item">New &amp; Trending</a>
+</div>
+
+<!--Shopping Cart-->
+<div class="container my-4">
+  <h1 class="login-tittle text-center mb-4">Shopping Cart</h1>
+
+  <!--Cart Item-->
+  <div class="detail-card cart p-2 mb-2">
+    <div class="row align-items-center mb-3">
+      <!--Photo-->
+      <div class="col-2">
+        <img src="assets/product-hitster.png" alt="Product" class="img-fluid">
+      </div>
+      <!--Name & Price-->
+      <div class="col-4 text-start">
+        <p class="mb-0"><strong>Hitster - The Music Party Game</strong></p>
+        <p class="mb-0 text-muted">Available in stock</p>
+        <p class="mb-0 mt-2"><strong>24,99 €</strong></p>
+      </div>
+      <!--Quantity-->
+      <div class="col-3 d-flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-secondary">-</button>
+          <span class="quantity-value">1</span>
+          <button class="btn btn-outline-secondary">+</button>
+        </div>
+      </div>
+      <!--Delete-->
+      <div class="col-3 text-center">
+        <button class="btn btn-nav rounded-pill">
+          <img src="assets/trash-icon.png" alt="User" height="30">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--Cart Item-->
+  <a href="product-detail.html" class="text-decoration-none text-dark">
+    <div class="detail-card cart p-2 mb-2">
+      <div class="row align-items-center mb-3">
+        <!--Photo-->
+        <div class="col-2">
+          <img src="assets/product-bang.png" alt="Product" class="img-fluid">
+        </div>
+        <!--Name & Price-->
+        <div class="col-4 text-start">
+          <p class="mb-0"><strong>Bang!</strong></p>
+          <p class="mb-0 text-muted">Available in stock</p>
+          <p class="mb-0 mt-2"><strong>15,99 €</strong></p>
+        </div>
+        <!--Quantity-->
+        <div class="col-3 d-flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-3">
+            <button class="btn btn-outline-secondary">-</button>
+            <span class="quantity-value">1</span>
+            <button class="btn btn-outline-secondary">+</button>
+          </div>
+        </div>
+        <!--Delete-->
+        <div class="col-3 text-center">
+          <button class="btn btn-nav rounded-pill">
+            <img src="assets/trash-icon.png" alt="User" height="30">
+          </button>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <!--Cart Item-->
+  <div class="detail-card cart p-2 mb-2">
+    <div class="row align-items-center mb-3">
+      <!--Photo-->
+      <div class="col-2">
+        <img src="assets/product-catan.png" alt="Product" class="img-fluid">
+      </div>
+      <!--Name & Price-->
+      <div class="col-4 text-start">
+        <p class="mb-0"><strong>Catan - Base Game</strong></p>
+        <p class="mb-0 text-muted">Available in stock</p>
+        <p class="mb-0 mt-2"><strong>44,99 €</strong></p>
+      </div>
+      <!--Quantity-->
+      <div class="col-3 d-flex align-items-center gap-2">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn btn-outline-secondary">-</button>
+          <span class="quantity-value">1</span>
+          <button class="btn btn-outline-secondary">+</button>
+        </div>
+      </div>
+      <!--Delete-->
+      <div class="col-3 text-center">
+        <button class="btn btn-nav rounded-pill">
+          <img src="assets/trash-icon.png" alt="User" height="30">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <small class="text-muted d-flex align-items-center gap-2 mb-3">
+    <img src="assets/info-icon.png" alt="Info Icon" height="20">
+    The items in this shopping cart are not reserved.
+  </small>
+
+  <div class="row align-items-end">
+
+    <!--Continue Shopping-->
+    <div class="col-12 col-md-6 order-2 order-md-1 mt-3 mt-md-0">
+      <button onclick="location.href='index.html'" class="back-button">Continue Shopping</button>
+    </div>
+
+    <!--Checkout Card-->
+    <div class="col-12 col-md-6 order-1 order-md-2">
+      <div class="detail-card p-3 ms-auto" style="max-width: 400px;">
+        <div class="d-flex justify-content-between mb-2">
+          <span>Subtotal:</span>
+          <span>85,97 €</span>
+        </div>
+        <div class="d-flex justify-content-between mb-2">
+          <span>Delivery:</span>
+          <span>1,50 €</span>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between mb-3">
+          <h4><strong>Total:</strong></h4>
+          <h4><strong>87,47 €</strong></h4>
+        </div>
+        <button onclick="location.href='checkout-address.html'" class="login-button">CHECKOUT</button>
+      </div>
+      </div>
+    </div>
+</div>
+
+<!--Footer-->
+<footer class="py-4 px-4">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <a href="index.html">
+      <img src="assets/kockac-logo-rec.png" alt="Kockáč" height="50">
+    </a>
+    <div class="footer-links d-flex gap-4">
+      <a href="#">Terms &amp; Conditions</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">© 2026 Kockac.com · All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>

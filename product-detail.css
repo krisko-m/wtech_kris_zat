@@ -71,6 +71,21 @@ body::before {
     text-align: center;
 }
 
+.detail-card img {
+    max-height: 90px;
+    width: auto;
+}
+
+.detail-card.cart {
+    transition: transform 0.2s;
+}
+
+.detail-card.cart:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    border: 1px solid var(--accent);
+}
+
 .detail-item {
     display: flex;
     flex-direction: column;
