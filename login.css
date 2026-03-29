@@ -147,3 +147,18 @@ body::before {
     background-color: var(--accent);
     color: white;
 }
+
+.form-check {
+    margin-bottom: 4px;
+}
+
+.form-check-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.form-check-input:checked {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
