@@ -138,3 +138,17 @@ body::before {
 .form-check-input:checked + .form-check-label {
     font-weight: bold;
 }
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: var(--accent);
+}
