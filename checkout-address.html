@@ -9,6 +9,7 @@
     <link rel="icon" type="image/x-icon" href="assets/kocka-tab.png">
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="product-detail.css">
 </head>
 <body>
 <main>
@@ -16,10 +17,10 @@
     <div class="text-center mt-4">
         <img src = "assets/kockac-logo-rec.png" alt="Kockáč" height="70">
     </div>
-    <!--Address Card-->
+    <!--Delivery-Details Card-->
     <div class="login-container d-flex justify-content-center">
         <div class="checkout-card">
-            <h2 class="login-title">Delivery Address</h2>
+            <h2 class="login-title">Delivery Details</h2>
 
             <!--First & Last Name-->
             <div class="row gy-3 mb-3">
@@ -68,12 +69,115 @@
 
         </div>
     </div>
+
+    <!--Transport Card-->
+    <div class="login-container d-flex justify-content-center">
+        <div class="checkout-card">
+            <h2 class="login-title">Mode of Transport</h2>
+            <div class="form-check mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-between">
+                    <div class="d-flex gap-2">
+                        <input class="form-check-input" type="radio" name="flexRadioDefaultD" id="flexRadioDefaultD1">
+                        <label class="form-check-label mb-3" for="flexRadioDefaultD1">
+                            Distribution point/Z-BOX Packet
+                        </label>
+                    </div>
+                    <img src="assets/packeta-logo.png" alt="Packeta logo"  class="img-fluid" style="max-width: 90px;">
+                    <h6><strong>3,99€</strong></h6>
+                </div>
+            </div>
+            <div class="form-check mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-between">
+                    <div class="d-flex gap-2">
+                        <input class="form-check-input" type="radio" name="flexRadioDefaultD" id="flexRadioDefaultD2">
+                        <label class="form-check-label mb-3" for="flexRadioDefaultD2">
+                            Delivery by DPD SK courier
+                        </label>
+                    </div>
+                    <img src="assets/dpd-logo.png" alt="DPD logo"  class="img-fluid" style="max-width: 90px;">
+                    <h6><strong>3,99€</strong></h6>
+                </div>
+            </div>
+            <div class="form-check mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-between">
+                    <div class="d-flex gap-2">
+                        <input class="form-check-input" type="radio" name="flexRadioDefaultD" id="flexRadioDefaultD3">
+                        <label class="form-check-label mb-3" for="flexRadioDefaultD3">
+                            Delivery by GLS SK courier
+                        </label>
+                    </div>
+                    <img src="assets/gls-logo.png" alt="GLS logo"  class="img-fluid" style="max-width: 90px;">
+                    <h6><strong>3,99€</strong></h6>
+                </div>
+            </div>
+            <div class="form-check mb-2">
+                <div class="d-flex flex-row align-items-center justify-content-between">
+                    <div class="d-flex gap-2">
+                        <input class="form-check-input" type="radio" name="flexRadioDefaultD" id="flexRadioDefaultD4">
+                        <label class="form-check-label mb-3" for="flexRadioDefaultD4">
+                            Delivery by Slovak Post courier
+                        </label>
+                    </div>
+                    <img src="assets/slovak-post-logo.png" alt="Slovak Post logo" class="img-fluid" style="max-width: 90px;">
+                    <h6><strong>2,99€</strong></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Payment Card-->
+    <div class="login-container d-flex justify-content-center">
+        <div class="checkout-card">
+            <h2 class="login-title">Payment Method</h2>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label mb-3" for="flexRadioDefault1">
+                    Credit / Debit Card
+                </label>
+                <div class="credit-card-fields d-flex flex-column mb-3 gap-3">
+                    <input type="text" class="form-control login-input w-100" placeholder="Card Holder Name">
+                    <div class="d-flex flex-row gap-1">
+                        <input type="text" class="form-control login-input w-100" placeholder="Card Number">
+                        <img src="assets/Visa-MasterCard-icons.png" alt="Visa and MasterCard Icons"  class="img-fluid" style="max-width: 120px;">
+                    </div>
+                    <div class="d-flex flex-row gap-3">
+                        <input type="text" class="form-control login-input w-25" placeholder="Expiry Date (MM/YY)">
+                        <input type="text" class="form-control login-input w-25" placeholder="CVV">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Cash on Delivery
+                </label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                <label class="form-check-label" for="flexRadioDefault3">
+                    Apple Pay / Google Pay
+                </label>
+            </div>
+            <div class="form-check mb-2">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                <label class="form-check-label" for="flexRadioDefault4">
+                    Bank Transfer
+                </label>
+            </div>
+            <hr>
+            <div class="col-md-4">
+                <h5>Discount Code</h5>
+                <input id="discount" type="text" class="form-control login-input w-100">
+            </div>
+        </div>
+    </div>
 </main>
 
 <!-- Buttons -->
 <div class="d-flex justify-content-between m-3">
     <button onclick="location.href='shopping-cart.html'" class="back-button">Back to Cart</button>
-    <button onclick="location.href='#'" class="back-button red">Continue to Payment</button>
+    <button onclick="location.href='#'" class="back-button red">Confirm Order</button>
 </div>
 
 <!--Footer-->
