@@ -27,10 +27,34 @@
     </form>
 
     <div class="d-flex align-items-center justify-content-end gap-2">
-        <button onclick="location.href='login.html'" class="btn btn-nav rounded-pill">
+        <button class="btn btn-nav rounded-pill" data-bs-toggle="modal" data-bs-target="#accountModal">
             <img src="assets/icon-user.png" alt="User" height="40">
         </button>
-        <button class="btn btn-nav rounded-pill">
+
+        <div class="modal fade" id="accountModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header border-0 pb-0">
+                        <div>
+                            <div class="fw-bold">Not Logged In</div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body pt-2">
+                        <hr class="my-2">
+                        <a href="login.html" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                            Log In
+                        </a>
+                        <hr class="my-2">
+                        <a href="adminlogin.html" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                            Admin Log In
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button onclick="location.href='shopping-cart.html'" class="btn btn-nav rounded-pill">
             <img src="assets/icon-trolley.png" alt="Cart" height="40">
         </button>
     </div>
@@ -38,7 +62,7 @@
 
 <!--Categories-->
 <div class="categories-bar d-flex justify-content-center">
-    <a href="#" class="cat-item">All Games</a>
+    <a href="productoverview.html" class="cat-item">All Games</a>
 
     <div class="dropdown">
         <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Genre</a>
@@ -87,13 +111,13 @@
                 <a href="myaccount.html" class="account-nav-item active d-flex justify-content-between align-items-center">
                     Account Settings <span>›</span>
                 </a>
-                <a href="#" class="account-nav-item d-flex justify-content-between align-items-center">
+                <a href="orders.html" class="account-nav-item d-flex justify-content-between align-items-center">
                     Orders <span>›</span>
                 </a>
-                <a href="#" class="account-nav-item d-flex justify-content-between align-items-center">
+                <a href="changepsswrd.html" class="account-nav-item d-flex justify-content-between align-items-center">
                     Change Password <span>›</span>
                 </a>
-                <a href="#" class="account-nav-item d-flex justify-content-between align-items-center">
+                <a href="myaccountlogout.html" class="account-nav-item d-flex justify-content-between align-items-center">
                     Log Out <span>›</span>
                 </a>
             </div>

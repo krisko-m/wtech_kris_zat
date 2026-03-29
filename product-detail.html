@@ -27,10 +27,33 @@
     </form>
 
     <div class="d-flex align-items-center justify-content-end gap-2">
-        <button onclick="location.href='login.html'" class="btn btn-nav rounded-pill">
+        <button class="btn btn-nav rounded-pill" data-bs-toggle="modal" data-bs-target="#accountModal">
             <img src="assets/icon-user.png" alt="User" height="40">
         </button>
-        <button class="btn btn-nav rounded-pill">
+
+        <div class="modal fade" id="accountModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header border-0 pb-0">
+                        <div>
+                            <div class="fw-bold">Not Logged In</div>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body pt-2">
+                        <hr class="my-2">
+                        <a href="login.html" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                            Log In
+                        </a>
+                        <hr class="my-2">
+                        <a href="adminlogin.html" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                            Admin Log In
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button onclick="location.href='shopping-cart.html'" class="btn btn-nav rounded-pill">
             <img src="assets/icon-trolley.png" alt="Cart" height="40">
         </button>
     </div>
@@ -38,7 +61,7 @@
 
 <!--Categories-->
 <div class="categories-bar d-flex justify-content-center">
-    <a href="#" class="cat-item">All Games</a>
+    <a href="productoverview.html" class="cat-item">All Games</a>
 
     <div class="dropdown">
         <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Genre</a>
@@ -92,6 +115,7 @@
                     <button class="dot active"></button>
                     <button class="dot"></button>
                     <button class="dot"></button>
+                    <button class="dot"></button>
                 </div>
             </div>
         </div>
@@ -124,7 +148,7 @@
 
             <!--Purchase Section-->
             <div class="d-flex align-items-center gap-5 gap-sm-5 mt-5">
-                <span class="product-price">12,99€</span>
+                <span class="product-price">15,99€</span>
 
                 <div class="d-flex align-items-center gap-3">
                     <button class="btn btn-outline-secondary">-</button>
@@ -241,8 +265,8 @@
                             </div>
                         </div>
                     </div>
-                    </div>
                 </div>
+            </div>
                 <!-- Overview Card -->
                 <div class="col-12 col-md-4">
                     <div class="detail-card text-start mb-3">

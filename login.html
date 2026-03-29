@@ -30,7 +30,11 @@
                 <input type="password" class="form-control login-input w-100" placeholder="Password">
             </div>
             <!--Forgot password-->
-            <div class="text-start">
+            <div class="text-start d-flex flex-row justify-content-between">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="RememberMe">
+                    <label class="form-check-label" for="RememberMe">Remember Me</label>
+                </div>
                 <a href="#" class="login-forgot">Forgot Password?</a>
             </div>
 
@@ -47,7 +51,7 @@
 
 <!-- Back button -->
 <div class="login-back">
-    <a href="index.html" class="back-button">Back to Shop</a>
+    <button onclick="location.href='index.html'" class="back-button">Back to Shop</button>
 </div>
 
 <!--Footer-->
