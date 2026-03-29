@@ -6,10 +6,10 @@
   <title>Kockac</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="icon" type="image/x-icon" href="assets/kocka-tab.png">
-  <link rel="stylesheet" type="text/css" href="styles.css" />
-  <link rel="stylesheet" type="text/css" href="login.css" />
-  <link rel="stylesheet" type="text/css" href="product-detail.css" />
+  <link rel="icon" type="image/x-icon" href="../assets/kocka-tab.png">
+  <link rel="stylesheet" type="text/css" href="../cssstyles/styles.css" />
+  <link rel="stylesheet" type="text/css" href="../cssstyles/login.css" />
+  <link rel="stylesheet" type="text/css" href="../cssstyles/product-detail.css" />
 </head>
 
 <!--Delete Modal-->
@@ -35,21 +35,21 @@
 <!--Navbar-->
 <nav class="top-navbar">
   <a href="index.html">
-    <img src="assets/kockac-logo-rec.png" alt="Kockáč" height="70">
+    <img src="../assets/kockac-logo-rec.png" alt="Kockáč" height="70">
   </a>
 
   <form class="search-wrap" role="search">
     <div class="input-group">
       <input type="text" class="form-control rounded-pill ps-4" placeholder="Search...">
       <button class="btn position-absolute end-0 top-50 translate-middle-y pe-3" type="submit" style="z-index: 5; background: transparent; border: none;">
-        <img src="assets/icon-search.png" alt="Search" height="18">
+        <img src="../assets/icon-search.png" alt="Search" height="18">
       </button>
     </div>
   </form>
 
   <div class="d-flex align-items-center justify-content-end gap-2">
     <button class="btn btn-nav rounded-pill" data-bs-toggle="modal" data-bs-target="#accountModal">
-      <img src="assets/icon-user.png" alt="User" height="40">
+      <img src="../assets/icon-user.png" alt="User" height="40">
     </button>
 
     <div class="modal fade" id="accountModal" tabindex="-1">
@@ -67,7 +67,7 @@
               Log In
             </a>
             <hr class="my-2">
-            <a href="adminlogin.html" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+            <a href="admin/adminlogin.html" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
               Admin Log In
             </a>
           </div>
@@ -75,7 +75,7 @@
       </div>
     </div>
     <button onclick="location.href='shopping-cart.html'" class="btn btn-nav rounded-pill">
-      <img src="assets/icon-trolley.png" alt="Cart" height="40">
+      <img src="../assets/icon-trolley.png" alt="Cart" height="40">
     </button>
   </div>
 </nav>
@@ -130,7 +130,7 @@
       <a href="product-detail.html" class="text-decoration-none text-dark col-6 d-flex align-items-center gap-2">
         <!--Photo-->
         <div class="col-2">
-          <img src="assets/product-hitster.png" alt="Product" class="img-fluid">
+          <img src="../assets/product-hitster.png" alt="Product" class="img-fluid">
         </div>
         <!--Name & Price-->
         <div class="col-4 text-start">
@@ -150,7 +150,7 @@
       <!--Delete-->
       <div class="col-3 text-center">
         <button class="btn btn-nav rounded-pill" data-bs-toggle="modal" data-bs-target="#deleteModal">
-          <img src="assets/trash-icon.png" alt="Delete Item" height="30">
+          <img src="../assets/trash-icon.png" alt="Delete Item" height="30">
         </button>
       </div>
     </div>
@@ -162,7 +162,7 @@
         <a href="product-detail.html" class="text-decoration-none text-dark col-6 d-flex align-items-center gap-2">
         <!--Photo-->
         <div class="col-2">
-          <img src="assets/product-bang.png" alt="Product" class="img-fluid">
+          <img src="../assets/product-bang.png" alt="Product" class="img-fluid">
         </div>
         <!--Name & Price-->
         <div class="col-4 text-start">
@@ -182,7 +182,7 @@
         <!--Delete-->
         <div class="col-3 text-center">
           <button class="btn btn-nav rounded-pill" data-bs-toggle="modal" data-bs-target="#deleteModal">
-            <img src="assets/trash-icon.png" alt="Delete Item" height="30">
+            <img src="../assets/trash-icon.png" alt="Delete Item" height="30">
           </button>
         </div>
       </div>
@@ -194,7 +194,7 @@
       <a href="product-detail.html" class="text-decoration-none text-dark col-6 d-flex align-items-center gap-2">
       <!--Photo-->
       <div class="col-2">
-        <img src="assets/product-catan.png" alt="Product" class="img-fluid">
+        <img src="../assets/product-catan.png" alt="Product" class="img-fluid">
       </div>
       <!--Name & Price-->
       <div class="col-4 text-start">
@@ -214,7 +214,7 @@
       <!--Delete-->
       <div class="col-3 text-center">
         <button class="btn btn-nav rounded-pill" data-bs-toggle="modal" data-bs-target="#deleteModal">
-          <img src="assets/trash-icon.png" alt="Delete Item" height="30">
+          <img src="../assets/trash-icon.png" alt="Delete Item" height="30">
         </button>
       </div>
     </div>
@@ -222,7 +222,7 @@
 
   <hr>
   <small class="text-muted d-flex align-items-center gap-2 mb-3">
-    <img src="assets/info-icon.png" alt="Info Icon" height="20">
+    <img src="../assets/info-icon.png" alt="Info Icon" height="20">
     The items in this shopping cart are not reserved.
   </small>
 
@@ -259,7 +259,7 @@
 <footer class="py-4 px-4">
   <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
     <a href="index.html">
-      <img src="assets/kockac-logo-rec.png" alt="Kockáč" height="50">
+      <img src="../assets/kockac-logo-rec.png" alt="Kockáč" height="50">
     </a>
     <div class="footer-links d-flex gap-4">
       <a href="#">Terms &amp; Conditions</a>

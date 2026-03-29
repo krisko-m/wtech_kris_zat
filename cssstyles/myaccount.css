@@ -5,7 +5,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('assets/kocka-tab.png');
+    background-image: url('../assets/kocka-tab.png');
     background-repeat: repeat;
     background-size: 80px;
     opacity: 0.05;

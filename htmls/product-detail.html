@@ -6,29 +6,29 @@
     <title>Kockac</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="assets/kocka-tab.png">
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <link rel="stylesheet" type="text/css" href="product-detail.css">
+    <link rel="icon" type="image/x-icon" href="../assets/kocka-tab.png">
+    <link rel="stylesheet" type="text/css" href="../cssstyles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../cssstyles/product-detail.css">
 </head>
 <body>
 <!--Navbar-->
 <nav class="top-navbar">
     <a href="index.html">
-        <img src="assets/kockac-logo-rec.png" alt="Kockáč" height="70">
+        <img src="../assets/kockac-logo-rec.png" alt="Kockáč" height="70">
     </a>
 
     <form class="search-wrap" role="search">
         <div class="input-group">
             <input type="text" class="form-control rounded-pill ps-4" placeholder="Search...">
             <button class="btn position-absolute end-0 top-50 translate-middle-y pe-3" type="submit" style="z-index: 5; background: transparent; border: none;">
-                <img src="assets/icon-search.png" alt="Search" height="18">
+                <img src="../assets/icon-search.png" alt="Search" height="18">
             </button>
         </div>
     </form>
 
     <div class="d-flex align-items-center justify-content-end gap-2">
         <button class="btn btn-nav rounded-pill" data-bs-toggle="modal" data-bs-target="#accountModal">
-            <img src="assets/icon-user.png" alt="User" height="40">
+            <img src="../assets/icon-user.png" alt="User" height="40">
         </button>
 
         <div class="modal fade" id="accountModal" tabindex="-1">
@@ -46,7 +46,7 @@
                             Log In
                         </a>
                         <hr class="my-2">
-                        <a href="adminlogin.html" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                        <a href="admin/adminlogin.html" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
                             Admin Log In
                         </a>
                     </div>
@@ -54,7 +54,7 @@
             </div>
         </div>
         <button onclick="location.href='shopping-cart.html'" class="btn btn-nav rounded-pill">
-            <img src="assets/icon-trolley.png" alt="Cart" height="40">
+            <img src="../assets/icon-trolley.png" alt="Cart" height="40">
         </button>
     </div>
 </nav>
@@ -105,12 +105,12 @@
         <!--Photos-->
         <div class="col-md-5 d-flex flex-row align-items-center mb-4 gap-1">
             <div class="d-flex flex-column mb-3">
-                <img src="assets/product-bang.png" alt="Product photo" class="img-fluid secondary-photo mb-3">
-                <img src="assets/product-bang.png" alt="Product photo" class="img-fluid secondary-photo mb-3">
-                <img src="assets/product-bang.png" alt="Product photo" class="img-fluid secondary-photo mb-3">
+                <img src="../assets/product-bang.png" alt="Product photo" class="img-fluid secondary-photo mb-3">
+                <img src="../assets/product-bang.png" alt="Product photo" class="img-fluid secondary-photo mb-3">
+                <img src="../assets/product-bang.png" alt="Product photo" class="img-fluid secondary-photo mb-3">
             </div>
             <div class="d-flex flex-column mb-3 align-items-center">
-                <img src="assets/product-bang.png" alt="Main product photo" class="main-photo">
+                <img src="../assets/product-bang.png" alt="Main product photo" class="main-photo">
                 <div class="d-flex flex-row gap-2 mt-4">
                     <button class="dot active"></button>
                     <button class="dot"></button>
@@ -339,7 +339,7 @@
 <footer class="py-4 px-4">
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
         <a href="index.html">
-            <img src="assets/kockac-logo-rec.png" alt="Kockáč" height="50">
+            <img src="../assets/kockac-logo-rec.png" alt="Kockáč" height="50">
         </a>
         <div class="footer-links d-flex gap-4">
             <a href="#">Terms &amp; Conditions</a>

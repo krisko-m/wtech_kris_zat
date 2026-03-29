@@ -6,30 +6,30 @@
     <title>Kockac</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="assets/kocka-tab.png">
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <link rel="stylesheet" type="text/css" href="product-detail.css">
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="icon" type="image/x-icon" href="../../assets/kocka-tab.png">
+    <link rel="stylesheet" type="text/css" href="../../cssstyles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../../cssstyles/product-detail.css">
+    <link rel="stylesheet" type="text/css" href="../../cssstyles/login.css">
 </head>
 <body>
 <!--Navbar-->
 <nav class="top-navbar">
-    <a href="index.html">
-        <img src="assets/kockac-logo-rec.png" alt="Kockáč" height="70">
+    <a href="../index.html">
+        <img src="../../assets/kockac-logo-rec.png" alt="Kockáč" height="70">
     </a>
 
     <form class="search-wrap" role="search">
         <div class="input-group">
             <input type="text" class="form-control rounded-pill ps-4" placeholder="Search...">
             <button class="btn position-absolute end-0 top-50 translate-middle-y pe-3" type="submit" style="z-index: 5; background: transparent; border: none;">
-                <img src="assets/icon-search.png" alt="Search" height="18">
+                <img src="../../assets/icon-search.png" alt="Search" height="18">
             </button>
         </div>
     </form>
 
     <div class="d-flex align-items-center justify-content-end gap-2">
         <button class="btn btn-nav rounded-pill" data-bs-toggle="modal" data-bs-target="#accountModal">
-            <img src="assets/icon-user.png" alt="User" height="40">
+            <img src="../../assets/icon-user.png" alt="User" height="40">
         </button>
 
         <div class="modal fade" id="accountModal" tabindex="-1">
@@ -47,7 +47,7 @@
                             Add Product
                         </a>
                         <hr class="my-2">
-                        <a href="index.html" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                        <a href="../index.html" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
                             Log Out
                         </a>
                     </div>
@@ -55,7 +55,7 @@
             </div>
         </div>
         <button onclick="location.href='shopping-cart.html'" class="btn btn-nav rounded-pill">
-            <img src="assets/icon-trolley.png" alt="Cart" height="40">
+            <img src="../../assets/icon-trolley.png" alt="Cart" height="40">
         </button>
     </div>
 </nav>
@@ -106,12 +106,12 @@
         <!--Photos-->
         <div class="col-md-5 d-flex flex-row align-items-center mb-4 gap-1">
             <div class="d-flex flex-column align-items-center mb-3">
-                <img src="assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
-                <img src="assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
-                <img src="assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
+                <img src="../../assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
+                <img src="../../assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
+                <img src="../../assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
             </div>
             <div class="d-flex flex-column mb-3 align-items-center">
-                <img src="assets/main-photo-icon.png" alt="Main product photo" class="editable-photo ms-5" style="max-width: 300px; height: auto">
+                <img src="../../assets/main-photo-icon.png" alt="Main product photo" class="editable-photo ms-5" style="max-width: 300px; height: auto">
                 <div class="d-flex flex-row gap-2 mt-4">
                     <button class="dot active"></button>
                     <button class="dot"></button>
@@ -126,11 +126,11 @@
             <!--Product Name & Short Description-->
             <div class="d-flex flex-row mb-3 justify-content-left">
                 <input type="text" id="product-name" class="form-control login-input w-25" placeholder="Name">
-                <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
+                <img src="../../assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
             </div>
             <div class="d-flex flex-row mb-3 justify-content-center">
                 <textarea id="product-description" class="form-control login-input w-100" placeholder="Short Product Description..."></textarea>
-                <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
+                <img src="../../assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
             </div>
 
             <!--Details Card-->
@@ -140,21 +140,21 @@
                         <span class="detail-label">Recommended age:</span>
                         <div class="d-flex flex-row mb-3 justify-content-center">
                             <input type="text" id="detail-age" class="form-control login-input w-100" placeholder="Age">
-                            <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
+                            <img src="../../assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                         </div>
                     </div>
                     <div class="col-4 d-flex flex-column gap-2">
                         <span class="detail-label">Duration of a game:</span>
                         <div class="d-flex flex-row mb-3 justify-content-center">
                             <input type="text" id="detail-duration" class="form-control login-input w-100" placeholder="Duration">
-                            <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
+                            <img src="../../assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                         </div>
                     </div>
                     <div class="col-4 d-flex flex-column gap-2">
                         <span class="detail-label">Number of players:</span>
                         <div class="d-flex flex-row mb-3 justify-content-center">
                             <input type="text" id="detail-players" class="form-control login-input w-100" placeholder="Players">
-                            <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
+                            <img src="../../assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                         </div>
                     </div>
                 </div>
@@ -164,7 +164,7 @@
             <div class="d-flex align-items-center gap-5 gap-sm-5 mt-5">
                 <div class="d-flex flex-row mb-3 justify-content-left">
                     <input type="text" id="detail-price" class="form-control login-input w-50" placeholder="Price">
-                    <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
+                    <img src="../../assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                 </div>
             </div>
         </div>
@@ -182,21 +182,21 @@
                 <div class="description-content p-2">
                     <div class="d-flex flex-row">
                         <h2 class="description-heading me-3">Game Description</h2>
-                        <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
+                        <img src="../../assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                     </div>
                     <textarea rows="4" id="description-game" class="form-control login-input w-100" placeholder="Add a Game Description..."></textarea>
 
                     <!--Gameplay Description-->
                     <div class="d-flex flex-row">
                         <h2 class="description-heading me-3">Gameplay</h2>
-                        <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
+                        <img src="../../assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                     </div>
                     <textarea rows="4" id="description-gameplay" class="form-control login-input w-100" placeholder="Add a description of Gameplay..."></textarea>
 
                     <!--Game Content Description-->
                     <div class="d-flex flex-row">
                         <h2 class="description-heading me-3">Game Content</h2>
-                        <img src="assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
+                        <img src="../../assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                     </div>
                     <textarea rows="4" id="description-content" class="form-control login-input w-100" placeholder="Add the Game Contents..."></textarea>
                 </div>
@@ -215,8 +215,8 @@
 <!--Footer-->
 <footer class="py-4 px-4">
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-        <a href="index.html">
-            <img src="assets/kockac-logo-rec.png" alt="Kockáč" height="50">
+        <a href="../index.html">
+            <img src="../../assets/kockac-logo-rec.png" alt="Kockáč" height="50">
         </a>
         <div class="footer-links d-flex gap-4">
             <a href="#">Terms &amp; Conditions</a>
