@@ -107,13 +107,6 @@ body::before {
     text-align: center;
 }
 
-.description-container {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    gap: 40px;
-}
-
 .description-heading {
     font-family: 'DM Sans', sans-serif;
     font-size: 30px;
@@ -151,4 +144,43 @@ body::before {
 
 .dot.active {
     background-color: var(--accent);
+}
+
+/* Admin Product Detail Editable */
+.d-flex.flex-row {
+    align-items: center;
+}
+
+.edit-icon {
+    max-width: 25px;
+    opacity: 0.4;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-left: 5px;
+}
+
+.edit-icon:hover {
+    opacity: 0.8;
+}
+
+.editable-text[contenteditable="true"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    outline: none;
+    cursor: text;
+}
+
+.editable-text[contenteditable="true"]:focus {
+    border-color: #999;
+    box-shadow: 0 0 0 2px var(--dark);
+}
+
+.editable-text[contenteditable="true"]:hover {
+    border-color: #aaa;
+}
+
+.editable-photo:hover {
+    cursor: pointer;
+    transform: scale(1.02);
 }
