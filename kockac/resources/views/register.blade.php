@@ -87,7 +87,7 @@
 
     <!-- Back button -->
     <div class="login-back">
-        <button onclick="location.href='/index'" class="back-button">Back to Shop</button>
+        <button onclick="location.href='/'" class="back-button">Back to Shop</button>
     </div>
 
     <!--Footer-->
