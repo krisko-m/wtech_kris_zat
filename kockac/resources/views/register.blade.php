@@ -13,9 +13,9 @@
 <body>
     <main>
         <!--Logo at the top-->
-        <a href="index.html">
+        <a href="/index">
             <div class="text-center mt-4">
-                <img src="../assets/kockac-logo-rec.png" alt="Kockáč" height="70">
+                <img src="/assets/kockac-logo-rec.png" alt="Kockáč" height="70">
             </div>
         </a>
         <!--Login Card-->
@@ -87,14 +87,14 @@
 
     <!-- Back button -->
     <div class="login-back">
-        <button onclick="location.href='index.html'" class="back-button">Back to Shop</button>
+        <button onclick="location.href='/index'" class="back-button">Back to Shop</button>
     </div>
 
     <!--Footer-->
     <footer class="py-4 px-4">
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-            <a href="index.html">
-                <img src="../assets/kockac-logo-rec.png" alt="Kockáč" height="50">
+            <a href="/index">
+                <img src="/assets/kockac-logo-rec.png" alt="Kockáč" height="50">
             </a>
             <div class="footer-links d-flex gap-4">
                 <a href="#">Terms &amp; Conditions</a>
