@@ -1,0 +1,186 @@
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/kocka-tab.png');
+    background-repeat: repeat;
+    background-size: 80px;
+    opacity: 0.05;
+    z-index: -1;
+}
+
+.secondary-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.main-photo {
+    width: 70%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.product-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--dark);
+}
+
+.expandable-text {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.expandable-text:hover {
+    text-decoration: underline;
+}
+
+.detail-card {
+    background-color: var(--card-bg);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+    width: 100%;
+    text-align: center;
+}
+
+.detail-card img {
+    max-height: 90px;
+    width: auto;
+}
+
+.detail-card.cart {
+    transition: transform 0.2s;
+}
+
+.detail-card.cart:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    border: 1px solid var(--accent);
+}
+
+.detail-label {
+    color: #888888;
+}
+
+.detail-value {
+    color: var(--dark);
+    font-weight: bold;
+}
+
+.add-to-cart{
+    background-color: var(--accent);
+    color: var(--dark);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.2rem;
+    transition: transform 0.2s, font-weight 0.1s;
+}
+
+.add-to-cart:hover {
+    font-weight: 700;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.product-price {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 30px;
+}
+
+.quantity-value {
+    width: 30px;
+    height: 30px;
+    border: 2px solid darkgray;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.description-heading {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: left;
+}
+
+.description-text {
+    font-family: 'DM Sans', sans-serif;
+    text-align: left;
+}
+
+.form-check-input {
+    border-color: var(--dark);
+}
+
+.form-check-input:checked {
+    border-color: var(--dark);
+    background-color: var(--accent);
+}
+
+.form-check-input:checked + .form-check-label {
+    font-weight: bold;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ccc;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: var(--accent);
+}
+
+/* Admin Product Detail Editable */
+.d-flex.flex-row {
+    align-items: center;
+}
+
+.edit-icon {
+    max-width: 25px;
+    opacity: 0.4;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-left: 5px;
+}
+
+.edit-icon:hover {
+    opacity: 0.8;
+}
+
+.editable-text[contenteditable="true"] {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    outline: none;
+    cursor: text;
+}
+
+.editable-text[contenteditable="true"]:focus {
+    border-color: #999;
+    box-shadow: 0 0 0 2px var(--dark);
+}
+
+.editable-text[contenteditable="true"]:hover {
+    border-color: #aaa;
+}
+
+.editable-photo:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+}
