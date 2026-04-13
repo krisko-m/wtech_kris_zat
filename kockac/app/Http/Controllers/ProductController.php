@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CartItem;
 use App\Models\Product;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -25,7 +26,7 @@ class ProductController extends Controller
             ['user_id' => auth()->id(), 'created_at' => now()]
         );
 
-        $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $product->id)->first();
+        $cartItem = CartItem::where('cart_id', $cart->cart_id)->where('product_id', $product->product_id)->first();
 
         if($cartItem){
             $cartItem->quantity += $request->quantity;
