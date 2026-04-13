@@ -21,7 +21,7 @@
         <div class="input-group">
             <input type="text" class="form-control rounded-pill ps-4" placeholder="Search...">
             <button class="btn position-absolute end-0 top-50 translate-middle-y pe-3" type="submit" style="z-index: 5; background: transparent; border: none;">
-                <img src="{{ asset('assets/icon-search.png') }}" alt="Search" height="18">
+                <img src="{{ asset('assets/icons/icon-search.png') }}" alt="Search" height="18">
             </button>
         </div>
     </form>
@@ -29,7 +29,7 @@
     <div class="d-flex align-items-center justify-content-end gap-2">
 
         <button class="btn btn-nav rounded-pill" data-bs-toggle="modal" data-bs-target="#accountModal">
-            <img src="{{ asset('assets/icon-user.png') }}" alt="User" height="40">
+            <img src="{{ asset('assets/icons/icon-user.png') }}" alt="User" height="40">
         </button>
 
         <!-- Account Modal -->
@@ -75,50 +75,10 @@
         </div>
 
         <button onclick="location.href='{{ url('/cart') }}'" class="btn btn-nav rounded-pill">
-            <img src="{{ asset('assets/icon-trolley.png') }}" alt="Cart" height="40">
+            <img src="{{ asset('assets/icons/icon-trolley.png') }}" alt="Cart" height="40">
         </button>
     </div>
 </nav>
-
-<!--Categories-->
-<div class="categories-bar d-flex justify-content-center">
-    <a href="{{ url('/products') }}" class="cat-item">All Games</a>
-
-    <div class="dropdown">
-        <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Genre</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Family</a></li>
-            <li><a class="dropdown-item" href="#">Puzzle</a></li>
-            <li><a class="dropdown-item" href="#">Card Games</a></li>
-            <li><a class="dropdown-item" href="#">Strategic</a></li>
-            <li><a class="dropdown-item" href="#">Party</a></li>
-        </ul>
-    </div>
-
-    <div class="dropdown">
-        <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Complexity</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Beginner</a></li>
-            <li><a class="dropdown-item" href="#">Gateway</a></li>
-            <li><a class="dropdown-item" href="#">Intermediate</a></li>
-            <li><a class="dropdown-item" href="#">Expert</a></li>
-            <li><a class="dropdown-item" href="#">Hardcore</a></li>
-        </ul>
-    </div>
-
-    <div class="dropdown">
-        <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Players</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Solo</a></li>
-            <li><a class="dropdown-item" href="#">Two Players</a></li>
-            <li><a class="dropdown-item" href="#">Small Group</a></li>
-            <li><a class="dropdown-item" href="#">Family</a></li>
-            <li><a class="dropdown-item" href="#">Large Group</a></li>
-        </ul>
-    </div>
-
-    <a href="#" class="cat-item">New &amp; Trending</a>
-</div>
 
 <!--Banner-->
 <div class="container-fluid px-4">

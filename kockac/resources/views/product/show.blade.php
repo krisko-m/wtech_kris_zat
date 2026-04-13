@@ -13,91 +13,72 @@
 <body>
 <!--Navbar-->
 <nav class="top-navbar">
-    <a href="/">
-        <img src="/assets/kockac-logo-rec.png" alt="Kockáč" height="70">
+    <a href="{{ url('/') }}">
+        <img src="{{ asset('assets/kockac-logo-rec.png') }}" alt="Kockáč" height="70">
     </a>
 
     <form class="search-wrap" role="search">
         <div class="input-group">
             <input type="text" class="form-control rounded-pill ps-4" placeholder="Search...">
             <button class="btn position-absolute end-0 top-50 translate-middle-y pe-3" type="submit" style="z-index: 5; background: transparent; border: none;">
-                <img src="/assets/icon-search.png" alt="Search" height="18">
+                <img src="{{ asset('assets/icons/icon-search.png') }}" alt="Search" height="18">
             </button>
         </div>
     </form>
 
     <div class="d-flex align-items-center justify-content-end gap-2">
+
         <button class="btn btn-nav rounded-pill" data-bs-toggle="modal" data-bs-target="#accountModal">
-            <img src="/assets/icon-user.png" alt="User" height="40">
+            <img src="{{ asset('assets/icons/icon-user.png') }}" alt="User" height="40">
         </button>
 
+        <!-- Account Modal -->
         <div class="modal fade" id="accountModal" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header border-0 pb-0">
                         <div>
-                            <div class="fw-bold">Not Logged In</div>
+                            @auth
+                                <div class="fw-bold">{{ Auth::user()->name }}</div>
+                                <div class="text-muted" style="font-size: 0.82rem;">{{ Auth::user()->email }}</div>
+                            @else
+                                <div class="fw-bold">Not Logged In</div>
+                            @endauth
                         </div>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body pt-2">
                         <hr class="my-2">
-                        <a href="/login" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
-                            Log In
-                        </a>
-                        <hr class="my-2">
-                        <a href="/adminlogin" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
-                            Admin Log In
-                        </a>
+                        @auth
+                            <a href="/account" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                                Account Settings
+                            </a>
+                            <hr class="my-2">
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <button type="submit" class="d-flex align-items-center gap-2 py-2 text-decoration-none border-0 bg-transparent w-100 p-0" style="color: var(--accent);">
+                                    Log Out
+                                </button>
+                            </form>
+                        @else
+                            <a href="/login" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                                Log In
+                            </a>
+                            <hr class="my-2">
+                            <a href="{{ url('/admin/login') }}" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                                Admin Log In
+                            </a>
+                        @endauth
                     </div>
                 </div>
             </div>
         </div>
-        <button onclick="location.href='/cart'" class="btn btn-nav rounded-pill">
-            <img src="/assets/icon-trolley.png" alt="Cart" height="40">
+
+        <button onclick="location.href='{{ url('/cart') }}'" class="btn btn-nav rounded-pill">
+            <img src="{{ asset('assets/icons/icon-trolley.png') }}" alt="Cart" height="40">
         </button>
     </div>
 </nav>
-
-<!--Categories-->
-<div class="categories-bar d-flex justify-content-center">
-    <a href="/productoverview" class="cat-item">All Games</a>
-
-    <div class="dropdown">
-        <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Genre</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Family</a></li>
-            <li><a class="dropdown-item" href="#">Puzzle</a></li>
-            <li><a class="dropdown-item" href="#">Card Games</a></li>
-            <li><a class="dropdown-item" href="#">Strategic</a></li>
-            <li><a class="dropdown-item" href="#">Party</a></li>
-        </ul>
-    </div>
-
-    <div class="dropdown">
-        <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Complexity</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Beginner</a></li>
-            <li><a class="dropdown-item" href="#">Gateway</a></li>
-            <li><a class="dropdown-item" href="#">Intermediate</a></li>
-            <li><a class="dropdown-item" href="#">Expert</a></li>
-            <li><a class="dropdown-item" href="#">Hardcore</a></li>
-        </ul>
-    </div>
-
-    <div class="dropdown">
-        <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Players</a>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Solo</a></li>
-            <li><a class="dropdown-item" href="#">Two Players</a></li>
-            <li><a class="dropdown-item" href="#">Small Group</a></li>
-            <li><a class="dropdown-item" href="#">Family</a></li>
-            <li><a class="dropdown-item" href="#">Large Group</a></li>
-        </ul>
-    </div>
-
-    <a href="#" class="cat-item">New &amp; Trending</a>
-</div>
 
 <main class="container my-5">
 
