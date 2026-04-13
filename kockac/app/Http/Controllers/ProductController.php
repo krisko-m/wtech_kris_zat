@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\CartItem;
+use App\Models\Product;
+use Illuminate\Http\Request;
+
+class ProductController extends Controller
+{
+    public function show($id)
+    {
+        $product = Product::with(['genres', 'images'])->findOrFail($id);
+        return view('product.show', compact('product'));
+    }
+
+    public function addToCart(Request $request, $id){
+        $request->validate(['quantity'=>'required|integer|min:1']);
+
+        $product = Product::findOrFail($id);
+
+        $sessionToken = session()->getId();
+        $cart = Cart::firstOrCreate(
+            ['session_token' => $sessionToken],
+            ['user_id' => auth()->id(), 'created_at' => now()]
+        );
+
+        $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $product->id)->first();
+
+        if($cartItem){
+            $cartItem->quantity += $request->quantity;
+            $cartItem->save();
+        } else {
+            CartItem::create([
+                'cart_id' => $cart->cart_id,
+                'product_id' => $product->product_id,
+                'quantity' => $request->quantity,
+            ]);
+        }
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+    }
+}
