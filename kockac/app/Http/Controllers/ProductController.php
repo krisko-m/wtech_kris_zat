@@ -41,8 +41,14 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
 
-    public function index(){
-        $products = Product::with('mainImage')->paginate(8);
+    public function index(Request $request){
+
+        $search = $request->input('search');
+        $products = Product::with('mainImage')
+            ->when($search, function($query) use ($search){
+                $query->where('name', 'ilike', '%'.$search.'%');
+            })
+            ->paginate(8);
         return view('product.products', compact('products'));
     }
 }
