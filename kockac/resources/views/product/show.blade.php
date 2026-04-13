@@ -13,7 +13,7 @@
 <body>
 <!--Navbar-->
 <nav class="top-navbar">
-    <a href="/index">
+    <a href="/">
         <img src="/assets/kockac-logo-rec.png" alt="Kockáč" height="70">
     </a>
 
@@ -53,7 +53,7 @@
                 </div>
             </div>
         </div>
-        <button onclick="location.href='shopping-cart.html'" class="btn btn-nav rounded-pill">
+        <button onclick="location.href='/cart'" class="btn btn-nav rounded-pill">
             <img src="/assets/icon-trolley.png" alt="Cart" height="40">
         </button>
     </div>
@@ -330,7 +330,7 @@
 <!--Footer-->
 <footer class="py-4 px-4">
     <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
-        <a href="/index">
+        <a href="/">
             <img src="/assets/kockac-logo-rec.png" alt="Kockáč" height="50">
         </a>
         <div class="footer-links d-flex gap-4">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
@@ -18,6 +19,8 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::get('/products/{id}', [ProductController::class, 'show']);
 Route::post('/products/{id}/cart', [ProductController::class, 'addToCart']);
+
+Route::get('/cart', [CartController::class, 'show']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
