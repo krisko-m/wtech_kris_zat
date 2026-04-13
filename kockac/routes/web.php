@@ -22,6 +22,8 @@ Route::post('/products/{id}/cart', [ProductController::class, 'addToCart']);
 
 Route::get('/cart', [CartController::class, 'show']);
 
+Route::get('/products', [ProductController::class, 'index']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');

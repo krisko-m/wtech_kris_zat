@@ -40,4 +40,9 @@ class ProductController extends Controller
         }
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
+
+    public function index(){
+        $products = Product::with('mainImage')->paginate(8);
+        return view('product.products', compact('products'));
+    }
 }
