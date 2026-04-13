@@ -13,9 +13,8 @@ body::before {
 }
 
 .secondary-photo {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+    width: 150px;
+    object-fit: contain;
     border-radius: 8px;
 }
 
@@ -24,6 +23,15 @@ body::before {
     height: auto;
     object-fit: contain;
     border-radius: 8px;
+}
+
+[class*="photo"] {
+    transition: transform 0.2s ease;
+}
+
+[class*="photo"]:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 .product-name {
@@ -45,7 +53,7 @@ body::before {
 
 .detail-card {
     background-color: var(--card-bg);
-    padding: 20px;
+    padding: 25px 70px 25px 70px;
     border-radius: 12px;
     box-shadow: 0 12px 32px rgba(0,0,0,0.1);
     width: 100%;
@@ -139,11 +147,16 @@ body::before {
     background-color: #ccc;
     border: none;
     padding: 0;
-    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
 .dot.active {
     background-color: var(--accent);
+}
+
+.dot:hover{
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 /* Admin Product Detail Editable */

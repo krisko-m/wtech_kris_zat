@@ -140,7 +140,7 @@
         <div class="col">
             <a href="{{ url('/products/bang') }}" class="product-card">
                 <div class="product-img">
-                    <img src="{{ asset('assets/product-bang.png') }}" alt="Bang">
+                    <img src="{{ asset('assets/product-bang-1.png') }}" alt="Bang">
                     <div class="product-badge">NEW</div>
                 </div>
                 <div class="p-3">
