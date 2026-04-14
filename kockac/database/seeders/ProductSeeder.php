@@ -27,35 +27,18 @@ EOT,
             'price' => 15.99,
             'stock_quantity' => 10,
             'recommended_age' => 10,
-            'duration' => '15 to 45 min',
-            'number_of_players' => '4 to 7 players',
+            'duration_min' => 15, 'duration_max' => 45,
+            'players_min' => 4, 'players_max' => 7,
             'added' => '2026-01-01',
+            'author' => 'Emiliano Sciarra',
+            'publisher' => 'dV Giochi',
+            'complexity' => 'Beginner',
         ]);
 
-        // Images
-        ProductImage::create([
-            'product_id' => $product->product_id,
-            'image_path' => '/assets/products/Bang/product-bang-1.png',
-            'is_main' => true,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $product->product_id,
-            'image_path' => '/assets/products/Bang/product-bang-2.png',
-            'is_main' => false,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $product->product_id,
-            'image_path' => '/assets/products/Bang/product-bang-3.png',
-            'is_main' => false,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $product->product_id,
-            'image_path' => '/assets/products/Bang/product-bang-4.png',
-            'is_main' => false,
-        ]);
+        ProductImage::create(['product_id' => $product->product_id, 'image_path' => '/assets/products/Bang/product-bang-1.png', 'is_main' => true]);
+        ProductImage::create(['product_id' => $product->product_id, 'image_path' => '/assets/products/Bang/product-bang-2.png', 'is_main' => false]);
+        ProductImage::create(['product_id' => $product->product_id, 'image_path' => '/assets/products/Bang/product-bang-3.png', 'is_main' => false]);
+        ProductImage::create(['product_id' => $product->product_id, 'image_path' => '/assets/products/Bang/product-bang-4.png', 'is_main' => false]);
 
         $product2 = Product::create([
             'name' => 'Hitster',
@@ -69,35 +52,18 @@ EOT,
             'price' => 25.90,
             'stock_quantity' => 10,
             'recommended_age' => 16,
-            'duration' => '30 min',
-            'number_of_players' => '2 to 10 players',
+            'duration_min' => 30, 'duration_max' => 30,
+            'players_min' => 2, 'players_max' => 10,
             'added' => '2026-01-01',
+            'author' => 'Marcus Carleson',
+            'publisher' => 'Jumbo',
+            'complexity' => 'Beginner',
         ]);
 
-        // Images
-        ProductImage::create([
-            'product_id' => $product2->product_id,
-            'image_path' => '/assets/products/Hitster/product-hitster-1.png',
-            'is_main' => true,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $product2->product_id,
-            'image_path' => '/assets/products/Hitster/product-hitster-2.png',
-            'is_main' => false,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $product2->product_id,
-            'image_path' => '/assets/products/Hitster/product-hitster-3.png',
-            'is_main' => false,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $product2->product_id,
-            'image_path' => '/assets/products/Hitster/product-hitster-4.png',
-            'is_main' => false,
-        ]);
+        ProductImage::create(['product_id' => $product2->product_id, 'image_path' => '/assets/products/Hitster/product-hitster-1.png', 'is_main' => true]);
+        ProductImage::create(['product_id' => $product2->product_id, 'image_path' => '/assets/products/Hitster/product-hitster-2.png', 'is_main' => false]);
+        ProductImage::create(['product_id' => $product2->product_id, 'image_path' => '/assets/products/Hitster/product-hitster-3.png', 'is_main' => false]);
+        ProductImage::create(['product_id' => $product2->product_id, 'image_path' => '/assets/products/Hitster/product-hitster-4.png', 'is_main' => false]);
 
         $product3 = Product::create([
             'name' => 'Catan - Base Game',
@@ -113,35 +79,18 @@ EOT,
             'price' => 44.99,
             'stock_quantity' => 10,
             'recommended_age' => 10,
-            'duration' => '60 - 75 min',
-            'number_of_players' => '3 to 4 players',
+            'duration_min' => 60, 'duration_max' => 75,
+            'players_min' => 3, 'players_max' => 4,
             'added' => '2026-01-01',
+            'author' => 'Klaus Teuber',
+            'publisher' => 'CATAN Studio',
+            'complexity' => 'Gateway',
         ]);
 
-        // Images
-        ProductImage::create([
-            'product_id' => $product3->product_id,
-            'image_path' => '/assets/products/Catan/product-catan-1.png',
-            'is_main' => true,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $product3->product_id,
-            'image_path' => '/assets/products/Catan/product-catan-2.png',
-            'is_main' => false,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $product3->product_id,
-            'image_path' => '/assets/products/Catan/product-catan-3.png',
-            'is_main' => false,
-        ]);
-
-        ProductImage::create([
-            'product_id' => $product3->product_id,
-            'image_path' => '/assets/products/Catan/product-catan-4.png',
-            'is_main' => false,
-        ]);
+        ProductImage::create(['product_id' => $product3->product_id, 'image_path' => '/assets/products/Catan/product-catan-1.png', 'is_main' => true]);
+        ProductImage::create(['product_id' => $product3->product_id, 'image_path' => '/assets/products/Catan/product-catan-2.png', 'is_main' => false]);
+        ProductImage::create(['product_id' => $product3->product_id, 'image_path' => '/assets/products/Catan/product-catan-3.png', 'is_main' => false]);
+        ProductImage::create(['product_id' => $product3->product_id, 'image_path' => '/assets/products/Catan/product-catan-4.png', 'is_main' => false]);
 
         $product4 = Product::create([
             'name' => 'Ticket to Ride',
@@ -155,9 +104,12 @@ EOT,
             'price' => 49.99,
             'stock_quantity' => 12,
             'recommended_age' => 8,
-            'duration' => '45 to 90 min',
-            'number_of_players' => '2 to 5 players',
+            'duration_min' => 45, 'duration_max' => 90,
+            'players_min' => 2, 'players_max' => 5,
             'added' => '2026-01-01',
+            'author' => 'Alan R. Moon',
+            'publisher' => 'Days of Wonder',
+            'complexity' => 'Gateway',
         ]);
 
         ProductImage::create(['product_id' => $product4->product_id, 'image_path' => '/assets/products/TicketToRide/ttr-1.png', 'is_main' => true]);
@@ -174,9 +126,12 @@ EOT,
             'price' => 19.99,
             'stock_quantity' => 20,
             'recommended_age' => 14,
-            'duration' => '15 to 30 min',
-            'number_of_players' => '2 to 8 players',
+            'duration_min' => 15, 'duration_max' => 30,
+            'players_min' => 2, 'players_max' => 8,
             'added' => '2026-01-01',
+            'author' => 'Vlaada Chvátil',
+            'publisher' => 'Czech Games Edition',
+            'complexity' => 'Gateway',
         ]);
 
         ProductImage::create(['product_id' => $product5->product_id, 'image_path' => '/assets/products/Codenames/codenames-1.png', 'is_main' => true]);
@@ -193,9 +148,12 @@ EOT,
             'price' => 39.99,
             'stock_quantity' => 8,
             'recommended_age' => 8,
-            'duration' => '45 to 75 min',
-            'number_of_players' => '2 to 4 players',
+            'duration_min' => 45, 'duration_max' => 75,
+            'players_min' => 2, 'players_max' => 4,
             'added' => '2026-01-01',
+            'author' => 'Matt Leacock',
+            'publisher' => 'Z-Man Games',
+            'complexity' => 'Intermediate',
         ]);
 
         ProductImage::create(['product_id' => $product6->product_id, 'image_path' => '/assets/products/Pandemic/pandemic-1.png', 'is_main' => true]);
@@ -212,9 +170,12 @@ EOT,
             'price' => 13.99,
             'stock_quantity' => 25,
             'recommended_age' => 6,
-            'duration' => '15 min',
-            'number_of_players' => '2 to 8 players',
+            'duration_min' => 15, 'duration_max' => 15,
+            'players_min' => 2, 'players_max' => 8,
             'added' => '2026-01-01',
+            'author' => 'Denis Blanchot',
+            'publisher' => 'Asmodee',
+            'complexity' => 'Beginner',
         ]);
 
         ProductImage::create(['product_id' => $product7->product_id, 'image_path' => '/assets/products/Dobble/dobble-1.png', 'is_main' => true]);
@@ -231,9 +192,12 @@ EOT,
             'price' => 29.99,
             'stock_quantity' => 10,
             'recommended_age' => 8,
-            'duration' => '30 min',
-            'number_of_players' => '3 to 6 players',
+            'duration_min' => 30, 'duration_max' => 30,
+            'players_min' => 3, 'players_max' => 6,
             'added' => '2026-01-01',
+            'author' => 'Jean-Louis Roubira',
+            'publisher' => 'Libellud',
+            'complexity' => 'Beginner',
         ]);
 
         ProductImage::create(['product_id' => $product8->product_id, 'image_path' => '/assets/products/Dixit/dixit-1.png', 'is_main' => true]);
@@ -250,9 +214,12 @@ EOT,
             'price' => 34.99,
             'stock_quantity' => 14,
             'recommended_age' => 8,
-            'duration' => '30 to 45 min',
-            'number_of_players' => '2 to 4 players',
+            'duration_min' => 30, 'duration_max' => 45,
+            'players_min' => 2, 'players_max' => 4,
             'added' => '2026-01-01',
+            'author' => 'Michael Kiesling',
+            'publisher' => 'Next Move Games',
+            'complexity' => 'Gateway',
         ]);
 
         ProductImage::create(['product_id' => $product9->product_id, 'image_path' => '/assets/products/Azul/azul-1.png', 'is_main' => true]);
@@ -269,9 +236,12 @@ EOT,
             'price' => 22.99,
             'stock_quantity' => 18,
             'recommended_age' => 10,
-            'duration' => '15 to 45 min',
-            'number_of_players' => '3 to 6 players',
+            'duration_min' => 15, 'duration_max' => 45,
+            'players_min' => 3, 'players_max' => 6,
             'added' => '2026-01-01',
+            'author' => 'Hervé Marly',
+            'publisher' => 'Space Cowboys',
+            'complexity' => 'Beginner',
         ]);
 
         ProductImage::create(['product_id' => $product10->product_id, 'image_path' => '/assets/products/Skull/skull-1.png', 'is_main' => true]);
@@ -288,9 +258,12 @@ EOT,
             'price' => 32.99,
             'stock_quantity' => 11,
             'recommended_age' => 10,
-            'duration' => '30 min',
-            'number_of_players' => '2 to 4 players',
+            'duration_min' => 30, 'duration_max' => 30,
+            'players_min' => 2, 'players_max' => 4,
             'added' => '2026-01-01',
+            'author' => 'Marc André',
+            'publisher' => 'Space Cowboys',
+            'complexity' => 'Gateway',
         ]);
 
         ProductImage::create(['product_id' => $product11->product_id, 'image_path' => '/assets/products/Splendor/splendor-1.png', 'is_main' => true]);
@@ -307,12 +280,14 @@ EOT,
             'price' => 17.99,
             'stock_quantity' => 30,
             'recommended_age' => 6,
-            'duration' => '20 min',
-            'number_of_players' => '2 or more players',
+            'duration_min' => 20, 'duration_max' => 20,
+            'players_min' => 2, 'players_max' => null,
             'added' => '2026-01-01',
+            'author' => 'Leslie Scott',
+            'publisher' => 'Hasbro',
+            'complexity' => 'Beginner',
         ]);
 
         ProductImage::create(['product_id' => $product12->product_id, 'image_path' => '/assets/products/Jenga/jenga-1.png', 'is_main' => true]);
-
     }
 }

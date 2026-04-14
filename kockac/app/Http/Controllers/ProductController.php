@@ -46,7 +46,11 @@ class ProductController extends Controller
         $search = $request->input('search');
         $products = Product::with('mainImage')
             ->when($search, function($query) use ($search){
-                $query->where('name', 'ilike', '%'.$search.'%');
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'ilike', '%' . $search . '%')
+                        ->orWhere('description', 'ilike', '%' . $search . '%')
+                        ->orWhere('gameplay', 'ilike', '%' . $search . '%');
+                });
             })
             ->paginate(8);
         return view('product.products', compact('products'));
