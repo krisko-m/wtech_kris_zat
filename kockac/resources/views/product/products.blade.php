@@ -142,21 +142,21 @@
                 <div class="filter-section">
                     <div class="filter-label">Price</div>
                     <div class="d-flex gap-2 mb-2">
-                        <input type="number" name="price_min" class="form-control filter-input"
-                               placeholder="€ {{ request('price_min') }}" min="0" value="{{ request('price_min') }}">
-                        <input type="number" name="price_max" class="form-control filter-input"
-                               placeholder="€ {{ request('price_max')}}" max="300" value="{{ request('price_max') }}">
+                        <input type="number" name="price_min" id="price_min" class="form-control filter-input"
+                               placeholder="€ 0" min="0" max="300" value="{{ request('price_min') }}">
+                        <input type="number" name="price_max" id="price_max" class="form-control filter-input"
+                               placeholder="€ 300" min="0" max="300" value="{{ request('price_max') }}">
                     </div>
-                    <input type="range" class="form-range" min="0" max="300" value="0">
-                    <input type="range" class="form-range" min="0" max="300" value="300" style="direction: rtl;">
+                    <input type="range" id="range_min" class="form-range" min="0" max="300" value="{{ request('price_min', 0) }}">
+                    <input type="range" id="range_max" class="form-range" min="0" max="300" value="{{ request('price_max', 300) }}">
                 </div>
 
                 <!-- Number of Players -->
                 <div class="filter-section">
                     <div class="filter-label">Number of Players</div>
-                    <input type="number" name="players" class="form-control filter-input text-center" placeholder="{{request('players')}}"
+                    <input type="number" name="players" id="players_input" class="form-control filter-input text-center" placeholder="1"
                            value="{{request('players')}}" min="1">
-                    <input type="range" class="form-range mt-2" min="0" max="20" value="0">
+                    <input type="range" id="players_range" class="form-range mt-2" min="1" max="20" value="{{ request('players', 1) }}">
                 </div>
 
                 <!-- Age -->
@@ -278,6 +278,25 @@
         if (pageInput) pageInput.value = 1;
 
         document.getElementById('filterForm').submit();
+    }
+
+    const priceMin = document.getElementById('price_min');
+    const rangeMin = document.getElementById('range_min');
+    rangeMin.addEventListener('input', () => priceMin.value = rangeMin.value);
+    priceMin.addEventListener('input', () => rangeMin.value = priceMin.value);
+
+    // Price max
+    const priceMax = document.getElementById('price_max');
+    const rangeMax = document.getElementById('range_max');
+    rangeMax.addEventListener('input', () => priceMax.value = rangeMax.value);
+    priceMax.addEventListener('input', () => rangeMax.value = priceMax.value);
+
+    // Players
+    const playersInput = document.getElementById('players_input');
+    const playersRange = document.getElementById('players_range');
+    if (playersInput && playersRange) {
+        playersRange.addEventListener('input', () => playersInput.value = playersRange.value);
+        playersInput.addEventListener('input', () => playersRange.value = playersInput.value);
     }
 </script>
 </body>
