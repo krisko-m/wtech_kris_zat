@@ -10,8 +10,15 @@ class CartController extends Controller
 {
     public function show()
     {
-        $sessionToken = session()->getId();
-        $cart = Cart::with('items.product.images')->where('session_token', $sessionToken)->first();
+        if (auth()->check()) {
+            $cart = Cart::with('items.product.images')
+                ->where('user_id', auth()->id())
+                ->first();
+        } else {
+            $cart = Cart::with('items.product.images')
+                ->where('session_token', session()->getId())
+                ->first();
+        }
         return view('cart', ['cart' => $cart]);
     }
 

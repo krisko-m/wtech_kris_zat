@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
+use App\Models\CartItem;
 
 class AuthController extends Controller
 {
@@ -58,6 +60,30 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
+            $sessionToken = session()->getId();
+            $sessionCart = Cart::with('items')->where('session_token', $sessionToken)->first();
+
+            if ($sessionCart) {
+                $userCart = Cart::firstOrCreate(
+                    ['user_id' => auth()->id()],
+                    ['session_token' => null]
+                );
+
+                foreach ($sessionCart->items as $item) {
+                    $existing = CartItem::where('cart_id', $userCart->cart_id)
+                        ->where('product_id', $item->product_id)
+                        ->first();
+
+                    if ($existing) {
+                        $existing->quantity += $item->quantity;
+                        $existing->save();
+                    } else {
+                        $item->update(['cart_id' => $userCart->cart_id]);
+                    }
+                }
+                $sessionCart->delete();
+            }
+
             return redirect()->intended('/');
         }
 
@@ -71,6 +97,6 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/login');
     }
 }

@@ -20,11 +20,17 @@ class ProductController extends Controller
 
         $product = Product::findOrFail($id);
 
-        $sessionToken = session()->getId();
-        $cart = Cart::firstOrCreate(
-            ['session_token' => $sessionToken],
-            ['user_id' => auth()->id(), 'created_at' => now()]
-        );
+        if (auth()->check()) {
+            $cart = Cart::firstOrCreate(
+                ['user_id' => auth()->id()],
+                ['session_token' => null]
+            );
+        } else {
+            $cart = Cart::firstOrCreate(
+                ['session_token' => session()->getId()],
+                ['user_id' => null]
+            );
+        }
 
         $cartItem = CartItem::where('cart_id', $cart->cart_id)->where('product_id', $product->product_id)->first();
 
