@@ -126,15 +126,27 @@
                 <div class="row w-120">
                     <div class="col-4 d-flex flex-column gap-2">
                         <span class="detail-label">Recommended age:</span>
-                        <span class="detail-value">{{ $product->recommended_age ?? 'N/A' }}</span>
+                        <span class="detail-value">{{ $product->recommended_age ?? 'N/A' }}+</span>
                     </div>
                     <div class="col-4 d-flex flex-column gap-2">
                         <span class="detail-label">Duration of a game:</span>
-                        <span class="detail-value">{{ $product->duration ?? 'N/A' }}</span>
+                        @if(($product->duration_min == $product->duration_max) && $product->duration_max != null)
+                            <span class="detail-value">{{ $product->duration_min }} min</span>
+                        @elseif(($product->duration_min != $product->duration_max) && ($product->duration_max != null) && $product->duration_min != null)
+                            <span class="detail-value">{{ $product->duration_min }} to {{ $product->duration_max }} min</span>
+                        @else
+                            <span class="detail-value">N/A</span>
+                        @endif
                     </div>
                     <div class="col-4 d-flex flex-column gap-2">
                         <span class="detail-label">Number of players:</span>
-                        <span class="detail-value">{{ $product->number_of_players ?? 'N/A' }}</span>
+                        @if($product->players_max == null && $product->players_min != null)
+                            <span class="detail-value">{{ $product->players_min }}+</span>
+                        @elseif($product->players_max != null && $product->players_min != null)
+                            <span class="detail-value">{{ $product->players_min }} to {{ $product->players_max }}</span>
+                        @else
+                            <span class="detail-value">N/A</span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -331,11 +343,27 @@
 
     function changeMainImage(src, clicked) {
         document.getElementById('main-photo').src = src;
+
+        const allThumbs = document.querySelectorAll('.secondary-photo');
+        const index = Array.from(allThumbs).indexOf(clicked);
+        const dots = document.querySelectorAll('.dot');
+        dots.forEach(dot => dot.classList.remove('active'));
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
     }
 
     function setActiveDot(clicked) {
-        document.querySelectorAll('.dot').forEach(dot => dot.classList.remove('active'));
+        const dots = document.querySelectorAll('.dot');
+        const index = Array.from(dots).indexOf(clicked);
+
+        dots.forEach(dot => dot.classList.remove('active'));
         clicked.classList.add('active');
+
+        const thumbs = document.querySelectorAll('.secondary-photo');
+        if (thumbs[index]) {
+            document.getElementById('main-photo').src = thumbs[index].src;
+        }
     }
 </script>
 </body>

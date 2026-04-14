@@ -48,8 +48,8 @@ class ProductController extends Controller
             ->when($search, function($query) use ($search){
                 $query->where(function ($q) use ($search) {
                     $q->where('name', 'ilike', '%' . $search . '%')
-                        ->orWhere('description', 'ilike', '%' . $search . '%')
-                        ->orWhere('gameplay', 'ilike', '%' . $search . '%');
+                        ->orWhere('author', 'ilike', '%' . $search . '%')
+                        ->orWhere('publisher', 'ilike', '%' . $search . '%');
                 });
             })
             ->paginate(8);

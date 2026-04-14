@@ -80,6 +80,46 @@
     </div>
 </nav>
 
+<!--Categories-->
+<div class="categories-bar d-flex justify-content-center">
+    <a href="{{ url('/products') }}" class="cat-item">All Games</a>
+
+    <div class="dropdown">
+        <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Genre</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Family</a></li>
+            <li><a class="dropdown-item" href="#">Puzzle</a></li>
+            <li><a class="dropdown-item" href="#">Card Games</a></li>
+            <li><a class="dropdown-item" href="#">Strategic</a></li>
+            <li><a class="dropdown-item" href="#">Party</a></li>
+        </ul>
+    </div>
+
+    <div class="dropdown">
+        <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Complexity</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Beginner</a></li>
+            <li><a class="dropdown-item" href="#">Gateway</a></li>
+            <li><a class="dropdown-item" href="#">Intermediate</a></li>
+            <li><a class="dropdown-item" href="#">Expert</a></li>
+            <li><a class="dropdown-item" href="#">Hardcore</a></li>
+        </ul>
+    </div>
+
+    <div class="dropdown">
+        <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Players</a>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Solo</a></li>
+            <li><a class="dropdown-item" href="#">Two Players</a></li>
+            <li><a class="dropdown-item" href="#">Small Group</a></li>
+            <li><a class="dropdown-item" href="#">Family</a></li>
+            <li><a class="dropdown-item" href="#">Large Group</a></li>
+        </ul>
+    </div>
+
+    <a href="#" class="cat-item">New &amp; Trending</a>
+</div>
+
 <!--Banner-->
 <div class="container-fluid px-4">
     <div class="banner d-flex flex-column justify-content-center">
