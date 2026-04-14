@@ -8,6 +8,7 @@
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/styles.css" />
     <link rel="stylesheet" type="text/css" href="/css/productoverview.css" />
+    <link rel="stylesheet" type="text/css" href="/css/login.css" />
     <link rel="icon" type="image/x-icon" href="/assets/kocka-tab.png">
 </head>
 <body>
@@ -123,129 +124,135 @@
 
 <!--Main-->
 <main class="container-fluid px-4 my-4">
-    <div class="row gap-4">
+    <form method="GET" action="/products" id="filterForm">
+        @if(request('search'))
+            <input type="hidden" name="search" value="{{ request('search') }}">
+        @endif
+        <input type="hidden" name="sort" id="sortInput" value="{{ request('sort', 'default') }}">
+        <input type="hidden" name="page" id="pageInput" value="{{ request('page', 1) }}">
+        <div class="row gap-4">
 
-        <!--Sidebar-->
-        <div class="col-md-2 filter-sidebar">
+            <!--Sidebar-->
+            <div class="col-md-2 filter-sidebar">
+                <button type="submit" class="login-button d-block mx-auto w-75 mt-3 fs-6"
+                        onclick="document.getElementById('pageInput').value=1; document.getElementById('filterForm').submit();">Apply Filters</button>
 
-            <!-- Price -->
-            <div class="filter-section">
-                <div class="filter-label">Price</div>
-                <div class="d-flex gap-2 mb-2">
-                    <input type="number" class="form-control filter-input" placeholder="€ 0" min="0">
-                    <input type="number" class="form-control filter-input" placeholder="€ 300" max="300">
+                <a href="/products" class="sort-item w-100 mt-2 text-center d-block">Reset</a>
+                <!-- Price -->
+                <div class="filter-section">
+                    <div class="filter-label">Price</div>
+                    <div class="d-flex gap-2 mb-2">
+                        <input type="number" name="price_min" class="form-control filter-input"
+                               placeholder="€ {{ request('price_min') }}" min="0" value="{{ request('price_min') }}">
+                        <input type="number" name="price_max" class="form-control filter-input"
+                               placeholder="€ {{ request('price_max')}}" max="300" value="{{ request('price_max') }}">
+                    </div>
+                    <input type="range" class="form-range" min="0" max="300" value="0">
+                    <input type="range" class="form-range" min="0" max="300" value="300" style="direction: rtl;">
                 </div>
-                <input type="range" class="form-range" min="0" max="300" value="0">
-                <input type="range" class="form-range" min="0" max="300" value="300" style="direction: rtl;">
-            </div>
 
-            <!-- Number of Players -->
-            <div class="filter-section">
-                <div class="filter-label">Number of Players</div>
-                <input type="number" class="form-control filter-input text-center" value="0" min="0" max="20">
-                <input type="range" class="form-range mt-2" min="0" max="20" value="0">
-            </div>
-
-            <!-- Age -->
-            <div class="filter-section">
-                <div class="filter-label">Age</div>
-                <div class="filter-checks" id="ageChecks">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="age6">
-                        <label class="form-check-label" for="age6">6+</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="age7">
-                        <label class="form-check-label" for="age7">7+</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="age8">
-                        <label class="form-check-label" for="age8">8+</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="age9">
-                        <label class="form-check-label" for="age9">9+</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="age10">
-                        <label class="form-check-label" for="age10">10+</label>
-                    </div>
+                <!-- Number of Players -->
+                <div class="filter-section">
+                    <div class="filter-label">Number of Players</div>
+                    <input type="number" name="players" class="form-control filter-input text-center" placeholder="{{request('players')}}"
+                           value="{{request('players')}}" min="1">
+                    <input type="range" class="form-range mt-2" min="0" max="20" value="0">
                 </div>
-                <a href="#" class="filter-more">More</a>
-            </div>
 
-            <!-- Author -->
-            <div class="filter-section">
-                <div class="filter-label">Author</div>
-                <div class="filter-checks" id="authorChecks">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="albi">
-                        <label class="form-check-label" for="albi">ALBI</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="boardbros">
-                        <label class="form-check-label" for="boardbros">Boardbros</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="dino">
-                        <label class="form-check-label" for="dino">Dino</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="hasbro">
-                        <label class="form-check-label" for="hasbro">Hasbro</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="piatnik">
-                        <label class="form-check-label" for="piatnik">Piatnik</label>
-                    </div>
-                </div>
-                <a href="#" class="filter-more">More</a>
-            </div>
-
-        </div>
-
-        <!--Products-->
-        <div class="col">
-
-            <!-- Sort bar -->
-            <div class="sort-bar d-flex gap-3 mb-4">
-                <a href="#" class="sort-item active">Favourite</a>
-                <a href="#" class="sort-item">Cheapest</a>
-                <a href="#" class="sort-item">Priciest</a>
-                <a href="#" class="sort-item">A-Z</a>
-            </div>
-
-            <!-- Product grid -->
-            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
-
-                @foreach($products as $product)
-                    <div class="col">
-                        <a href="/products/{{ $product->product_id }}" class="product-card">
-                            <div class="product-img">
-                                @if($product->mainImage)
-                                    <img src="{{ $product->mainImage->image_path }}" alt="{{ $product->name }}">
-                                @endif
+                <!-- Age -->
+                <div class="filter-section">
+                    <div class="filter-label">Age</div>
+                    <div class="filter-checks">
+                        @foreach([6, 8, 10, 12, 14, 16, 18] as $age)
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox"
+                                       name="ages[]" value="{{ $age }}"
+                                       id="age{{ $age }}"
+                                    {{ in_array($age, request('ages', [])) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="age{{ $age }}">{{ $age }}+</label>
                             </div>
-                            <div class="p-3">
-                                <div class="product-name mb-1"> {{ $product->name }}</div>
-                                <div class="product-price"> {{$product->price}} €</div>
-                            </div>
-                        </a>
+                        @endforeach
                     </div>
-                @endforeach
+                </div>
+
+{{--                <!-- Author -->--}}
+{{--                <div class="filter-section">--}}
+{{--                    <div class="filter-label">Author</div>--}}
+{{--                    <div class="filter-checks" id="authorChecks">--}}
+{{--                        <div class="form-check">--}}
+{{--                            <input class="form-check-input" type="checkbox" id="albi">--}}
+{{--                            <label class="form-check-label" for="albi">ALBI</label>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-check">--}}
+{{--                            <input class="form-check-input" type="checkbox" id="boardbros">--}}
+{{--                            <label class="form-check-label" for="boardbros">Boardbros</label>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-check">--}}
+{{--                            <input class="form-check-input" type="checkbox" id="dino">--}}
+{{--                            <label class="form-check-label" for="dino">Dino</label>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-check">--}}
+{{--                            <input class="form-check-input" type="checkbox" id="hasbro">--}}
+{{--                            <label class="form-check-label" for="hasbro">Hasbro</label>--}}
+{{--                        </div>--}}
+{{--                        <div class="form-check">--}}
+{{--                            <input class="form-check-input" type="checkbox" id="piatnik">--}}
+{{--                            <label class="form-check-label" for="piatnik">Piatnik</label>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <a href="#" class="filter-more">More</a>--}}
+{{--                </div>--}}
+
             </div>
 
-            <!-- Pages -->
-            <div class="d-flex justify-content-end mt-4 pb-4">
-                <nav>
-                    <ul class="pagination overview-pagination">
-                        {{ $products->links() }}
-                    </ul>
-                </nav>
-            </div>
+            <!--Products-->
+            <div class="col">
 
+                <!-- Sort bar -->
+                <div class="sort-bar d-flex gap-3 mb-4">
+                    <a href="#" class="sort-item {{ request('sort', 'default') === 'default' ? 'active' : '' }}"
+                       onclick="setSort('default'); return false;">Favourite</a>
+                    <a href="#" class="sort-item {{ request('sort') === 'price_asc' ? 'active' : '' }}"
+                       onclick="setSort('price_asc'); return false;">Cheapest</a>
+                    <a href="#" class="sort-item {{ request('sort') === 'price_desc' ? 'active' : '' }}"
+                       onclick="setSort('price_desc'); return false;">Priciest</a>
+                    <a href="#" class="sort-item {{ request('sort') === 'name_asc' ? 'active' : '' }}"
+                       onclick="setSort('name_asc'); return false;">A-Z</a>
+                </div>
+
+
+                <!-- Product grid -->
+                <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
+
+                    @foreach($products as $product)
+                        <div class="col">
+                            <a href="/products/{{ $product->product_id }}" class="product-card">
+                                <div class="product-img">
+                                    @if($product->mainImage)
+                                        <img src="{{ $product->mainImage->image_path }}" alt="{{ $product->name }}">
+                                    @endif
+                                </div>
+                                <div class="p-3">
+                                    <div class="product-name mb-1"> {{ $product->name }}</div>
+                                    <div class="product-price"> {{$product->price}} €</div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Pages -->
+                <div class="d-flex justify-content-end mt-4 pb-4">
+                    <nav>
+                        <ul class="pagination overview-pagination">
+                            {{ $products->links() }}
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
         </div>
-    </div>
+    </form>
 </main>
 
 <!--Footer-->
@@ -263,5 +270,15 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script>
+    function setSort(value) {
+        document.getElementById('sortInput').value = value;
+
+        const pageInput = document.getElementById('pageInput');
+        if (pageInput) pageInput.value = 1;
+
+        document.getElementById('filterForm').submit();
+    }
+</script>
 </body>
 </html>

@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('author', 50)->nullable();
             $table->string('publisher', 50)->nullable();
             $table->integer('recommended_age')->nullable();
-            $table->string('duration_min', 50)->nullable();
-            $table->string('duration_max', 50)->nullable();
-            $table->string('players_min', 50)->nullable();
-            $table->string('players_max', 50)->nullable();
+            $table->integer('duration_min')->nullable();
+            $table->integer('duration_max')->nullable();
+            $table->integer('players_min')->nullable();
+            $table->integer('players_max')->nullable();
             $table->integer('stock_quantity')->default(0);
             $table->enum('complexity', ['Beginner', 'Gateway', 'Intermediate', 'Expert', 'Hardcore'])->nullable();
             $table->date('added')->nullable();

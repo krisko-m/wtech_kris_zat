@@ -108,7 +108,10 @@
 
         <!--Product Info-->
         <div class="col-md-7 product-info d-flex flex-column gap-3 mb-4">
-            <h1 class="product-name align-items-left">{{ $product->name }}</h1>
+            <div class="d-flex align-items-baseline gap-2">
+                <h1 class="product-name align-items-left mb-0">{{ $product->name }}</h1>
+                <span style="font-size: 0.9rem; color: gray;">· {{ $product->author }} · {{ $product->publisher }}</span>
+            </div>
             <p class="product-description">{{ substr($product->description, 0, 150) }}...
                 <a href="#description" class="expandable-text">Show more</a>
             </p>
@@ -364,6 +367,12 @@
         if (thumbs[index]) {
             document.getElementById('main-photo').src = thumbs[index].src;
         }
+    }
+
+    function clearFilter(name) {
+        const inputs = document.querySelectorAll(`[name="${name}"]`);
+        inputs.forEach(i => i.checked = false);
+        document.getElementById('filterForm').submit();
     }
 </script>
 </body>
