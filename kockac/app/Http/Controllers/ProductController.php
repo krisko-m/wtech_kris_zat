@@ -86,4 +86,56 @@ class ProductController extends Controller
 
         return view('product.products', compact('products'));
     }
+
+    public function adminIndex(Request $request)
+    {
+        $search = $request->input('search');
+
+        $products = Product::when($search, function($query) use ($search){
+            $query->where('name', 'ilike', '%' . $search . '%')
+                ->orWhere('product_id', 'like', '%' . $search . '%');
+        })
+            ->orderBy('created_at', 'desc')
+            ->paginate(15);
+
+        return view('admin/product-overview-admin', compact('products'));
+    }
+
+    public function store(Request $request){
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'price' => 'required|integer|min:0',
+            'stock_quantity' => 'required|integer|min:0',
+            'complexity' => 'required|in:beginner,gateway,intermediate,expert,hardcore',
+            'description' => 'required|string',
+            'recommended_age'=> 'nullable|string',
+            'duration_min'   => 'nullable|integer',
+            'duration_max'   => 'nullable|integer',
+            'players_min'    => 'nullable|integer',
+            'players_max'    => 'nullable|integer',
+            'gameplay'       => 'nullable|string',
+            'contents'       => 'nullable|string',
+        ]);
+
+        Product::create($validatedData);
+        return redirect()->back()->with('success', 'Product added successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+
+        // $product->images()->delete();
+
+        $product->delete();
+
+        return redirect()->back()->with('success', 'Product deleted successfully!');
+    }
+
+    public function edit($id){
+        $product = Product::findOrFail($id);
+
+        return view('/admin/edit-product-admin', compact('product'));
+    }
 }

@@ -29,3 +29,13 @@ Route::get('/products', [ProductController::class, 'index']);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
+
+Route::get('/admin/add-product-admin', function () {
+    return view('admin.add-product-admin');
+});
+Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
+
+Route::get('/admin/products', [ProductController::class, 'adminIndex'])->name('admin.products.index');
+Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
+
+Route::get('/admin/products/{id}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');

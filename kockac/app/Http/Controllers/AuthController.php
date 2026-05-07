@@ -13,12 +13,12 @@ class AuthController extends Controller
 {
     public function showRegister()
     {
-        return view('register');
+        return view('\authentication\register');
     }
 
     public function showLogin()
     {
-        return view('login');
+        return view('\authentication\login');
     }
 
     public function register(Request $request)

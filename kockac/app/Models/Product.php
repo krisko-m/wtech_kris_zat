@@ -8,16 +8,13 @@ class Product extends Model
 {
     protected $primaryKey = 'product_id';
     protected $fillable = [
-        'name',
-        'description',
-        'price',
-        'author',
+        'name', 'author', 'publisher',
+        'price', 'stock_quantity',
         'recommended_age',
-        'duration',
-        'number_of_players',
-        'stock_quantity',
+        'duration_min', 'duration_max',
+        'players_min', 'players_max',
         'complexity',
-        'added',
+        'description', 'gameplay', 'contents',
     ];
 
     public function genres(){
