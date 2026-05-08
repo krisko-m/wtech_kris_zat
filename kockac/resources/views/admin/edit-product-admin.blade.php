@@ -9,14 +9,14 @@
 
 @section('content')
     <main class="container my-5">
-        <form action="{{ url('/admin/products/' . $product->product_id) }}" method="POST">
+        <form method="POST" action="/admin/products/{{ $product->product_id }}" >
             @csrf
             @method('PUT')
             <!--Product Section-->
-            <div class="d-flex flex-row product-container">
+            <div class="d-flex flex-md-row flex-column product-container justify-center">
                 <!--Photos-->
-                <div class="col-md-5 d-flex flex-row align-items-center mb-4 gap-1">
-                    <div class="d-flex flex-column align-items-center mb-3">
+                <div class="col-md-5 d-flex flex-md-row flex-column align-items-center mb-4 gap-1">
+                    <div class="d-flex flex-md-column flex-sm-row align-items-center mb-md-3 gap-3">
                         <img src="/assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
                         <img src="/assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
                         <img src="/assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
@@ -67,7 +67,7 @@
 
 
                     <!--Details Card-->
-                    <div class="my-3 d-flex flex-row justify-content-evenly detail-card">
+                    <div class="my-3 d-flex flex-md-row flex-column justify-content-evenly detail-card">
                         <!--Recommended Age-->
                         <div class="col-4 d-flex flex-column text-start">
                             <span class="detail-label">Recommended age:</span>
@@ -76,7 +76,7 @@
                                    class="form-control login-input w-50 mt-2" placeholder="Age">
                         </div>
                         <!-- Min & Max Duration-->
-                        <div class="col-4 d-flex flex-column text-start">
+                        <div class="d-flex flex-column text-start">
                             <span class="detail-label">Duration of a game:</span>
                             <div class="d-flex flex-row">
                                 <input type="text" name="duration_min" id="detail-duration"
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <!--Min & Max Number of Players-->
-                        <div class="col-4 d-flex flex-column text-start">
+                        <div class="d-flex flex-column text-start">
                             <span class="detail-label">Number of players:</span>
                             <div class="d-flex flex-row">
                                 <input type="text" name="players_min" id="detail-players"
@@ -137,15 +137,17 @@
                         <!--Game Complexity-->
                         <div class="mb-3 p-2">
                             <label for="complexity" class="description-heading mb-2">Complexity</label>
-                            <select id="complexity"
-                                    name="complexity"
-                                    class="form-select w-25" required>
-                                <option value="beginner" {{ old('complexity', $product->complexity) == 'beginner' ? 'selected' : '' }}>Beginner</option>
-                                <option value="gateway" {{ old('complexity', $product->complexity) == 'gateway' ? 'selected' : '' }}>Gateway</option>
-                                <option value="intermediate" {{ old('complexity', $product->complexity) == 'intermediate' ? 'selected' : '' }}>Intermediate</option>
-                                <option value="expert" {{ old('complexity', $product->complexity) == 'expert' ? 'selected' : '' }}>Expert</option>
-                                <option value="hardcore" {{ old('complexity', $product->complexity) == 'hardcore' ? 'selected' : '' }}>Hardcore</option>
-                            </select>
+                            <div class="col-12 col-md-3">
+                                <select id="complexity"
+                                        name="complexity"
+                                        class="form-select w-md-25 w-sm-50" required>
+                                    <option value="beginner" {{ old('complexity', $product->complexity) == 'beginner' ? 'selected' : '' }}>Beginner</option>
+                                    <option value="gateway" {{ old('complexity', $product->complexity) == 'gateway' ? 'selected' : '' }}>Gateway</option>
+                                    <option value="intermediate" {{ old('complexity', $product->complexity) == 'intermediate' ? 'selected' : '' }}>Intermediate</option>
+                                    <option value="expert" {{ old('complexity', $product->complexity) == 'expert' ? 'selected' : '' }}>Expert</option>
+                                    <option value="hardcore" {{ old('complexity', $product->complexity) == 'hardcore' ? 'selected' : '' }}>Hardcore</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!--Game Description-->
@@ -163,7 +165,7 @@
                                 <h2 class="description-heading me-3">Gameplay</h2>
                                 <img src="/assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                             </div>
-                            <textarea rows="4" name="gameplay" id="description-gameplay"
+                            <textarea rows="5" name="gameplay" id="description-gameplay"
                                       class="form-control login-input w-100"
                                       placeholder="Add a description of Gameplay...">{{ old('gameplay', $product->gameplay ?? '') }}</textarea>
 

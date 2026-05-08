@@ -133,9 +133,32 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product deleted successfully!');
     }
 
-    public function edit($id){
+    public function edit(Request $request, $id){
         $product = Product::findOrFail($id);
 
         return view('/admin/edit-product-admin', compact('product'));
+    }
+
+    public function update(Request $request, $id){
+        $product = Product::findOrFail($id);
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0',
+            'stock_quantity' => 'required|integer|min:0',
+            'complexity' => 'required|in:beginner,gateway,intermediate,expert,hardcore',
+            'description' => 'required|string',
+            'recommended_age'=> 'nullable|string',
+            'duration_min'   => 'nullable|integer',
+            'duration_max'   => 'nullable|integer',
+            'players_min'    => 'nullable|integer',
+            'players_max'    => 'nullable|integer',
+            'gameplay'       => 'nullable|string',
+            'contents'       => 'nullable|string',
+        ]);
+
+        $product->update($validatedData);
+
+        return redirect('/admin/products')->with('success', 'Product updated!');
     }
 }

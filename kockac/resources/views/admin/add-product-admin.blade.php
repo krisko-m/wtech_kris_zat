@@ -12,10 +12,10 @@
         <form action="{{ route('admin.products.store') }}" method="POST">
             @csrf
             <!--Product Section-->
-            <div class="d-flex flex-row product-container">
+            <div class="d-flex flex-md-row flex-column product-container justify-center">
                 <!--Photos-->
-                <div class="col-md-5 d-flex flex-row align-items-center mb-4 gap-1">
-                    <div class="d-flex flex-column align-items-center mb-3">
+                <div class="col-md-5 d-flex flex-md-row flex-column align-items-center mb-4 gap-1">
+                    <div class="d-flex flex-md-column flex-sm-row align-items-center mb-md-3 gap-3">
                         <img src="/assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
                         <img src="/assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
                         <img src="/assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
@@ -51,7 +51,7 @@
 
 
                     <!--Details Card-->
-                    <div class="my-3 d-flex flex-row justify-content-evenly detail-card">
+                    <div class="my-3 d-flex flex-md-row flex-column justify-content-evenly detail-card">
                         <!--Recommended Age-->
                         <div class="col-4 d-flex flex-column text-start">
                             <span class="detail-label">Recommended age:</span>
@@ -59,7 +59,7 @@
                                        class="form-control login-input w-50 mt-2" placeholder="Age">
                         </div>
                         <!-- Min & Max Duration-->
-                        <div class="col-4 d-flex flex-column text-start">
+                        <div class="d-flex flex-column text-start">
                             <span class="detail-label">Duration of a game:</span>
                             <div class="d-flex flex-row">
                                 <input type="text" name="duration_min" id="detail-duration"
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <!--Min & Max Number of Players-->
-                        <div class="col-4 d-flex flex-column text-start">
+                        <div class="d-flex flex-column text-start">
                             <span class="detail-label">Number of players:</span>
                             <div class="d-flex flex-row">
                                 <input type="text" name="players_min" id="detail-players"
@@ -85,11 +85,11 @@
                     <!--Purchase Section-->
                     <div class="row w-120 mb-3">
                         <div class="col-4 d-flex flex-row gap-2">
-                            <input type="text" name="price" id="detail-price" class="form-control login-input w-50" placeholder="Price" required>
+                            <input type="text" name="price" id="detail-price" class="form-control login-input w-md-50 w-sm-75" placeholder="Price" required>
                             <img src="/assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                         </div>
                         <div class="col-4 d-flex flex-row gap-2">
-                            <input type="text" name="stock_quantity" id="detail-stock" class="form-control login-input w-50" placeholder="Quantity" required>
+                            <input type="text" name="stock_quantity" id="detail-stock" class="form-control login-input w-md-50 w-sm-75" placeholder="Quantity" required>
                             <img src="/assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                         </div>
                     </div>
@@ -106,14 +106,16 @@
                         <!--Game Complexity-->
                         <div class="mb-3 p-2">
                             <label for="complexity" class="description-heading mb-2">Complexity</label>
-                            <select id="complexity" name="complexity" class="form-select w-25" required>
-                                <option value="">Select complexity</option>
-                                <option value="beginner">Beginner</option>
-                                <option value="gateway">Gateway</option>
-                                <option value="intermediate">Intermediate</option>
-                                <option value="expert">Expert</option>
-                                <option value="hardcore">Hardcore</option>
-                            </select>
+                            <div class="col-12 col-md-3">
+                                <select id="complexity" name="complexity" class="form-select  w-md-25 w-sm-50" required>
+                                    <option value="">Select complexity</option>
+                                    <option value="beginner">Beginner</option>
+                                    <option value="gateway">Gateway</option>
+                                    <option value="intermediate">Intermediate</option>
+                                    <option value="expert">Expert</option>
+                                    <option value="hardcore">Hardcore</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!--Game Description-->

@@ -52,8 +52,8 @@
                         <hr class="my-2">
                         @auth
                             @if(Auth::user()->is_admin)
-                                <a href='/admin/add-product-admin' class="d-flex align-items-center gap-2 py-2 text-decoration-none fw-bold text-danger" style="color: var(--accent);">
-                                    Add Product (Admin)
+                                <a href='/admin/add-product-admin' class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                                    Add Product
                                 </a>
                                 <hr class="my-2">
                             @endif
