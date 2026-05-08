@@ -16,7 +16,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            CitySeeder::class,
+            MethodSeeder::class,
+            OrderstatusSeeder::class,
+            ProductSeeder::class,
+            GenreSeeder::class,
+        ]);
 
         User::create([
             'first_name' => 'Freddy',
@@ -34,6 +40,10 @@ class DatabaseSeeder extends Seeder
             'email'      => 'admin@example.com',
             'password'   => Hash::make('admin123'),
             'is_admin'   => true,
+        ]);
+
+        $this->call([
+            ReviewSeeder::class,
         ]);
     }
 }
