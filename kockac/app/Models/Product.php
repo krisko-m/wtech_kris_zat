@@ -25,6 +25,10 @@ class Product extends Model
         return $this->hasMany(ProductImage::class, 'product_id', 'product_id');
     }
 
+    public function reviews(){
+        return $this->hasMany(\App\Models\Review::class, 'product_id', 'product_id');
+    }
+
     public function mainImage(){
         return $this->hasOne(ProductImage::class, 'product_id', 'product_id')->where('is_main', true);
     }
