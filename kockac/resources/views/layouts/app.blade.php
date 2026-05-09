@@ -52,7 +52,7 @@
                         <hr class="my-2">
                         @auth
                             @if(Auth::user()->is_admin)
-                                <a href='/admin/add-product-admin' class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                                <a href="{{ route('admin.add.product') }}" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
                                     Add Product
                                 </a>
                                 <hr class="my-2">

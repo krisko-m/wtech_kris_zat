@@ -101,6 +101,10 @@ class ProductController extends Controller
         return view('admin/product-overview-admin', compact('products'));
     }
 
+    public function create(){
+        return view('/admin/add-product-admin');
+    }
+
     public function store(Request $request){
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',

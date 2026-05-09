@@ -30,9 +30,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
 
-Route::get('/admin/add-product-admin', function () {
-    return view('admin.add-product-admin');
-});
+Route::get('/admin/add-product-admin', [ProductController::class, 'create'])->name('admin.add.product');
 Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
 
 Route::get('/admin/products', [ProductController::class, 'adminIndex'])->name('admin.products.index');
