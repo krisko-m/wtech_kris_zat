@@ -46,7 +46,7 @@
                             <h5>Address</h5>
                             <input name="address" type="text"
                                    class="form-control login-input w-100 @error('address') is-invalid @enderror"
-                                   value="{{ old('address') }}">
+                                   value="{{ old('address', $user->address ?? '') }}">
                             @error('address') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
@@ -62,14 +62,14 @@
                             <h5>Postal Code</h5>
                             <input name="postal_code" type="text"
                                    class="form-control login-input w-100 @error('postal_code') is-invalid @enderror"
-                                   value="{{ old('postal_code') }}">
+                                   value="{{ old('postal_code', $user->city->postal_code ?? '') }}">
                             @error('postal_code') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">
                             <h5>City</h5>
                             <input name="city" type="text"
                                    class="form-control login-input w-100 @error('city') is-invalid @enderror"
-                                   value="{{ old('city') }}">
+                                   value="{{ old('city', $user->city->city ?? '') }}">
                             @error('city') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                             <h5>Country</h5>
                             <input name="country" type="text"
                                    class="form-control login-input w-100 @error('country') is-invalid @enderror"
-                                   value="{{ old('country', 'Slovakia') }}">
+                                   value="{{ old('country', $user->city->country ?? 'Slovakia') }}">
                             @error('country') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="col-md-6">

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\AccountController;
 
 Route::get('/', function () {
     return view('index');
@@ -13,7 +14,7 @@ Route::get('/', function () {
 Route::get('/register', [AuthController::class, 'showRegister']);
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/login', [AuthController::class, 'showLogin']);
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/logout', [AuthController::class, 'logout']);
@@ -27,12 +28,23 @@ Route::delete('/cart/{cartItem}', [CartController::class, 'destroy']);
 
 Route::get('/products', [ProductController::class, 'index']);
 
+Route::middleware('auth')->group(function () {
+    Route::get('/account', [AccountController::class, 'show']);
+    Route::put('/account', [AccountController::class, 'update']);
+    Route::get('/account/orders', [AccountController::class, 'orders']);
+    Route::get('/account/change-password', [AccountController::class, 'changePassword']);
+    Route::put('/account/change-password', [AccountController::class, 'updatePassword']);
+    Route::get('/account/logout', function() {
+        return view('myaccount.logout');
+    });
+});
+
+
 Route::get('/checkout', [CheckoutController::class, 'show'])->middleware('not.admin');
 Route::post('/checkout', [CheckoutController::class, 'store'])->middleware('not.admin');
 Route::get('/order-success', function () {
     return view('order-success');
 });
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');

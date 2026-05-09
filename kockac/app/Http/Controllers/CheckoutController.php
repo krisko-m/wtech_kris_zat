@@ -37,10 +37,9 @@ class CheckoutController extends Controller
         $paymentMethods  = PaymentMethod::all();
         $cities          = City::orderBy('city')->get();
 
-        // Subtotal
         $subtotal = $cart->items->sum(fn($i) => $i->quantity * $i->product->price);
 
-        $user = auth()->user();
+        $user = auth()->user()?->load('city');
 
         return view('checkout', compact(
             'cart', 'subtotal', 'deliveryMethods',
