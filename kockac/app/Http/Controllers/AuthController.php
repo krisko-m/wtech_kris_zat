@@ -50,18 +50,18 @@ class AuthController extends Controller
         ]);
 
         $login = $request->input('login');
-
         $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
         $credentials = [
             $field     => $login,
             'password' => $request->password,
         ];
 
+        // Načítaj session token PRED Auth::attempt() - attempt môže zmeniť session
+        $sessionToken = session()->getId();
+        $sessionCart = Cart::with('items')->where('session_token', $sessionToken)->first();
+
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            $sessionToken = session()->getId();
-            $sessionCart = Cart::with('items')->where('session_token', $sessionToken)->first();
 
             if ($sessionCart) {
                 $userCart = Cart::firstOrCreate(
@@ -97,6 +97,8 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login');
+        return redirect('/login')
+            ->withCookie(cookie()->forget('remember_web'))
+            ->withCookie(cookie()->forget(Auth::getRecallerName()));
     }
 }

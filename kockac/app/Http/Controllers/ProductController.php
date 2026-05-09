@@ -34,6 +34,14 @@ class ProductController extends Controller
 
         $cartItem = CartItem::where('cart_id', $cart->cart_id)->where('product_id', $product->product_id)->first();
 
+        // Skontroluj dostupnosť na sklade
+        $currentQty = $cartItem ? $cartItem->quantity : 0;
+        if ($currentQty + $request->quantity > $product->stock_quantity) {
+            return redirect()->back()->with('error',
+                "Sorry, only {$product->stock_quantity} units of '{$product->name}' are available."
+            );
+        }
+
         if($cartItem){
             $cartItem->quantity += $request->quantity;
             $cartItem->save();
@@ -57,6 +65,8 @@ class ProductController extends Controller
         $ages = $request->input('ages', []);
 
         $products = Product::with('mainImage')
+            ->distinct()
+            ->withAvg('reviews', 'stars')
             ->when($search, function($query) use ($search){
                 $query->where(function ($q) use ($search) {
                     $q->where('name', 'ilike', '%' . $search . '%')
@@ -81,7 +91,7 @@ class ProductController extends Controller
             ->when($sort === 'price_asc',  fn($q) => $q->orderBy('price'))
             ->when($sort === 'price_desc', fn($q) => $q->orderBy('price', 'desc'))
             ->when($sort === 'name_asc',   fn($q) => $q->orderBy('name'))
-
+            ->when($sort === 'default',    fn($q) => $q->orderByDesc('reviews_avg_stars'))
             ->paginate(8)->withQueryString();
 
         return view('product.products', compact('products'));
@@ -89,14 +99,42 @@ class ProductController extends Controller
 
     public function adminIndex(Request $request)
     {
-        $search = $request->input('search');
+        $search   = $request->input('search');
+        $priceMin = $request->input('price_min');
+        $priceMax = $request->input('price_max');
+        $players  = $request->input('players');
+        $sort     = $request->input('sort', 'default');
+        $ages     = $request->input('ages', []);
 
-        $products = Product::when($search, function($query) use ($search){
-            $query->where('name', 'ilike', '%' . $search . '%')
-                ->orWhere('product_id', 'like', '%' . $search . '%');
-        })
-            ->orderBy('created_at', 'desc')
-            ->paginate(15);
+        $products = Product::with('mainImage')
+            ->distinct()
+            ->withAvg('reviews', 'stars')
+            ->when($search, function ($q) use ($search) {
+                $q->where(function ($q) use ($search) {
+                    $q->where('name', 'ilike', '%' . $search . '%')
+                        ->orWhere('author', 'ilike', '%' . $search . '%')
+                        ->orWhere('publisher', 'ilike', '%' . $search . '%');
+                });
+            })
+            ->when($priceMin, fn($q) => $q->where('price', '>=', $priceMin))
+            ->when($priceMax, fn($q) => $q->where('price', '<=', $priceMax))
+            ->when($players, fn($q) => $q->where('players_min', '<=', $players)
+                ->where(function ($q) use ($players) {
+                    $q->where('players_max', '>=', $players)
+                        ->orWhereNull('players_max');
+                }))
+            ->when(!empty($ages), function ($q) use ($ages) {
+                $q->where(function ($q) use ($ages) {
+                    foreach ($ages as $age) {
+                        $q->orWhere('recommended_age', '<=', $age);
+                    }
+                });
+            })
+            ->when($sort === 'price_asc',  fn($q) => $q->orderBy('price'))
+            ->when($sort === 'price_desc', fn($q) => $q->orderBy('price', 'desc'))
+            ->when($sort === 'name_asc',   fn($q) => $q->orderBy('name'))
+            ->when($sort === 'default',    fn($q) => $q->orderByDesc('reviews_avg_stars'))
+            ->paginate(15)->withQueryString();
 
         return view('admin/product-overview-admin', compact('products'));
     }
@@ -107,12 +145,13 @@ class ProductController extends Controller
 
     public function store(Request $request){
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'price' => 'required|integer|min:0',
+            'name'           => 'required|string|max:255',
+            'author'         => 'required|string|max:255',
+            'publisher'      => 'nullable|string|max:255',
+            'price'          => 'required|integer|min:0',
             'stock_quantity' => 'required|integer|min:0',
-            'complexity' => 'required|in:beginner,gateway,intermediate,expert,hardcore',
-            'description' => 'required|string',
+            'complexity'     => 'required|in:beginner,gateway,intermediate,expert,hardcore',
+            'description'    => 'required|string',
             'recommended_age'=> 'nullable|string',
             'duration_min'   => 'nullable|integer',
             'duration_max'   => 'nullable|integer',
@@ -146,12 +185,13 @@ class ProductController extends Controller
     public function update(Request $request, $id){
         $product = Product::findOrFail($id);
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
+            'name'           => 'required|string|max:255',
+            'author'         => 'required|string|max:255',
+            'publisher'      => 'nullable|string|max:255',
+            'price'          => 'required|numeric|min:0',
             'stock_quantity' => 'required|integer|min:0',
-            'complexity' => 'required|in:beginner,gateway,intermediate,expert,hardcore',
-            'description' => 'required|string',
+            'complexity'     => 'required|in:beginner,gateway,intermediate,expert,hardcore',
+            'description'    => 'required|string',
             'recommended_age'=> 'nullable|string',
             'duration_min'   => 'nullable|integer',
             'duration_max'   => 'nullable|integer',

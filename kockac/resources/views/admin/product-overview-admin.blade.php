@@ -46,7 +46,7 @@
                     <button type="submit" class="login-button d-block mx-auto w-75 mt-3 fs-6"
                             onclick="document.getElementById('pageInput').value=1; document.getElementById('filterForm').submit();">Apply Filters</button>
 
-                    <a href="/products" class="sort-item w-100 mt-2 text-center d-block">Reset</a>
+                    <a href="{{ route('admin.products.index') }}" class="sort-item w-100 mt-2 text-center d-block">Reset</a>
                     <!-- Price -->
                     <div class="filter-section">
                         <span class="filter-label">Price</span>
@@ -114,60 +114,60 @@
 
                 </div>
 
-            <!--Products-->
-            <div class="col">
+                <!--Products-->
+                <div class="col">
 
-                <!-- Sort bar -->
-                <div class="sort-bar d-flex gap-3 mb-4">
-                    <a href="#" class="sort-item {{ request('sort', 'default') === 'default' ? 'active' : '' }}"
-                       onclick="setSort('default'); return false;">Favourite</a>
-                    <a href="#" class="sort-item {{ request('sort') === 'price_asc' ? 'active' : '' }}"
-                       onclick="setSort('price_asc'); return false;">Cheapest</a>
-                    <a href="#" class="sort-item {{ request('sort') === 'price_desc' ? 'active' : '' }}"
-                       onclick="setSort('price_desc'); return false;">Priciest</a>
-                    <a href="#" class="sort-item {{ request('sort') === 'name_asc' ? 'active' : '' }}"
-                       onclick="setSort('name_asc'); return false;">A-Z</a>
-                </div>
+                    <!-- Sort bar -->
+                    <div class="sort-bar d-flex gap-3 mb-4">
+                        <a href="#" class="sort-item {{ request('sort', 'default') === 'default' ? 'active' : '' }}"
+                           onclick="setSort('default'); return false;">Favourite</a>
+                        <a href="#" class="sort-item {{ request('sort') === 'price_asc' ? 'active' : '' }}"
+                           onclick="setSort('price_asc'); return false;">Cheapest</a>
+                        <a href="#" class="sort-item {{ request('sort') === 'price_desc' ? 'active' : '' }}"
+                           onclick="setSort('price_desc'); return false;">Priciest</a>
+                        <a href="#" class="sort-item {{ request('sort') === 'name_asc' ? 'active' : '' }}"
+                           onclick="setSort('name_asc'); return false;">A-Z</a>
+                    </div>
 
-                <!-- Product grid -->
-                <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
+                    <!-- Product grid -->
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
 
-                    @foreach($products as $product)
-                        <div class="col" style="position: relative">
-                            <div class="card-actions">
-                                <img src="/assets/trash-icon.png"
-                                     alt="Delete Button"
-                                     onclick="prepareDelete({{ $product->product_id }})">
-                                <img onclick="location.href='{{route('admin.products.edit', $product->product_id)}}'"
-                                     src="/assets/edit-icon.png"
-                                     alt="Edit Icon">
+                        @foreach($products as $product)
+                            <div class="col" style="position: relative">
+                                <div class="card-actions">
+                                    <img src="/assets/trash-icon.png"
+                                         alt="Delete Button"
+                                         onclick="prepareDelete({{ $product->product_id }})">
+                                    <img onclick="location.href='{{route('admin.products.edit', $product->product_id)}}'"
+                                         src="/assets/edit-icon.png"
+                                         alt="Edit Icon">
+                                </div>
+                                <a href="/products/{{ $product->product_id }}" class="product-card">
+                                    <div class="product-img">
+                                        @if($product->mainImage)
+                                            <img src="{{ $product->mainImage->image_path }}" alt="{{ $product->name }}">
+                                        @endif
+                                    </div>
+                                    <div class="p-3">
+                                        <div class="product-name mb-1"> {{ $product->name }}</div>
+                                        <div class="product-price"> {{$product->price}} €</div>
+                                    </div>
+                                </a>
                             </div>
-                            <a href="/products/{{ $product->product_id }}" class="product-card">
-                                <div class="product-img">
-                                    @if($product->mainImage)
-                                        <img src="{{ $product->mainImage->image_path }}" alt="{{ $product->name }}">
-                                    @endif
-                                </div>
-                                <div class="p-3">
-                                    <div class="product-name mb-1"> {{ $product->name }}</div>
-                                    <div class="product-price"> {{$product->price}} €</div>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
+                        @endforeach
+                    </div>
 
 
-                <!-- Pages -->
-                <div class="d-flex justify-content-end mt-4 pb-4">
-                    <nav>
-                        <ul class="pagination overview-pagination">
-                            {{ $products->links() }}
-                        </ul>
-                    </nav>
+                    <!-- Pages -->
+                    <div class="d-flex justify-content-end mt-4 pb-4">
+                        <nav>
+                            <ul class="pagination overview-pagination">
+                                {{ $products->links() }}
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
         </form>
     </main>
 @endsection

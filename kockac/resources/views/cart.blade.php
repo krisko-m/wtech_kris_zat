@@ -84,10 +84,6 @@
                             <a href="/login" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
                                 Log In
                             </a>
-                            <hr class="my-2">
-                            <a href="{{ url('/admin/login') }}" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
-                                Admin Log In
-                            </a>
                         @endauth
                     </div>
                 </div>
@@ -220,7 +216,7 @@
                     <h4><strong id="subtotal">{{ number_format($total, 2) }} €</strong></h4>
                 </div>
                 <hr/>
-                <button onclick="location.href='checkout-address.html'" class="login-button">CHECKOUT</button>
+                <button onclick="location.href='{{ url('/checkout') }}'" class="login-button">CHECKOUT</button>
             </div>
         </div>
     </div>

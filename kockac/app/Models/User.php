@@ -16,7 +16,9 @@ use Illuminate\Notifications\Notifiable;
     'username',
     'email',
     'password',
-    'is_admin'
+    'is_admin',
+    'address',
+    'city_id',
 ])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
@@ -36,5 +38,10 @@ class User extends Authenticatable
             'password' => 'hashed',
             'is_admin' => 'boolean',
         ];
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id', 'city_id');
     }
 }
