@@ -97,6 +97,8 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login');
+        return redirect('/login')
+            ->withCookie(cookie()->forget('remember_web'))
+            ->withCookie(cookie()->forget(Auth::getRecallerName()));
     }
 }
