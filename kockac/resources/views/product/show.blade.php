@@ -126,65 +126,80 @@
                     </div>
                 </div>
 
+                <!-- Reviews -->
                 <div class="row">
                     <div class="col-12 col-md-8" id="reviews">
                         <div class="detail-card w-100 d-block text-start mb-3">
                             <div class="description-content p-3">
                                 <p class="description-heading">Reviews</p>
-                                <div class="mb-4">
-                                    <div class="row mb-1">
-                                        <div class="col-6"><h4>Reliable Customer</h4></div>
-                                        <div class="col-6 text-end">3.3.2026 &nbsp; ⭐⭐⭐⭐⭐</div>
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <p>BANG! is, in my opinion, one of the best games I've ever played...
-                                                    <a href="#" class="expandable-text">Show whole review</a>
-                                                </p>
+
+                                @if($product->reviews->count() > 0)
+                                    @foreach($product->reviews->take(2) as $review)
+                                        <div class="mb-4">
+                                            <div class="row mb-1">
+                                                <div class="col-6">
+                                                    <h4>{{ $review->user->first_name }} {{ $review->user->last_name }}</h4>
+                                                </div>
+                                                <div class="col-6 text-end">
+                                                    {{ $review->created_at ? $review->created_at->format('d.m.Y') : '' }}
+                                                    @for($i = 1; $i <= 5; $i++)
+                                                        {{ $i <= $review->stars ? '⭐' : '' }}
+                                                    @endfor
+                                                </div>
+                                                <div class="col-12">
+                                                    <p>{{ $review->message }}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                        <hr>
+                                    @endforeach
+                                @else
+                                    <p class="text-muted">No reviews yet. Be the first to review!</p>
+                                @endif
+
                                 <div class="row">
                                     <div class="col-auto mx-auto">
-                                        <button class="add-to-cart btn-sm py-2 px-3">Show all reviews</button>
+                                        <button class="add-to-cart btn-sm py-2 px-3" data-bs-toggle="modal" data-bs-target="#allReviewsModal">Show all reviews</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Review Overview-->
                     <div class="col-12 col-md-4">
                         <div class="detail-card text-start mb-3" style="padding: 20px !important;">
                             <div class="description-content p-2">
                                 <p class="description-heading">Overview</p>
                                 <div class="text-center mb-3">
-                                    <h1 class="mb-0">4.6⭐</h1>
+                                    <h1 class="mb-0">{{ number_format($product->reviews->avg('stars'), 1) }}⭐</h1>
                                     <p class="detail-label">out of 5 ⭐</p>
-                                    <p class="detail-label">76 reviews</p>
+                                    <p class="detail-label">{{ $product->reviews->count() }} reviews</p>
                                 </div>
-                                <div class="row align-items-center mb-1">
-                                    <div class="col-2 text-end">5 ⭐</div>
-                                    <div class="col-10"><div class="progress"><div class="progress-bar bg-danger" style="width: 73%"></div></div></div>
-                                </div>
-                                <div class="row align-items-center mb-1">
-                                    <div class="col-2 text-end">4 ⭐</div>
-                                    <div class="col-10"><div class="progress"><div class="progress-bar bg-danger" style="width: 18%"></div></div></div>
-                                </div>
-                                <div class="row align-items-center mb-1">
-                                    <div class="col-2 text-end">3 ⭐</div>
-                                    <div class="col-10"><div class="progress"><div class="progress-bar bg-danger" style="width: 6%"></div></div></div>
-                                </div>
-                                <div class="row align-items-center mb-1">
-                                    <div class="col-2 text-end">2 ⭐</div>
-                                    <div class="col-10"><div class="progress"><div class="progress-bar bg-danger" style="width: 0%"></div></div></div>
-                                </div>
-                                <div class="row align-items-center mb-1">
-                                    <div class="col-2 text-end">1 ⭐</div>
-                                    <div class="col-10"><div class="progress"><div class="progress-bar bg-danger" style="width: 3%"></div></div></div>
-                                </div>
+                                @for($i = 5; $i >= 1; $i--)
+                                    @php
+                                        $count = $product->reviews->where('stars', $i)->count();
+                                        $percentage = $product->reviews->count() > 0 ? ($count / $product->reviews->count())*100 : 0;
+                                    @endphp
+                                    <div class="row align-items-center mb-1">
+                                        <div class="col-2 text-end">{{ $i }} ⭐</div>
+                                        <div class="col-10">
+                                            <div class="progress">
+                                                <div class="progress-bar bg-danger" style="width: {{ $percentage }}%">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endfor
+
+                                <!-- Write a review Button-->
                                 <div class="row">
                                     <div class="col-auto mx-auto mt-3">
-                                        <button class="btn btn-outline-secondary">Write a review</button>
+                                        @auth
+                                            <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#reviewModal">Write a review</button>
+                                        @else
+                                            <a href="{{route('login')}}" class="btn btn-outline-secondary">Log in to write a review</a>
+                                        @endauth
                                     </div>
                                 </div>
                             </div>
@@ -194,9 +209,106 @@
             </div>
         </div>
     </main>
+
+    <!-- Review Modal -->
+    <div class="modal fade" id="reviewModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Write a Review</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    @if(session('success'))
+                        <div class="alert alert-success">{{ session('success') }}</div>
+                    @endif
+
+                    <form method="POST" action="/products/{{ $product->product_id }}/reviews">
+                        @csrf
+
+                        <div class="mb-3">
+                            <label class="form-label">Rating</label>
+                            <div class="dropdown">
+                                <a href="javascript:void(0)" class="cat-item dropdown-toggle text-center d-block" data-bs-toggle="dropdown">⭐⭐⭐⭐⭐</a>
+                                <ul class="dropdown-menu" style="min-width: 100%;">
+                                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectStars(5, this)">⭐⭐⭐⭐⭐</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectStars(4, this)">⭐⭐⭐⭐</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectStars(3, this)">⭐⭐⭐</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectStars(2, this)">⭐⭐</a></li>
+                                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectStars(1, this)">⭐</a></li>
+                                </ul>
+                                <input type="hidden" name="stars" id="stars-value" value="5">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Your Review</label>
+                            <textarea name="message" class="form-control login-input" rows="4" placeholder="Write your review here...">{{ old('message') }}</textarea>
+                            @error('message')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="add-to-cart btn-sm py-2 px-3">Submit Review</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Reviews Modal -->
+    <div class="modal fade" id="allReviewsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="description-heading">All Reviews - {{ $product->name }}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    @if($product->reviews->count() > 0)
+                        @foreach($product->reviews as $review)
+                            <div class="mb-4">
+                                <div class="row mb-1">
+                                    <div class="col-6">
+                                        <h5>{{ $review->user->first_name }} {{ $review->user->last_name }}</h5>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        {{ $review->created_at ? $review->created_at->format('d.m.Y') : '' }}
+                                        @for($i = 1; $i <= 5; $i++)
+                                            {{ $i <= $review->stars ? '⭐' : '' }}
+                                        @endfor
+                                    </div>
+                                    @if($review->message)
+                                        <div class="col-12">
+                                            <p>{{ $review->message }}</p>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <hr>
+                        @endforeach
+                    @else
+                        <p class="text-muted">No reviews yet.</p>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')
+    <script>
+        function selectStars(value, el) {
+            document.getElementById('stars-value').value = value;
+            el.closest('.dropdown').querySelector('.dropdown-toggle').textContent = el.textContent;
+        }
+    </script>
     <script>
         function changeQuantity(amount){
             const input = document.getElementById('quantity');

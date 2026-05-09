@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function show($id)
     {
-        $product = Product::with(['genres', 'images'])->findOrFail($id);
+        $product = Product::with(['genres', 'images', 'reviews.user'])->findOrFail($id);
         return view('product.show', compact('product'));
     }
 

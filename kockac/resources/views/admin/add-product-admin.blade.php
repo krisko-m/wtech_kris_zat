@@ -139,14 +139,17 @@
                         <div class="mb-3 p-2">
                             <label for="complexity" class="description-heading mb-2">Complexity</label>
                             <div class="col-12 col-md-3">
-                                <select id="complexity" name="complexity" class="form-select  w-md-25 w-sm-50" required>
-                                    <option value="">Select complexity</option>
-                                    <option value="beginner">Beginner</option>
-                                    <option value="gateway">Gateway</option>
-                                    <option value="intermediate">Intermediate</option>
-                                    <option value="expert">Expert</option>
-                                    <option value="hardcore">Hardcore</option>
-                                </select>
+                                <div class="dropdown">
+                                    <a href="javascript:void(0)" class="cat-item dropdown-toggle text-center d-block" data-bs-toggle="dropdown">Select complexity</a>
+                                    <ul class="dropdown-menu" style="min-width: 100%;">
+                                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectComplexity('beginner', this)">Beginner</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectComplexity('gateway', this)">Gateway</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectComplexity('intermediate', this)">Intermediate</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectComplexity('expert', this)">Expert</a></li>
+                                        <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectComplexity('hardcore', this)">Hardcore</a></li>
+                                    </ul>
+                                    <input type="hidden" name="complexity" id="complexity-value">
+                                </div>
                             </div>
                         </div>
 
@@ -226,6 +229,12 @@
 @endsection
 
 @section('scripts')
+    <script>
+        function selectComplexity(value, el) {
+            document.getElementById('complexity-value').value = value;
+            el.closest('.dropdown').querySelector('.dropdown-toggle').textContent = el.textContent;
+        }
+    </script>
     <script src="{{ asset('js/product-image-manager.js') }}"></script>
     <script>
         function triggerUpload() {

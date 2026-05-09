@@ -355,3 +355,21 @@ footer {
         font-size: 0.75rem;
     }
 }
+
+.modal textarea:focus,
+.modal select:focus,
+select.login-input:focus {
+    outline: none !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(255, 63, 91, 0.1) !important;
+    background: #fff !important;
+}
+
+.modal .dropdown-toggle:focus,
+.modal .dropdown-toggle:active,
+.modal .dropdown-toggle.show {
+    outline: none;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(255, 63, 91, 0.1) !important;
+    background: #fff;
+}

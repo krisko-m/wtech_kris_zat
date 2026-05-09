@@ -61,33 +61,33 @@
                         </div>
                     </div>
 
-    {{--                <!-- Author -->--}}
-    {{--                <div class="filter-section">--}}
-    {{--                    <div class="filter-label">Author</div>--}}
-    {{--                    <div class="filter-checks" id="authorChecks">--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="checkbox" id="albi">--}}
-    {{--                            <label class="form-check-label" for="albi">ALBI</label>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="checkbox" id="boardbros">--}}
-    {{--                            <label class="form-check-label" for="boardbros">Boardbros</label>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="checkbox" id="dino">--}}
-    {{--                            <label class="form-check-label" for="dino">Dino</label>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="checkbox" id="hasbro">--}}
-    {{--                            <label class="form-check-label" for="hasbro">Hasbro</label>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="checkbox" id="piatnik">--}}
-    {{--                            <label class="form-check-label" for="piatnik">Piatnik</label>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                    <a href="#" class="filter-more">More</a>--}}
-    {{--                </div>--}}
+{{--                    <!-- Author -->--}}
+{{--                    <div class="filter-section">--}}
+{{--                        <div class="filter-label">Author</div>--}}
+{{--                        <div class="filter-checks" id="authorChecks">--}}
+{{--                            <div class="form-check">--}}
+{{--                                <input class="form-check-input" type="checkbox" id="albi">--}}
+{{--                                <label class="form-check-label" for="albi">ALBI</label>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-check">--}}
+{{--                                <input class="form-check-input" type="checkbox" id="boardbros">--}}
+{{--                                <label class="form-check-label" for="boardbros">Boardbros</label>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-check">--}}
+{{--                                <input class="form-check-input" type="checkbox" id="dino">--}}
+{{--                                <label class="form-check-label" for="dino">Dino</label>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-check">--}}
+{{--                                <input class="form-check-input" type="checkbox" id="hasbro">--}}
+{{--                                <label class="form-check-label" for="hasbro">Hasbro</label>--}}
+{{--                            </div>--}}
+{{--                            <div class="form-check">--}}
+{{--                                <input class="form-check-input" type="checkbox" id="piatnik">--}}
+{{--                                <label class="form-check-label" for="piatnik">Piatnik</label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                        <a href="#" class="filter-more">More</a>--}}
+{{--                    </div>--}}
 
                 </div>
 

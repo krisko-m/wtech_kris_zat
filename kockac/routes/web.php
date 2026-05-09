@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
@@ -67,4 +68,6 @@ Route::post('/admin/images/upload', [ImageController::class, 'upload']);
 Route::post('/admin/images/{id}/attach', [ImageController::class, 'attach']);
 Route::post('/admin/images/{id}/detach', [ImageController::class, 'detach']);
 Route::delete('/admin/images/{id}', [ImageController::class, 'destroy']);
+
+Route::post('products/{id}/reviews', [ReviewController::class, 'store']);
 
