@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
@@ -57,6 +58,13 @@ Route::middleware('is.admin')->group(function () {
     Route::delete('/admin/products/{id}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     Route::get('/admin/add-product-admin', function () {
         return view('admin.add-product-admin');
-    });
+    })->name('admin.add.product');
     Route::post('/admin/products', [ProductController::class, 'store'])->name('admin.products.store');
 });
+
+Route::get('/admin/images', [ImageController::class, 'index']);
+Route::post('/admin/images/upload', [ImageController::class, 'upload']);
+Route::post('/admin/images/{id}/attach', [ImageController::class, 'attach']);
+Route::post('/admin/images/{id}/detach', [ImageController::class, 'detach']);
+Route::delete('/admin/images/{id}', [ImageController::class, 'destroy']);
+

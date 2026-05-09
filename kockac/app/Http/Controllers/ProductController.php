@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CartItem;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -159,9 +160,48 @@ class ProductController extends Controller
             'players_max'    => 'nullable|integer',
             'gameplay'       => 'nullable|string',
             'contents'       => 'nullable|string',
+            'main_image_id' => 'required|integer|exists:product_images,image_id',
+            'image_ids' => 'nullable|array',
+            'image_ids.*' => 'nullable|integer|exists:product_images,image_id',
         ]);
 
-        Product::create($validatedData);
+        $product = Product::create([
+            'name'            => $request->name,
+            'author'          => $request->author,
+            'publisher'       => $request->publisher,
+            'price'           => $request->price,
+            'stock_quantity'  => $request->stock_quantity,
+            'complexity'      => $request->complexity,
+            'description'     => $request->description,
+            'recommended_age' => $request->recommended_age,
+            'duration_min'    => $request->duration_min,
+            'duration_max'    => $request->duration_max,
+            'players_min'     => $request->players_min,
+            'players_max'     => $request->players_max,
+            'gameplay'        => $request->gameplay,
+            'contents'        => $request->contents,
+        ]);
+
+        // Main photo
+        if ($request->main_image_id) {
+            $mainImage = ProductImage::findOrFail($request->main_image_id);
+            $mainImage->product_id = $product->product_id;
+            $mainImage->is_main = true;
+            $mainImage->save();
+        }
+
+        // Secondary photos
+        if ($request->image_ids) {
+            foreach ($request->image_ids as $imageId) {
+                if ($imageId) {
+                    $image = ProductImage::findOrFail($imageId);
+                    $image->product_id = $product->product_id;
+                    $image->is_main = false;
+                    $image->save();
+                }
+            }
+        }
+
         return redirect()->back()->with('success', 'Product added successfully!');
     }
 
@@ -176,15 +216,16 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product deleted successfully!');
     }
 
-    public function edit(Request $request, $id){
-        $product = Product::findOrFail($id);
-
-        return view('/admin/edit-product-admin', compact('product'));
+    public function edit($id)
+    {
+        $product = Product::with(['images', 'genres'])->findOrFail($id);
+        return view('admin/edit-product-admin', compact('product'));
     }
 
     public function update(Request $request, $id){
         $product = Product::findOrFail($id);
-        $validatedData = $request->validate([
+
+        $request->validate([
             'name'           => 'required|string|max:255',
             'author'         => 'required|string|max:255',
             'publisher'      => 'nullable|string|max:255',
@@ -192,16 +233,61 @@ class ProductController extends Controller
             'stock_quantity' => 'required|integer|min:0',
             'complexity'     => 'required|in:beginner,gateway,intermediate,expert,hardcore',
             'description'    => 'required|string',
-            'recommended_age'=> 'nullable|string',
+            'recommended_age'=> 'nullable|integer',
             'duration_min'   => 'nullable|integer',
             'duration_max'   => 'nullable|integer',
             'players_min'    => 'nullable|integer',
             'players_max'    => 'nullable|integer',
             'gameplay'       => 'nullable|string',
             'contents'       => 'nullable|string',
+            'main_image_id'  => 'required|integer|exists:product_images,image_id',
+            'image_ids'      => 'nullable|array',
+            'image_ids.*'    => 'nullable|integer|exists:product_images,image_id',
         ]);
 
-        $product->update($validatedData);
+        $product->update([
+            'name'            => $request->name,
+            'author'          => $request->author,
+            'publisher'       => $request->publisher,
+            'price'           => $request->price,
+            'stock_quantity'  => $request->stock_quantity,
+            'complexity'      => $request->complexity,
+            'description'     => $request->description,
+            'recommended_age' => $request->recommended_age,
+            'duration_min'    => $request->duration_min,
+            'duration_max'    => $request->duration_max,
+            'players_min'     => $request->players_min,
+            'players_max'     => $request->players_max,
+            'gameplay'        => $request->gameplay,
+            'contents'        => $request->contents,
+        ]);
+
+        ProductImage::where('product_id', $product->product_id)
+            ->update(['product_id' => null, 'is_main' => false]);
+
+        // Main photo
+        if ($request->main_image_id) {
+            ProductImage::where('product_id', $product->product_id)
+                ->where('is_main', true)
+                ->update(['is_main' => false]);
+
+            $mainImage = ProductImage::findOrFail($request->main_image_id);
+            $mainImage->product_id = $product->product_id;
+            $mainImage->is_main = true;
+            $mainImage->save();
+        }
+
+        // Secondary photos
+        if ($request->image_ids) {
+            foreach ($request->image_ids as $imageId) {
+                if ($imageId) {
+                    $image = ProductImage::findOrFail($imageId);
+                    $image->product_id = $product->product_id;
+                    $image->is_main = false;
+                    $image->save();
+                }
+            }
+        }
 
         return redirect('/admin/products')->with('success', 'Product updated!');
     }
