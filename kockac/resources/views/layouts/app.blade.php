@@ -144,8 +144,8 @@
             <img src="{{ asset('assets/kockac-logo-rec.png') }}" alt="Kockáč" height="50">
         </a>
         <div class="footer-links d-flex gap-4">
-            <a href="#">Terms &amp; Conditions</a>
-            <a href="#">Privacy Policy</a>
+            <a href="{{route('terms-and-conditions')}}">Terms &amp; Conditions</a>
+            <a href="{{ route('privacy-policy')  }}">Privacy Policy</a>
         </div>
         <div class="footer-copy">© 2026 Kockac.com · All rights reserved.</div>
     </div>

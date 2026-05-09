@@ -71,3 +71,10 @@ Route::delete('/admin/images/{id}', [ImageController::class, 'destroy']);
 
 Route::post('products/{id}/reviews', [ReviewController::class, 'store']);
 
+Route::get('/footer/terms-conditions', function() {
+    return view('footer.terms-conditions');
+})->name('terms-and-conditions');
+Route::get('/footer/privacy-policy', function() {
+    return view('footer.privacy-policy');
+})->name('privacy-policy');
+
