@@ -34,6 +34,14 @@ class ProductController extends Controller
 
         $cartItem = CartItem::where('cart_id', $cart->cart_id)->where('product_id', $product->product_id)->first();
 
+        // Skontroluj dostupnosť na sklade
+        $currentQty = $cartItem ? $cartItem->quantity : 0;
+        if ($currentQty + $request->quantity > $product->stock_quantity) {
+            return redirect()->back()->with('error',
+                "Sorry, only {$product->stock_quantity} units of '{$product->name}' are available."
+            );
+        }
+
         if($cartItem){
             $cartItem->quantity += $request->quantity;
             $cartItem->save();
@@ -126,7 +134,7 @@ class ProductController extends Controller
             ->when($sort === 'price_desc', fn($q) => $q->orderBy('price', 'desc'))
             ->when($sort === 'name_asc',   fn($q) => $q->orderBy('name'))
             ->when($sort === 'default',    fn($q) => $q->orderByDesc('reviews_avg_stars'))
-            ->paginate(8)->withQueryString();
+            ->paginate(15)->withQueryString();
 
         return view('admin/product-overview-admin', compact('products'));
     }

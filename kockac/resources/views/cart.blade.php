@@ -216,7 +216,7 @@
                     <h4><strong id="subtotal">{{ number_format($total, 2) }} €</strong></h4>
                 </div>
                 <hr/>
-                <button onclick="location.href='checkout-address.html'" class="login-button">CHECKOUT</button>
+                <button onclick="location.href='{{ url('/checkout') }}'" class="login-button">CHECKOUT</button>
             </div>
         </div>
     </div>
