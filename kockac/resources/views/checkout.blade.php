@@ -235,7 +235,7 @@
                                  class="mt-2 ms-4 ps-1"
                                  style="display: {{ old('payment_method_id') == $method->payment_method_id ? 'block' : 'none' }}">
 
-                                @if($method->name === 'Kartou online')
+                                @if($method->name === 'By card')
                                     <div class="row gy-2">
                                         <div class="col-12">
                                             <label class="form-label">Card Number</label>
@@ -266,7 +266,7 @@
                                         </div>
                                     </div>
 
-                                @elseif($method->name === 'Bankovým prevodom')
+                                @elseif($method->name === 'Bank transfer')
                                     <div class="detail-card p-3 mt-2">
                                         <p class="mb-1"><strong>Transfer to our account:</strong></p>
                                         <p class="mb-1">IBAN: <strong>SK89 0900 0000 0051 2345 6789</strong></p>
