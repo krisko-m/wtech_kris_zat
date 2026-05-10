@@ -259,14 +259,10 @@
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="show-unused" onchange="loadImages()">
-                            <label class="form-check-label" for="show-unused">Show only unused images</label>
-                        </div>
                         <button type="button" class="btn btn-sm btn-outline-secondary" onclick="loadImages()">Refresh List</button>
                     </div>
 
-                    <!-- Image Grid (Populated by JavaScript) -->
+                    <!-- Image Grid -->
                     <div id="image-grid" class="row g-3">
                         <div class="text-center p-5">
                             <div class="spinner-border text-secondary" role="status"></div>
