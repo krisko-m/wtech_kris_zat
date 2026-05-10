@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
@@ -9,9 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\AccountController;
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [IndexController::class, 'index']);
 
 Route::get('/register', [AuthController::class, 'showRegister']);
 Route::post('/register', [AuthController::class, 'register']);
@@ -77,4 +76,3 @@ Route::get('/footer/terms-conditions', function() {
 Route::get('/footer/privacy-policy', function() {
     return view('footer.privacy-policy');
 })->name('privacy-policy');
-

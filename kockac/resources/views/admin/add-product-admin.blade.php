@@ -135,10 +135,10 @@
                     <!--Description Card-->
                     <div class="detail-card w-100 d-block text-start mb-3">
                         <h1>Game Description & Contents</h1>
-                        <!--Game Complexity-->
-                        <div class="mb-3 p-2">
-                            <label for="complexity" class="description-heading mb-2">Complexity</label>
-                            <div class="col-12 col-md-3">
+                        <!--Game Complexity & Genre-->
+                        <div class="d-flex gap-3 mb-3 p-2">
+                            <div class="col-6 col-md-2">
+                                <label for="complexity" class="description-heading mb-2">Complexity</label>
                                 <div class="dropdown">
                                     <a href="javascript:void(0)" class="cat-item dropdown-toggle text-center d-block" data-bs-toggle="dropdown">Select complexity</a>
                                     <ul class="dropdown-menu" style="min-width: 100%;">
@@ -149,6 +149,20 @@
                                         <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectComplexity('hardcore', this)">Hardcore</a></li>
                                     </ul>
                                     <input type="hidden" name="complexity" id="complexity-value">
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <label class="description-heading mb-2">Genre</label>
+                                <div class="d-flex flex-column gap-1">
+                                    @foreach(['Family', 'Puzzle', 'Card Games', 'Strategic', 'Party'] as $g)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   name="genres[]"
+                                                   id="genre_add_{{ $g }}"
+                                                   value="{{ $g }}">
+                                            <label class="form-check-label" for="genre_add_{{ $g }}">{{ $g }}</label>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
