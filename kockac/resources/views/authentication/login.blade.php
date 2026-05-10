@@ -2,6 +2,10 @@
 
 @section('title', 'Login - Kockac')
 
+@section('modals')
+    @include('modals.forgot-password')
+@endsection
+
 @section('content')
     <main class="container my-3">
         <!--Login Card-->
@@ -60,7 +64,6 @@
         </div>
     </main>
 
-    @include('modals.forgot-password')
 @endsection
 
 @section('scripts')
