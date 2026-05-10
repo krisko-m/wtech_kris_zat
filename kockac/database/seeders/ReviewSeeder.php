@@ -18,20 +18,24 @@ class ReviewSeeder extends Seeder
                 [
                     'message' => 'Absolutely love this game! The Wild West theme is immersive and the gameplay is fast-paced. Perfect for game nights with friends. Every round feels different and exciting.',
                     'stars' => 5,
+                    'created_at' => '2026-01-15 10:00:00',
                 ],
                 [
                     'message' => 'Great party game once you get the hang of the rules. The role-based gameplay keeps everyone on their toes. Can get a bit chaotic with 7 players but that\'s part of the fun!',
                     'stars' => 4,
+                    'created_at' => '2026-05-2 10:00:00',
                 ],
             ],
             'Hitster' => [
                 [
                     'message' => 'Such a fun concept! Scanning the QR codes and hearing the songs is a blast. We spent hours arguing about which year songs came out. Highly recommend for music lovers.',
                     'stars' => 5,
+                    'created_at' => '2026-01-15 10:00:00',
                 ],
                 [
                     'message' => 'Really enjoyed this one. The timeline mechanic is simple but surprisingly tricky. Some older songs are hard if you\'re younger, but that\'s what makes it interesting.',
                     'stars' => 4,
+                    'created_at' => '2026-04-12 10:00:00',
                 ],
             ],
             'Catan - Base Game' => [
@@ -146,6 +150,7 @@ class ReviewSeeder extends Seeder
                     'user_id'    => $user->id,
                     'message'    => $review['message'],
                     'stars'      => $review['stars'],
+                    'created_at' => $review['created_at'] ?? now(),
                 ]);
             }
         }

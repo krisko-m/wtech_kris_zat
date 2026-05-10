@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Kockac')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/css/styles.css" />
     @yield('styles')
 </head>
+@yield('modals')
 <body>
 
 <!--Navbar-->
@@ -52,7 +54,7 @@
                         <hr class="my-2">
                         @auth
                             @if(Auth::user()->is_admin)
-                                <a href='/admin/add-product-admin' class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
+                                <a href="{{ route('admin.add.product') }}" class="d-flex align-items-center gap-2 py-2 text-decoration-none" style="color: var(--accent);">
                                     Add Product
                                 </a>
                                 <hr class="my-2">
@@ -100,37 +102,67 @@
     <div class="dropdown">
         <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Genre</a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Family</a></li>
-            <li><a class="dropdown-item" href="#">Puzzle</a></li>
-            <li><a class="dropdown-item" href="#">Card Games</a></li>
-            <li><a class="dropdown-item" href="#">Strategic</a></li>
-            <li><a class="dropdown-item" href="#">Party</a></li>
+            @if(Auth::check() && Auth::user()->is_admin)
+                <li><a class="dropdown-item" href="/admin/products?genre=Family">Family</a></li>
+                <li><a class="dropdown-item" href="/admin/products?genre=Puzzle">Puzzle</a></li>
+                <li><a class="dropdown-item" href="/admin/products?genre=Card Games">Card Games</a></li>
+                <li><a class="dropdown-item" href="/admin/products?genre=Strategic">Strategic</a></li>
+                <li><a class="dropdown-item" href="/admin/products?genre=Party">Party</a></li>
+            @else
+                <li><a class="dropdown-item" href="/products?genre=Family">Family</a></li>
+                <li><a class="dropdown-item" href="/products?genre=Puzzle">Puzzle</a></li>
+                <li><a class="dropdown-item" href="/products?genre=Card Games">Card Games</a></li>
+                <li><a class="dropdown-item" href="/products?genre=Strategic">Strategic</a></li>
+                <li><a class="dropdown-item" href="/products?genre=Party">Party</a></li>
+            @endif
+
         </ul>
     </div>
 
     <div class="dropdown">
         <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Complexity</a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="/products?complexity=beginner">Beginner</a></li>
-            <li><a class="dropdown-item" href="/products?complexity=gateway">Gateway</a></li>
-            <li><a class="dropdown-item" href="/products?complexity=intermediate">Intermediate</a></li>
-            <li><a class="dropdown-item" href="/products?complexity=expert">Expert</a></li>
-            <li><a class="dropdown-item" href="/products?complexity=hardcore">Hardcore</a></li>
+            @if(Auth::check() && Auth::user()->is_admin)
+                <li><a class="dropdown-item" href="/admin/products?complexity=beginner">Beginner</a></li>
+                <li><a class="dropdown-item" href="/admin/products?complexity=gateway">Gateway</a></li>
+                <li><a class="dropdown-item" href="/admin/products?complexity=intermediate">Intermediate</a></li>
+                <li><a class="dropdown-item" href="/admin/products?complexity=expert">Expert</a></li>
+                <li><a class="dropdown-item" href="/admin/products?complexity=hardcore">Hardcore</a></li>
+            @else
+                <li><a class="dropdown-item" href="/products?complexity=beginner">Beginner</a></li>
+                <li><a class="dropdown-item" href="/products?complexity=gateway">Gateway</a></li>
+                <li><a class="dropdown-item" href="/products?complexity=intermediate">Intermediate</a></li>
+                <li><a class="dropdown-item" href="/products?complexity=expert">Expert</a></li>
+                <li><a class="dropdown-item" href="/products?complexity=hardcore">Hardcore</a></li>
+            @endif
         </ul>
     </div>
 
     <div class="dropdown">
         <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Players</a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Solo</a></li>
-            <li><a class="dropdown-item" href="#">Two Players</a></li>
-            <li><a class="dropdown-item" href="#">Small Group</a></li>
-            <li><a class="dropdown-item" href="#">Family</a></li>
-            <li><a class="dropdown-item" href="#">Large Group</a></li>
+            @if(Auth::check() && Auth::user()->is_admin)
+                <li><a class="dropdown-item" href="/admin/products?players=1">Solo (1)</a></li>
+                <li><a class="dropdown-item" href="/admin/products?players=2">Two Players (2)</a></li>
+                <li><a class="dropdown-item" href="/admin/products?players=4">Small Group (4)</a></li>
+                <li><a class="dropdown-item" href="/admin/products?players=6">Family (6)</a></li>
+                <li><a class="dropdown-item" href="/admin/products?players=8">Large Group (8+)</a></li>
+            @else
+                <li><a class="dropdown-item" href="/products?players=1">Solo (1)</a></li>
+                <li><a class="dropdown-item" href="/products?players=2">Two Players (2)</a></li>
+                <li><a class="dropdown-item" href="/products?players=4">Small Group (4)</a></li>
+                <li><a class="dropdown-item" href="/products?players=6">Family (6)</a></li>
+                <li><a class="dropdown-item" href="/products?players=8">Large Group (8+)</a></li>
+            @endif
+
         </ul>
     </div>
+        @if(Auth::check() && Auth::user()->is_admin)
+            <a href="/admin/products?sort=newest" class="cat-item">New &amp; Trending</a>
+        @else
+            <a href="/products?sort=newest" class="cat-item">New &amp; Trending</a>
+        @endif
 
-    <a href="#" class="cat-item">New &amp; Trending</a>
 </div>
 
 <!--Page Content-->
@@ -143,8 +175,8 @@
             <img src="{{ asset('assets/kockac-logo-rec.png') }}" alt="Kockáč" height="50">
         </a>
         <div class="footer-links d-flex gap-4">
-            <a href="#">Terms &amp; Conditions</a>
-            <a href="#">Privacy Policy</a>
+            <a href="{{route('terms-and-conditions')}}">Terms &amp; Conditions</a>
+            <a href="{{ route('privacy-policy')  }}">Privacy Policy</a>
         </div>
         <div class="footer-copy">© 2026 Kockac.com · All rights reserved.</div>
     </div>

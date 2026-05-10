@@ -62,6 +62,24 @@
                         </div>
                     </div>
 
+                    <!-- Genre -->
+                    <div class="filter-section">
+                        <div class="filter-label">Genre</div>
+                        <div class="filter-checks">
+                            @foreach(['Family', 'Puzzle', 'Card Games', 'Strategic', 'Party'] as $g)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                           name="genres[]"
+                                           id="genre_{{ $g }}"
+                                           value="{{ $g }}"
+                                        {{ (in_array($g, request('genres', [])) || request('genre') === $g) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="genre_{{ $g }}">{{ $g }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+
                     <!-- Complexity -->
                     <div class="filter-section">
                         <div class="filter-label">Complexity</div>
@@ -80,34 +98,6 @@
                     </div>
 
 
-                    {{--                <!-- Author -->--}}
-    {{--                <div class="filter-section">--}}
-    {{--                    <div class="filter-label">Author</div>--}}
-    {{--                    <div class="filter-checks" id="authorChecks">--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="checkbox" id="albi">--}}
-    {{--                            <label class="form-check-label" for="albi">ALBI</label>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="checkbox" id="boardbros">--}}
-    {{--                            <label class="form-check-label" for="boardbros">Boardbros</label>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="checkbox" id="dino">--}}
-    {{--                            <label class="form-check-label" for="dino">Dino</label>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="checkbox" id="hasbro">--}}
-    {{--                            <label class="form-check-label" for="hasbro">Hasbro</label>--}}
-    {{--                        </div>--}}
-    {{--                        <div class="form-check">--}}
-    {{--                            <input class="form-check-input" type="checkbox" id="piatnik">--}}
-    {{--                            <label class="form-check-label" for="piatnik">Piatnik</label>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                    <a href="#" class="filter-more">More</a>--}}
-    {{--                </div>--}}
-
                 </div>
 
                 <!--Products-->
@@ -123,6 +113,8 @@
                            onclick="setSort('price_desc'); return false;">Priciest</a>
                         <a href="#" class="sort-item {{ request('sort') === 'name_asc' ? 'active' : '' }}"
                            onclick="setSort('name_asc'); return false;">A-Z</a>
+                        <a href="#" class="sort-item {{ request('sort') === 'newest' ? 'active' : '' }}"
+                           onclick="setSort('newest'); return false;">Newest</a>
                     </div>
 
 

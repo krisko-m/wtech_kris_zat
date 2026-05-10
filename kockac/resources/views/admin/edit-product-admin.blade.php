@@ -12,22 +12,70 @@
         <form method="POST" action="/admin/products/{{ $product->product_id }}" >
             @csrf
             @method('PUT')
+            <input type="hidden" id="product-id" value="{{ $product->product_id }}">
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    @foreach($errors->all() as $error)
+                        <p class="mb-0">{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
             <!--Product Section-->
             <div class="d-flex flex-md-row flex-column product-container justify-center">
                 <!--Photos-->
                 <div class="col-md-5 d-flex flex-md-row flex-column align-items-center mb-4 gap-1">
                     <div class="d-flex flex-md-column flex-sm-row align-items-center mb-md-3 gap-3">
-                        <img src="/assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
-                        <img src="/assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
-                        <img src="/assets/add-circle-icon.png" alt="Product photo" class="editable-photo img-fluid mb-3" style="max-width: 50px; height: auto">
+                        @foreach([1, 2, 3] as $i)
+                            @php
+                                $secondaryImage = $product->images->where('is_main', false)->values()->get($i - 1);
+                            @endphp
+
+                            <div class="image-slot secondary-slot position-relative" style="cursor:pointer">
+                                <img id="preview-{{ $i }}"
+                                     src="{{ $secondaryImage ? $secondaryImage->image_path : '/assets/add-circle-icon.png' }}"
+                                     alt="Product photo"
+                                     class="editable-photo img-fluid mb-3"
+                                     style="max-width: 50px; height: auto"
+                                     onclick="openImageModal({{ $i }}, false)">
+
+                                <input type="hidden" name="image_ids[]" id="image-id-{{ $i }}"
+                                       value="{{ $secondaryImage ? $secondaryImage->image_id : '' }}">
+
+                                <button type="button"
+                                        id="detach-{{ $i }}"
+                                        class="btn btn-danger btn-sm position-absolute top-0 end-0 p-0 px-1 {{ $secondaryImage ? '' : 'd-none' }}"
+                                        onclick="detachImage({{ $i }}, '/assets/add-circle-icon.png')">×</button>
+                            </div>
+                        @endforeach
                     </div>
+
                     <div class="d-flex flex-column mb-3 align-items-center">
-                        <img src="/assets/main-photo-icon.png" alt="Main product photo" class="editable-photo ms-5" style="max-width: 300px; height: auto">
+                        @php
+                            $mainImage = $product->images->where('is_main', true)->first();
+                        @endphp
+
+                        <div class="image-slot main-slot position-relative" style="cursor:pointer">
+                            <img id="preview-0"
+                                 src="{{ $mainImage ? $mainImage->image_path : '/assets/main-photo-icon.png' }}"
+                                 alt="Main product photo"
+                                 class="editable-photo ms-5"
+                                 style="max-width: 300px; height: auto"
+                                 onclick="openImageModal(0, true)">
+
+                            <input type="hidden" name="main_image_id" id="image-id-0"
+                                   value="{{ $mainImage ? $mainImage->image_id : '' }}">
+
+                            <button type="button"
+                                    id="detach-0"
+                                    class="btn btn-danger btn-sm position-absolute top-0 end-0 p-0 px-1 {{ $mainImage ? '' : 'd-none' }}"
+                                    onclick="detachImage(0, '/assets/main-photo-icon.png')">×</button>
+                        </div>
+
                         <div class="d-flex flex-row gap-2 mt-4">
-                            <button class="dot active"></button>
-                            <button class="dot"></button>
-                            <button class="dot"></button>
-                            <button class="dot"></button>
+                            <button type="button" class="dot active"></button>
+                            <button type="button" class="dot"></button>
+                            <button type="button" class="dot"></button>
+                            <button type="button" class="dot"></button>
                         </div>
                     </div>
                 </div>
@@ -183,10 +231,102 @@
             </div>
 
             <!--Save & Discard Button-->
-            <div class="d-flex flex-row justify-content-end">
-                <button class="btn btn-outline-secondary me-2">Discard Product</button>
+            <div class="d-flex flex-row justify-content-end mb-5">
+                <a href="{{ url('/admin/products') }}" class="btn btn-outline-secondary me-2">Discard Changes</a>
                 <button type="submit" class="add-to-cart btn-sm py-2 px-3 ms-2">Save Product</button>
             </div>
         </form>
     </main>
+
+    <!-- Image Library Modal -->
+    <div class="modal fade" id="imageLibraryModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Image Library</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Upload Section -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <label class="fw-bold mb-2">Upload New Image</label>
+                            <div class="d-flex gap-2">
+                                <input type="file" id="upload-input" class="form-control" accept="image/*">
+                                <button type="button" class="btn btn-secondary" onclick="uploadImage()">Upload</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="show-unused" onchange="loadImages()">
+                            <label class="form-check-label" for="show-unused">Show only unused images</label>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" onclick="loadImages()">Refresh List</button>
+                    </div>
+
+                    <!-- Image Grid (Populated by JavaScript) -->
+                    <div id="image-grid" class="row g-3">
+                        <div class="text-center p-5">
+                            <div class="spinner-border text-secondary" role="status"></div>
+                            <p class="mt-2 text-muted">Loading library...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+
+@section('scripts')
+    <script src="{{ asset('js/product-image-manager.js') }}"></script>
+    <script>
+        function triggerUpload() {
+            uploadImage('{{ csrf_token() }}');
+        }
+
+        function triggerDelete(id) {
+            deleteImage(id, '{{ csrf_token() }}');
+        }
+    </script>
+    <script>
+        // Load the Image Grid
+        async function loadImages() {
+            let productId = document.getElementById('product-id').value;
+            let response = await fetch('/admin/images?product_id=' + productId);
+            let images = await response.json();
+            let grid= document.getElementById('image-grid');
+            grid.innerHTML = '';
+
+            // In case there are no images
+            if (images.length === 0){
+                grid.innerHTML = '<p class="text-muted">No images found.</p>';
+                return
+            }
+
+            for (let i = 0; i < images.length; i++) {
+                let image = images[i];
+
+                grid.innerHTML += `
+                    <div class="col-6 col-md-3">
+                        <div class="detail-card p-2 text-center">
+                            <img src="${image.image_path}" class="img-fluid mb-2" style="height:120px; object-fit:contain; cursor:pointer"
+                            onclick="selectImage(${image.image_id}, '${image.image_path}')">
+                            <div class="d-flex gap-1 justify-content-center">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="selectImage(${image.image_id}, '${image.image_path}')">
+                                Select
+                                </button>
+                                <button type="button" class="btn btn-sm btn-danger" onclick="deleteImage(${image.image_id}, this)">
+                                Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+        }
+    </script>
+@endsection
+

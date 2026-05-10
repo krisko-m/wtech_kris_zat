@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\CartItem;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function show($id)
     {
-        $product = Product::with(['genres', 'images'])->findOrFail($id);
+        $product = Product::with(['genres', 'images', 'reviews.user'])->findOrFail($id);
         return view('product.show', compact('product'));
     }
 
@@ -67,6 +68,10 @@ class ProductController extends Controller
         if ($request->input('complexity')) {
             $complexities[] = $request->input('complexity');
         }
+        $genres = $request->input('genres', []);
+        if ($request->input('genre') && !in_array($request->input('genre'), $genres)) {
+            $genres[] = $request->input('genre');
+        }
 
 
         $products = Product::with('mainImage')
@@ -81,6 +86,9 @@ class ProductController extends Controller
             })
             ->when($priceMin, fn($q) => $q->where('price', '>=', $priceMin))
             ->when($priceMax, fn($q) => $q->where('price', '<=', $priceMax))
+            ->when(!empty($genres), function ($q) use ($genres) {
+                $q->whereHas('genres', fn($q) => $q->whereIn('genre_type', $genres));
+            })
             ->when(!empty($complexities), fn($q) => $q->whereIn('complexity', $complexities))
             ->when($players, fn($q) => $q->where('players_min', '<=', $players)
                 ->where(function($q) use ($players) {
@@ -105,12 +113,20 @@ class ProductController extends Controller
 
     public function adminIndex(Request $request)
     {
-        $search   = $request->input('search');
+        $search = $request->input('search');
         $priceMin = $request->input('price_min');
         $priceMax = $request->input('price_max');
-        $players  = $request->input('players');
-        $sort     = $request->input('sort', 'default');
-        $ages     = $request->input('ages', []);
+        $players = $request->input('players');
+        $sort = $request->input('sort', 'default');
+        $ages = $request->input('ages', []);
+        $complexities = $request->input('complexities', []);
+        if ($request->input('complexity')) {
+            $complexities[] = $request->input('complexity');
+        }
+        $genres = $request->input('genres', []);
+        if ($request->input('genre') && !in_array($request->input('genre'), $genres)) {
+            $genres[] = $request->input('genre');
+        }
 
         $products = Product::with('mainImage')
             ->distinct()
@@ -124,6 +140,10 @@ class ProductController extends Controller
             })
             ->when($priceMin, fn($q) => $q->where('price', '>=', $priceMin))
             ->when($priceMax, fn($q) => $q->where('price', '<=', $priceMax))
+            ->when(!empty($genres), function ($q) use ($genres) {
+                $q->whereHas('genres', fn($q) => $q->whereIn('genre_type', $genres));
+            })
+            ->when(!empty($complexities), fn($q) => $q->whereIn('complexity', $complexities))
             ->when($players, fn($q) => $q->where('players_min', '<=', $players)
                 ->where(function ($q) use ($players) {
                     $q->where('players_max', '>=', $players)
@@ -140,9 +160,13 @@ class ProductController extends Controller
             ->when($sort === 'price_desc', fn($q) => $q->orderBy('price', 'desc'))
             ->when($sort === 'name_asc',   fn($q) => $q->orderBy('name'))
             ->when($sort === 'default',    fn($q) => $q->orderByDesc('reviews_avg_stars'))
-            ->paginate(15)->withQueryString();
+            ->paginate(8)->withQueryString();
 
         return view('admin/product-overview-admin', compact('products'));
+    }
+
+    public function create(){
+        return view('/admin/add-product-admin');
     }
 
     public function store(Request $request){
@@ -161,9 +185,48 @@ class ProductController extends Controller
             'players_max'    => 'nullable|integer',
             'gameplay'       => 'nullable|string',
             'contents'       => 'nullable|string',
+            'main_image_id' => 'required|integer|exists:product_images,image_id',
+            'image_ids' => 'nullable|array',
+            'image_ids.*' => 'nullable|integer|exists:product_images,image_id',
         ]);
 
-        Product::create($validatedData);
+        $product = Product::create([
+            'name'            => $request->name,
+            'author'          => $request->author,
+            'publisher'       => $request->publisher,
+            'price'           => $request->price,
+            'stock_quantity'  => $request->stock_quantity,
+            'complexity'      => $request->complexity,
+            'description'     => $request->description,
+            'recommended_age' => $request->recommended_age,
+            'duration_min'    => $request->duration_min,
+            'duration_max'    => $request->duration_max,
+            'players_min'     => $request->players_min,
+            'players_max'     => $request->players_max,
+            'gameplay'        => $request->gameplay,
+            'contents'        => $request->contents,
+        ]);
+
+        // Main photo
+        if ($request->main_image_id) {
+            $mainImage = ProductImage::findOrFail($request->main_image_id);
+            $mainImage->product_id = $product->product_id;
+            $mainImage->is_main = true;
+            $mainImage->save();
+        }
+
+        // Secondary photos
+        if ($request->image_ids) {
+            foreach ($request->image_ids as $imageId) {
+                if ($imageId) {
+                    $image = ProductImage::findOrFail($imageId);
+                    $image->product_id = $product->product_id;
+                    $image->is_main = false;
+                    $image->save();
+                }
+            }
+        }
+
         return redirect()->back()->with('success', 'Product added successfully!');
     }
 
@@ -178,15 +241,16 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product deleted successfully!');
     }
 
-    public function edit(Request $request, $id){
-        $product = Product::findOrFail($id);
-
-        return view('/admin/edit-product-admin', compact('product'));
+    public function edit($id)
+    {
+        $product = Product::with(['images', 'genres'])->findOrFail($id);
+        return view('admin/edit-product-admin', compact('product'));
     }
 
     public function update(Request $request, $id){
         $product = Product::findOrFail($id);
-        $validatedData = $request->validate([
+
+        $request->validate([
             'name'           => 'required|string|max:255',
             'author'         => 'required|string|max:255',
             'publisher'      => 'nullable|string|max:255',
@@ -194,16 +258,61 @@ class ProductController extends Controller
             'stock_quantity' => 'required|integer|min:0',
             'complexity'     => 'required|in:beginner,gateway,intermediate,expert,hardcore',
             'description'    => 'required|string',
-            'recommended_age'=> 'nullable|string',
+            'recommended_age'=> 'nullable|integer',
             'duration_min'   => 'nullable|integer',
             'duration_max'   => 'nullable|integer',
             'players_min'    => 'nullable|integer',
             'players_max'    => 'nullable|integer',
             'gameplay'       => 'nullable|string',
             'contents'       => 'nullable|string',
+            'main_image_id'  => 'required|integer|exists:product_images,image_id',
+            'image_ids'      => 'nullable|array',
+            'image_ids.*'    => 'nullable|integer|exists:product_images,image_id',
         ]);
 
-        $product->update($validatedData);
+        $product->update([
+            'name'            => $request->name,
+            'author'          => $request->author,
+            'publisher'       => $request->publisher,
+            'price'           => $request->price,
+            'stock_quantity'  => $request->stock_quantity,
+            'complexity'      => $request->complexity,
+            'description'     => $request->description,
+            'recommended_age' => $request->recommended_age,
+            'duration_min'    => $request->duration_min,
+            'duration_max'    => $request->duration_max,
+            'players_min'     => $request->players_min,
+            'players_max'     => $request->players_max,
+            'gameplay'        => $request->gameplay,
+            'contents'        => $request->contents,
+        ]);
+
+        ProductImage::where('product_id', $product->product_id)
+            ->update(['product_id' => null, 'is_main' => false]);
+
+        // Main photo
+        if ($request->main_image_id) {
+            ProductImage::where('product_id', $product->product_id)
+                ->where('is_main', true)
+                ->update(['is_main' => false]);
+
+            $mainImage = ProductImage::findOrFail($request->main_image_id);
+            $mainImage->product_id = $product->product_id;
+            $mainImage->is_main = true;
+            $mainImage->save();
+        }
+
+        // Secondary photos
+        if ($request->image_ids) {
+            foreach ($request->image_ids as $imageId) {
+                if ($imageId) {
+                    $image = ProductImage::findOrFail($imageId);
+                    $image->product_id = $product->product_id;
+                    $image->is_main = false;
+                    $image->save();
+                }
+            }
+        }
 
         return redirect('/admin/products')->with('success', 'Product updated!');
     }

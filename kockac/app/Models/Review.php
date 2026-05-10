@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     public $timestamps = false;
+    protected $dates = ['created_at'];
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
     protected $primaryKey = 'review_id';
 
     protected $fillable = ['product_id', 'user_id', 'message', 'stars'];
