@@ -20,14 +20,25 @@
         <img src="{{ asset('assets/kockac-logo-rec.png') }}" alt="Kockáč" height="70">
     </a>
 
-    <form class="search-wrap" role="search" method="GET" action="/products">
-        <div class="input-group">
-            <input type="text" name="search" class="form-control rounded-pill ps-4" placeholder="Search...">
-            <button class="btn position-absolute end-0 top-50 translate-middle-y pe-3" type="submit" style="z-index: 5; background: transparent; border: none;">
-                <img src="{{ asset('assets/icons/icon-search.png') }}" alt="Search" height="18">
-            </button>
-        </div>
-    </form>
+    @if(Auth::check() && Auth::user()->is_admin)
+        <form class="search-wrap" role="search" method="GET" action="/admin/products">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control rounded-pill ps-4" placeholder="Search...">
+                <button class="btn position-absolute end-0 top-50 translate-middle-y pe-3" type="submit" style="z-index: 5; background: transparent; border: none;">
+                    <img src="{{ asset('assets/icons/icon-search.png') }}" alt="Search" height="18">
+                </button>
+            </div>
+        </form>
+    @else
+        <form class="search-wrap" role="search" method="GET" action="/products">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control rounded-pill ps-4" placeholder="Search...">
+                <button class="btn position-absolute end-0 top-50 translate-middle-y pe-3" type="submit" style="z-index: 5; background: transparent; border: none;">
+                    <img src="{{ asset('assets/icons/icon-search.png') }}" alt="Search" height="18">
+                </button>
+            </div>
+        </form>
+    @endif
 
     <div class="d-flex align-items-center justify-content-end gap-2">
 
