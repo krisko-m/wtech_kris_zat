@@ -31,6 +31,11 @@ class GenreSeeder extends Seeder
             'Skull'             => [$party, $card],
             'Splendor'          => [$strategy, $card],
             'Jenga'             => [$party, $family],
+            'Carcassonne'               => [$strategy, $family, $puzzle],
+            'Wingspan'                  => [$strategy, $family],
+            'Exploding Kittens'         => [$party, $card, $family],
+            'Terraforming Mars'         => [$strategy],
+            'The Crew: Mission Deep Sea'=> [$card, $strategy],
         ];
 
         foreach ($assignments as $productName => $genreIds) {

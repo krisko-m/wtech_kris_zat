@@ -277,5 +277,140 @@ EOT,
         ]);
 
         ProductImage::create(['product_id' => $product12->product_id, 'image_path' => '/assets/products/Jenga/jenga-1.png', 'is_main' => true]);
+
+        $product15 = Product::create([
+            'name' => 'Carcassonne',
+            'description' => <<<EOT
+Carcassonne is a tile-placement game where players build medieval landscapes filled with cities, roads, monasteries, and fields.
+EOT,
+            'gameplay' => <<<EOT
+Players draw and place terrain tiles to expand the board, then deploy meeples to score points from completed features. Strategic placement and timing are key to maximizing points.
+EOT,
+            'contents' => '72 land tiles, 40 meeples, 1 score track',
+            'price' => 34.99,
+            'stock_quantity' => 15,
+            'recommended_age' => 7,
+            'duration_min' => 35,
+            'duration_max' => 45,
+            'players_min' => 2,
+            'players_max' => 5,
+            'author' => 'Klaus-Jürgen Wrede',
+            'publisher' => 'Hans im Glück',
+            'complexity' => 'gateway',
+        ]);
+
+        ProductImage::create([
+            'product_id' => $product15->product_id,
+            'image_path' => '/assets/products/Carcassonne/carcassonne-1.png',
+            'is_main' => true
+        ]);
+
+        $product16 = Product::create([
+            'name' => 'Wingspan',
+            'description' => <<<EOT
+Wingspan is an engine-building board game about attracting birds to wildlife preserves.
+EOT,
+            'gameplay' => <<<EOT
+Players collect food, lay eggs, and play bird cards into different habitats to create powerful combinations and score points over four rounds.
+EOT,
+            'contents' => '170 bird cards, 75 egg miniatures, 5 player mats, dice tower, food tokens',
+            'price' => 59.99,
+            'stock_quantity' => 9,
+            'recommended_age' => 10,
+            'duration_min' => 40,
+            'duration_max' => 70,
+            'players_min' => 1,
+            'players_max' => 5,
+            'author' => 'Elizabeth Hargrave',
+            'publisher' => 'Stonemaier Games',
+            'complexity' => 'gateway',
+        ]);
+
+        ProductImage::create([
+            'product_id' => $product16->product_id,
+            'image_path' => '/assets/products/Wingspan/wingspan-1.png',
+            'is_main' => true
+        ]);
+
+        $product17 = Product::create([
+            'name' => 'Exploding Kittens',
+            'description' => <<<EOT
+Exploding Kittens is a fast-paced party card game filled with absurd humor, strategy, and explosive kittens.
+EOT,
+            'gameplay' => <<<EOT
+Players draw cards until someone picks an Exploding Kitten card. Use action cards to skip turns, attack opponents, peek at the deck, or defuse kittens to stay alive.
+EOT,
+            'contents' => '56 cards',
+            'price' => 19.99,
+            'stock_quantity' => 24,
+            'recommended_age' => 7,
+            'duration_min' => 10,
+            'duration_max' => 20,
+            'players_min' => 2,
+            'players_max' => 5,
+            'author' => 'Elan Lee',
+            'publisher' => 'Exploding Kittens',
+            'complexity' => 'gateway',
+        ]);
+
+        ProductImage::create([
+            'product_id' => $product17->product_id,
+            'image_path' => '/assets/products/ExplodingKittens/exploding-kittens-1.png',
+            'is_main' => true
+        ]);
+
+        $product18 = Product::create([
+            'name' => 'Terraforming Mars',
+            'description' => <<<EOT
+Terraforming Mars is a strategic science-fiction game where corporations work together and compete to make Mars habitable.
+EOT,
+            'gameplay' => <<<EOT
+Players manage resources, play project cards, and raise oxygen, temperature, and ocean levels to terraform Mars while earning victory points from milestones and city development.
+EOT,
+            'contents' => '230 cards, game board, player boards, cubes, tiles',
+            'price' => 69.99,
+            'stock_quantity' => 7,
+            'recommended_age' => 12,
+            'duration_min' => 120,
+            'duration_max' => 180,
+            'players_min' => 1,
+            'players_max' => 5,
+            'author' => 'Jacob Fryxelius',
+            'publisher' => 'FryxGames',
+            'complexity' => 'expert',
+        ]);
+
+        ProductImage::create([
+            'product_id' => $product18->product_id,
+            'image_path' => '/assets/products/TerraformingMars/terraforming-mars-1.png',
+            'is_main' => true
+        ]);
+
+        $product19 = Product::create([
+            'name' => 'The Crew: Mission Deep Sea',
+            'description' => <<<EOT
+The Crew: Mission Deep Sea is a cooperative trick-taking card game where players complete underwater missions together.
+EOT,
+            'gameplay' => <<<EOT
+Players work together silently to complete specific card objectives through trick-taking mechanics. Communication is limited, making teamwork and deduction essential.
+EOT,
+            'contents' => '96 cards, mission logbook, communication tokens',
+            'price' => 17.99,
+            'stock_quantity' => 20,
+            'recommended_age' => 10,
+            'duration_min' => 20,
+            'duration_max' => 30,
+            'players_min' => 2,
+            'players_max' => 5,
+            'author' => 'Thomas Sing',
+            'publisher' => 'Kosmos',
+            'complexity' => 'intermediate',
+        ]);
+
+        ProductImage::create([
+            'product_id' => $product19->product_id,
+            'image_path' => '/assets/products/TheCrewMissionDeepSea/the-crew-mission-deep-sea-1.png',
+            'is_main' => true
+        ]);
     }
 }
