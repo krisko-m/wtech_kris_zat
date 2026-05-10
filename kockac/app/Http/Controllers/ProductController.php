@@ -63,6 +63,11 @@ class ProductController extends Controller
         $players = $request->input('players');
         $sort = $request->input('sort', 'default');
         $ages = $request->input('ages', []);
+        $complexities = $request->input('complexities', []);
+        if ($request->input('complexity')) {
+            $complexities[] = $request->input('complexity');
+        }
+
 
         $products = Product::with('mainImage')
             ->distinct()
@@ -76,9 +81,10 @@ class ProductController extends Controller
             })
             ->when($priceMin, fn($q) => $q->where('price', '>=', $priceMin))
             ->when($priceMax, fn($q) => $q->where('price', '<=', $priceMax))
+            ->when(!empty($complexities), fn($q) => $q->whereIn('complexity', $complexities))
             ->when($players, fn($q) => $q->where('players_min', '<=', $players)
                 ->where(function($q) use ($players) {
-                    $q->where('players_max', '>=', $players)
+                    $q->where('players_max',     '>=', $players)
                         ->orWhereNull('players_max');
                 }))
             ->when(!empty($ages), function ($q) use ($ages) {

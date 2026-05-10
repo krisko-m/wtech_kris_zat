@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Kockac')</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-<link rel="icon" type="image/x-icon" href="/assets/kocka-tab.png">
-<link rel="stylesheet" type="text/css" href="/css/styles.css" />
-@yield('styles')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="/assets/kocka-tab.png">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    @yield('styles')
 </head>
 <body>
 
@@ -111,11 +111,11 @@
     <div class="dropdown">
         <a href="#" class="cat-item dropdown-toggle" data-bs-toggle="dropdown">Complexity</a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Beginner</a></li>
-            <li><a class="dropdown-item" href="#">Gateway</a></li>
-            <li><a class="dropdown-item" href="#">Intermediate</a></li>
-            <li><a class="dropdown-item" href="#">Expert</a></li>
-            <li><a class="dropdown-item" href="#">Hardcore</a></li>
+            <li><a class="dropdown-item" href="/products?complexity=beginner">Beginner</a></li>
+            <li><a class="dropdown-item" href="/products?complexity=gateway">Gateway</a></li>
+            <li><a class="dropdown-item" href="/products?complexity=intermediate">Intermediate</a></li>
+            <li><a class="dropdown-item" href="/products?complexity=expert">Expert</a></li>
+            <li><a class="dropdown-item" href="/products?complexity=hardcore">Hardcore</a></li>
         </ul>
     </div>
 

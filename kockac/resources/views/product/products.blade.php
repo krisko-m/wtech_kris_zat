@@ -16,7 +16,7 @@
             @endif
             <input type="hidden" name="sort" id="sortInput" value="{{ request('sort', 'default') }}">
             <input type="hidden" name="page" id="pageInput" value="{{ request('page', 1) }}">
-            <div class="row gap-4">
+                <div class="row gap-4">
 
                 <!--Sidebar-->
                 <div class="col-md-2 filter-sidebar">
@@ -24,6 +24,7 @@
                             onclick="document.getElementById('pageInput').value=1; document.getElementById('filterForm').submit();">Apply Filters</button>
 
                     <a href="/products" class="sort-item w-100 mt-2 text-center d-block">Reset</a>
+
                     <!-- Price -->
                     <div class="filter-section">
                         <div class="filter-label">Price</div>
@@ -61,7 +62,25 @@
                         </div>
                     </div>
 
-    {{--                <!-- Author -->--}}
+                    <!-- Complexity -->
+                    <div class="filter-section">
+                        <div class="filter-label">Complexity</div>
+                        <div class="filter-checks">
+                            @foreach(['beginner', 'gateway', 'intermediate', 'expert', 'hardcore'] as $level)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox"
+                                           name="complexities[]"
+                                           id="complexity_{{ $level }}"
+                                           value="{{ $level }}"
+                                        {{ (in_array($level, request('complexities', [])) || request('complexity') === $level) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="complexity_{{ $level }}">{{ $level }}</label>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+
+                    {{--                <!-- Author -->--}}
     {{--                <div class="filter-section">--}}
     {{--                    <div class="filter-label">Author</div>--}}
     {{--                    <div class="filter-checks" id="authorChecks">--}}
