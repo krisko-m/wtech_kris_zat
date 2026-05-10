@@ -8,6 +8,11 @@
     <link rel="stylesheet" type="text/css" href="/css/product-detail.css">
 @endsection
 
+@section('modals')
+    @include('modals.write-review')
+    @include('modals.all-reviews')
+@endsection
+
 @section('content')
     <main class="container my-5">
 
@@ -209,97 +214,6 @@
             </div>
         </div>
     </main>
-
-    <!-- Review Modal -->
-    <div class="modal fade" id="reviewModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Write a Review</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    @if(session('success'))
-                        <div class="alert alert-success">{{ session('success') }}</div>
-                    @endif
-
-                    <form method="POST" action="/products/{{ $product->product_id }}/reviews">
-                        @csrf
-
-                        <div class="mb-3">
-                            <label class="form-label">Rating</label>
-                            <div class="dropdown">
-                                <a href="javascript:void(0)" class="cat-item dropdown-toggle text-center d-block" data-bs-toggle="dropdown">⭐⭐⭐⭐⭐</a>
-                                <ul class="dropdown-menu" style="min-width: 100%;">
-                                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectStars(5, this)">⭐⭐⭐⭐⭐</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectStars(4, this)">⭐⭐⭐⭐</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectStars(3, this)">⭐⭐⭐</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectStars(2, this)">⭐⭐</a></li>
-                                    <li><a class="dropdown-item" href="javascript:void(0)" onclick="selectStars(1, this)">⭐</a></li>
-                                </ul>
-                                <input type="hidden" name="stars" id="stars-value" value="5">
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Your Review</label>
-                            <textarea name="message" class="form-control login-input" rows="4" placeholder="Write your review here...">{{ old('message') }}</textarea>
-                            @error('message')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="add-to-cart btn-sm py-2 px-3">Submit Review</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- All Reviews Modal -->
-    <div class="modal fade" id="allReviewsModal" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <p class="description-heading">All Reviews - {{ $product->name }}</p>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    @if($product->reviews->count() > 0)
-                        @foreach($product->reviews as $review)
-                            <div class="mb-4">
-                                <div class="row mb-1">
-                                    <div class="col-6">
-                                        <h5>{{ $review->user->first_name }} {{ $review->user->last_name }}</h5>
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        {{ $review->created_at ? $review->created_at->format('d.m.Y') : '' }}
-                                        @for($i = 1; $i <= 5; $i++)
-                                            {{ $i <= $review->stars ? '⭐' : '' }}
-                                        @endfor
-                                    </div>
-                                    @if($review->message)
-                                        <div class="col-12">
-                                            <p>{{ $review->message }}</p>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                            <hr>
-                        @endforeach
-                    @else
-                        <p class="text-muted">No reviews yet.</p>
-                    @endif
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('scripts')
