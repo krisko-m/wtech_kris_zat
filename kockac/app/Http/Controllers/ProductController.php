@@ -64,7 +64,6 @@ class ProductController extends Controller
         $players      = $request->input('players');
         $sort         = $request->input('sort', 'default');
         $ages         = $request->input('ages', []);
-        // Z dropdown (single) alebo sidebar (multi)
         $genres = $request->input('genres', []);
         if ($request->input('genre') && !in_array($request->input('genre'), $genres)) {
             $genres[] = $request->input('genre');
@@ -75,7 +74,6 @@ class ProductController extends Controller
         }
 
         $products = Product::with('mainImage')
-            ->distinct()
             ->withAvg('reviews', 'stars')
             ->when($search, function($query) use ($search){
                 $query->where(function ($q) use ($search) {
@@ -105,8 +103,8 @@ class ProductController extends Controller
             ->when($sort === 'price_asc',  fn($q) => $q->orderBy('price'))
             ->when($sort === 'price_desc', fn($q) => $q->orderBy('price', 'desc'))
             ->when($sort === 'name_asc',   fn($q) => $q->orderBy('name'))
-            ->when($sort === 'newest',     fn($q) => $q->orderByDesc('added'))
-            ->when($sort === 'default',    fn($q) => $q->orderByDesc('reviews_avg_stars'))
+            ->when($sort === 'newest',     fn($q) => $q->orderByDesc('created_at'))
+            ->when($sort === 'default',    fn($q) => $q->orderByRaw('(SELECT COALESCE(AVG(stars), 0) FROM reviews WHERE reviews.product_id = products.product_id) DESC'))
             ->paginate(8)->withQueryString();
 
         return view('product.products', compact('products'));
@@ -122,7 +120,6 @@ class ProductController extends Controller
         $ages     = $request->input('ages', []);
 
         $products = Product::with('mainImage')
-            ->distinct()
             ->withAvg('reviews', 'stars')
             ->when($search, function ($q) use ($search) {
                 $q->where(function ($q) use ($search) {
@@ -148,8 +145,8 @@ class ProductController extends Controller
             ->when($sort === 'price_asc',  fn($q) => $q->orderBy('price'))
             ->when($sort === 'price_desc', fn($q) => $q->orderBy('price', 'desc'))
             ->when($sort === 'name_asc',   fn($q) => $q->orderBy('name'))
-            ->when($sort === 'default',    fn($q) => $q->orderByDesc('reviews_avg_stars'))
-            ->paginate(15)->withQueryString();
+            ->when($sort === 'newest',     fn($q) => $q->orderByDesc('created_at'))
+            ->when($sort === 'default',    fn($q) => $q->orderByRaw('(SELECT COALESCE(AVG(stars), 0) FROM reviews WHERE reviews.product_id = products.product_id) DESC'))            ->paginate(8)->withQueryString();
 
         return view('admin/product-overview-admin', compact('products'));
     }
