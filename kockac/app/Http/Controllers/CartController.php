@@ -26,7 +26,16 @@ class CartController extends Controller
     {
         $request->validate(['quantity' => 'required|integer|min:1']);
 
-        $item = CartItem::findOrFail($cartItem);
+        $item = CartItem::with('product')->findOrFail($cartItem);
+
+        // Skontroluj dostupnosť na sklade
+        if ($request->quantity > $item->product->stock_quantity) {
+            return response()->json([
+                'success' => false,
+                'error'   => "Only {$item->product->stock_quantity} units available."
+            ]);
+        }
+
         $item->update(['quantity' => $request->quantity]);
 
         $cart = Cart::with('items.product')->findOrFail($item->cart_id);

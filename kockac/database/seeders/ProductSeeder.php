@@ -179,7 +179,7 @@ EOT,
 Dixit is a beautifully illustrated storytelling game where your imagination unlocks the tale. Using cards depicting dreamlike illustrations, players try to guess each other\'s stories.
 EOT,
             'gameplay' => <<<EOT
-One player is the storyteller and gives a clue about their card. Other players choose a card from their hand that best fits the clue. All chosen cards are shuffled and revealed — players vote on which card belongs to the storyteller. Score points for correct guesses but not if everyone or no one guesses correctly.
+One player is the storyteller and gives a clue about their card. Other players choose a card from their hand that best fits the clue. All chosen cards are shuffled and revealed - players vote on which card belongs to the storyteller. Score points for correct guesses but not if everyone or no one guesses correctly.
 EOT,
             'contents' => '84 image cards, 36 voting tokens, 6 wooden rabbit pawns, 1 score track',
             'price' => 29.99,
@@ -239,7 +239,7 @@ EOT,
         $product11 = Product::create([
             'name' => 'Splendor',
             'description' => <<<EOT
-Splendor is a chip collecting and card development game where you are a Renaissance merchant trying to buy gem mines, means of transportation, shops — and recruiting artisans.
+Splendor is a chip collecting and card development game where you are a Renaissance merchant trying to buy gem mines, means of transportation, shops - and recruiting artisans.
 EOT,
             'gameplay' => <<<EOT
 Collect gem tokens to buy development cards. Cards give you permanent gem bonuses making future purchases cheaper. Use cards to attract noble tiles worth prestige points. First player to reach 15 prestige points triggers the final round.

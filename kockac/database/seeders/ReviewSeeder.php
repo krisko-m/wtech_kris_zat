@@ -40,11 +40,11 @@ class ReviewSeeder extends Seeder
             ],
             'Catan - Base Game' => [
                 [
-                    'message' => 'The gateway drug of board games. Catan introduced me to modern board gaming and I\'ve never looked back. Trading, building, strategy — it has everything. A timeless classic.',
+                    'message' => 'The gateway drug of board games. Catan introduced me to modern board gaming and I\'ve never looked back. Trading, building, strategy - it has everything. A timeless classic.',
                     'stars' => 5,
                 ],
                 [
-                    'message' => 'Great game but can run long with new players. The trading mechanic is what sets it apart. Be warned — it may cause arguments between friends over wheat and ore.',
+                    'message' => 'Great game but can run long with new players. The trading mechanic is what sets it apart. Be warned - it may cause arguments between friends over wheat and ore.',
                     'stars' => 4,
                 ],
             ],
