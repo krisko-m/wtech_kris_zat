@@ -14,7 +14,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::with(['genres', 'images'])->findOrFail($id);
-        return view('product.show', compact('product'));
+        return view('product.product-detail', compact('product'));
     }
 
     public function addToCart(Request $request, $id){
