@@ -85,45 +85,33 @@
                     <!--Product Name & Author-->
                     <div class="row w-120 mb-3">
                         <div class="col-4 d-flex flex-row gap-2">
-                            <input type="text"
-                                   name="name"
-                                   id="product-name"
+                            <input type="text" name="name" id="product-name"
                                    value="{{ old('name', $product->name ?? '') }}"
-                                   class="form-control login-input w-75"
-                                   placeholder="Name" required>
+                                   class="form-control login-input w-75" placeholder="Name" required>
                             <img src="/assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                         </div>
                         <div class="col-4 d-flex flex-row gap-2">
-                            <input type="text"
-                                   name="author"
-                                   id="product-author"
+                            <input type="text" name="author" id="product-author"
                                    value="{{ old('author', $product->author ?? '') }}"
-                                   class="form-control login-input w-75"
-                                   placeholder="Author" required>
+                                   class="form-control login-input w-75" placeholder="Author" required>
                             <img src="/assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                         </div>
                         <div class="col-4 d-flex flex-row gap-2">
-                            <input type="text"
-                                   name="publisher"
-                                   id="product-publisher"
+                            <input type="text" name="publisher" id="product-publisher"
                                    value="{{ old('publisher', $product->publisher ?? '') }}"
-                                   class="form-control login-input w-75"
-                                   placeholder="Publisher" required>
+                                   class="form-control login-input w-75" placeholder="Publisher" required>
                             <img src="/assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                         </div>
                     </div>
 
-
                     <!--Details Card-->
                     <div class="my-3 d-flex flex-md-row flex-column justify-content-evenly detail-card">
-                        <!--Recommended Age-->
                         <div class="col-4 d-flex flex-column text-start">
                             <span class="detail-label">Recommended age:</span>
                             <input type="text" name="recommended_age" id="detail-age"
                                    value="{{ old('recommended_age', $product->recommended_age) }}"
                                    class="form-control login-input w-50 mt-2" placeholder="Age">
                         </div>
-                        <!-- Min & Max Duration-->
                         <div class="d-flex flex-column text-start">
                             <span class="detail-label">Duration of a game:</span>
                             <div class="d-flex flex-row">
@@ -136,7 +124,6 @@
                                        class="form-control login-input w-25 mt-2" placeholder="Max.">
                             </div>
                         </div>
-                        <!--Min & Max Number of Players-->
                         <div class="d-flex flex-column text-start">
                             <span class="detail-label">Number of players:</span>
                             <div class="d-flex flex-row">
@@ -154,21 +141,15 @@
                     <!--Purchase Section-->
                     <div class="row w-120 mb-3">
                         <div class="col-4 d-flex flex-row gap-2">
-                            <input type="text"
-                                   name="price"
-                                   id="detail-price"
+                            <input type="text" name="price" id="detail-price"
                                    value="{{ old('price', $product->price) }}"
-                                   class="form-control login-input w-50"
-                                   placeholder="Price" required>
+                                   class="form-control login-input w-50" placeholder="Price" required>
                             <img src="/assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                         </div>
                         <div class="col-4 d-flex flex-row gap-2">
-                            <input type="text"
-                                   name="stock_quantity"
-                                   id="detail-stock"
+                            <input type="text" name="stock_quantity" id="detail-stock"
                                    value="{{ old('stock_quantity', $product->stock_quantity) }}"
-                                   class="form-control login-input w-50"
-                                   placeholder="Quantity" required>
+                                   class="form-control login-input w-50" placeholder="Quantity" required>
                             <img src="/assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
                         </div>
                     </div>
@@ -179,22 +160,41 @@
             <!--Description Section-->
             <div class="row d-flex flex-column gap-3">
                 <div class="col-12">
-                    <!--Description Card-->
                     <div class="detail-card w-100 d-block text-start mb-3">
                         <h1>Game Description & Contents</h1>
-                        <!--Game Complexity-->
-                        <div class="mb-3 p-2">
-                            <label for="complexity" class="description-heading mb-2">Complexity</label>
-                            <div class="col-12 col-md-3">
-                                <select id="complexity"
-                                        name="complexity"
-                                        class="form-select w-md-25 w-sm-50" required>
-                                    <option value="beginner" {{ old('complexity', $product->complexity) == 'beginner' ? 'selected' : '' }}>Beginner</option>
-                                    <option value="gateway" {{ old('complexity', $product->complexity) == 'gateway' ? 'selected' : '' }}>Gateway</option>
-                                    <option value="intermediate" {{ old('complexity', $product->complexity) == 'intermediate' ? 'selected' : '' }}>Intermediate</option>
-                                    <option value="expert" {{ old('complexity', $product->complexity) == 'expert' ? 'selected' : '' }}>Expert</option>
-                                    <option value="hardcore" {{ old('complexity', $product->complexity) == 'hardcore' ? 'selected' : '' }}>Hardcore</option>
-                                </select>
+
+                        <!--Game Complexity & Genre-->
+                        <div class="d-flex gap-3 mb-3 p-2">
+                            <div class="col-6 col-md-2">
+                                <label for="complexity" class="description-heading mb-2">Complexity</label>
+                                <div class="col-12">
+                                    <select id="complexity" name="complexity" class="form-select w-md-25 w-sm-50" required>
+                                        <option value="beginner" {{ old('complexity', $product->complexity) == 'beginner' ? 'selected' : '' }}>Beginner</option>
+                                        <option value="gateway" {{ old('complexity', $product->complexity) == 'gateway' ? 'selected' : '' }}>Gateway</option>
+                                        <option value="intermediate" {{ old('complexity', $product->complexity) == 'intermediate' ? 'selected' : '' }}>Intermediate</option>
+                                        <option value="expert" {{ old('complexity', $product->complexity) == 'expert' ? 'selected' : '' }}>Expert</option>
+                                        <option value="hardcore" {{ old('complexity', $product->complexity) == 'hardcore' ? 'selected' : '' }}>Hardcore</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-3">
+                                <label class="description-heading mb-2">Genre</label>
+                                <div class="d-flex flex-column gap-1">
+                                    @php
+                                        $currentGenres = old('genres', $product->genres->pluck('genre_type')->toArray());
+                                    @endphp
+                                    @foreach(['Family', 'Puzzle', 'Card Games', 'Strategic', 'Party'] as $g)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox"
+                                                   name="genres[]"
+                                                   id="genre_edit_{{ $g }}"
+                                                   value="{{ $g }}"
+                                                {{ in_array($g, $currentGenres) ? 'checked' : '' }}>
+                                            <label class="form-check-label" for="genre_edit_{{ $g }}">{{ $g }}</label>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
 
@@ -208,7 +208,6 @@
                                       class="form-control login-input w-100"
                                       placeholder="Add a Game Description..." required>{{ old('description', $product->description ?? '') }}</textarea>
 
-                            <!--Gameplay Description-->
                             <div class="d-flex flex-row">
                                 <h2 class="description-heading me-3">Gameplay</h2>
                                 <img src="/assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
@@ -217,7 +216,6 @@
                                       class="form-control login-input w-100"
                                       placeholder="Add a description of Gameplay...">{{ old('gameplay', $product->gameplay ?? '') }}</textarea>
 
-                            <!--Game Content Description-->
                             <div class="d-flex flex-row">
                                 <h2 class="description-heading me-3">Game Content</h2>
                                 <img src="/assets/edit-icon.png" alt="Edit Icon" class="img-fluid edit-icon">
@@ -247,7 +245,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- Upload Section -->
                     <div class="card mb-4">
                         <div class="card-body">
                             <label class="fw-bold mb-2">Upload New Image</label>
@@ -266,7 +263,6 @@
                         <button type="button" class="btn btn-sm btn-outline-secondary" onclick="loadImages()">Refresh List</button>
                     </div>
 
-                    <!-- Image Grid (Populated by JavaScript) -->
                     <div id="image-grid" class="row g-3">
                         <div class="text-center p-5">
                             <div class="spinner-border text-secondary" role="status"></div>
@@ -291,42 +287,37 @@
         }
     </script>
     <script>
-        // Load the Image Grid
         async function loadImages() {
             let productId = document.getElementById('product-id').value;
             let response = await fetch('/admin/images?product_id=' + productId);
             let images = await response.json();
-            let grid= document.getElementById('image-grid');
+            let grid = document.getElementById('image-grid');
             grid.innerHTML = '';
 
-            // In case there are no images
-            if (images.length === 0){
+            if (images.length === 0) {
                 grid.innerHTML = '<p class="text-muted">No images found.</p>';
-                return
+                return;
             }
 
             for (let i = 0; i < images.length; i++) {
                 let image = images[i];
-
                 grid.innerHTML += `
                     <div class="col-6 col-md-3">
                         <div class="detail-card p-2 text-center">
                             <img src="${image.image_path}" class="img-fluid mb-2" style="height:120px; object-fit:contain; cursor:pointer"
-                            onclick="selectImage(${image.image_id}, '${image.image_path}')">
+                                 onclick="selectImage(${image.image_id}, '${image.image_path}')">
                             <div class="d-flex gap-1 justify-content-center">
                                 <button type="button" class="btn btn-sm btn-outline-secondary" onclick="selectImage(${image.image_id}, '${image.image_path}')">
-                                Select
+                                    Select
                                 </button>
                                 <button type="button" class="btn btn-sm btn-danger" onclick="deleteImage(${image.image_id}, this)">
-                                Delete
+                                    Delete
                                 </button>
                             </div>
                         </div>
                     </div>
                 `;
             }
-
         }
     </script>
 @endsection
-
