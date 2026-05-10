@@ -105,7 +105,7 @@ class ProductController extends Controller
             ->when($sort === 'name_asc',   fn($q) => $q->orderBy('name'))
             ->when($sort === 'newest',     fn($q) => $q->orderByDesc('created_at'))
             ->when($sort === 'default',    fn($q) => $q->orderByRaw('(SELECT COALESCE(AVG(stars), 0) FROM reviews WHERE reviews.product_id = products.product_id) DESC'))
-            ->paginate(8)->withQueryString();
+            ->paginate(12)->withQueryString();
 
         return view('product.products', compact('products'));
     }
@@ -146,7 +146,8 @@ class ProductController extends Controller
             ->when($sort === 'price_desc', fn($q) => $q->orderBy('price', 'desc'))
             ->when($sort === 'name_asc',   fn($q) => $q->orderBy('name'))
             ->when($sort === 'newest',     fn($q) => $q->orderByDesc('created_at'))
-            ->when($sort === 'default',    fn($q) => $q->orderByRaw('(SELECT COALESCE(AVG(stars), 0) FROM reviews WHERE reviews.product_id = products.product_id) DESC'))            ->paginate(8)->withQueryString();
+            ->when($sort === 'default',    fn($q) => $q->orderByRaw('(SELECT COALESCE(AVG(stars), 0) FROM reviews WHERE reviews.product_id = products.product_id) DESC'))
+            ->paginate(12)->withQueryString();
 
         return view('admin/product-overview-admin', compact('products'));
     }
