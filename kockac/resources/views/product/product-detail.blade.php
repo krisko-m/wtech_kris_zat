@@ -34,7 +34,9 @@
                     @endforeach
                 </div>
                 <div class="d-flex flex-column mb-3 align-items-center">
-                    <img id="main-photo" src="{{ $product->images->where('is_main', true)->first()->image_path ?? '/assets/product-bang-1.png' }}" alt="Main product photo" class="main-photo">
+                    <div class="main-photo-container">
+                        <img id="main-photo" src="{{ $product->images->where('is_main', true)->first()->image_path ?? '/assets/product-bang-1.png' }}" alt="Main product photo" class="main-photo">
+                    </div>
                     <div class="d-flex flex-row gap-2 mt-4">
                         @foreach($product->images as $index => $image)
                             <button class="dot {{ $index === 0 ? 'active' : '' }}" onclick="setActiveDot(this)"></button>

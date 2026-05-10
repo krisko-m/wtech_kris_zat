@@ -36,10 +36,9 @@
 
                             <div class="image-slot secondary-slot position-relative" style="cursor:pointer">
                                 <img id="preview-{{ $i }}"
-                                     src="{{ $secondaryImage ? $secondaryImage->image_path : '/assets/add-circle-icon.png' }}"
+                                     src="{{ $secondaryImage ? $secondaryImage->image_path : '/assets/icons/add-secondary-photo.png' }}"
                                      alt="Product photo"
-                                     class="editable-photo img-fluid mb-3"
-                                     style="max-width: 50px; height: auto"
+                                     class="editable-photo secondary-photo img-fluid mb-3"
                                      onclick="openImageModal({{ $i }}, false)">
 
                                 <input type="hidden" name="image_ids[]" id="image-id-{{ $i }}"
@@ -48,7 +47,7 @@
                                 <button type="button"
                                         id="detach-{{ $i }}"
                                         class="btn btn-danger btn-sm position-absolute top-0 end-0 p-0 px-1 {{ $secondaryImage ? '' : 'd-none' }}"
-                                        onclick="detachImage({{ $i }}, '/assets/add-circle-icon.png')">×</button>
+                                        onclick="detachImage({{ $i }}, '{{ asset('assets/icons/add-secondary-photo.png') }}')">×</button>
                             </div>
                         @endforeach
                     </div>
@@ -58,12 +57,11 @@
                             $mainImage = $product->images->where('is_main', true)->first();
                         @endphp
 
-                        <div class="image-slot main-slot position-relative" style="cursor:pointer">
+                        <div class="image-slot main-slot main-photo-container position-relative">
                             <img id="preview-0"
                                  src="{{ $mainImage ? $mainImage->image_path : '/assets/main-photo-icon.png' }}"
                                  alt="Main product photo"
-                                 class="editable-photo ms-5"
-                                 style="max-width: 300px; height: auto"
+                                 class="editable-photo main-photo ms-5"
                                  onclick="openImageModal(0, true)">
 
                             <input type="hidden" name="main_image_id" id="image-id-0"
@@ -73,13 +71,6 @@
                                     id="detach-0"
                                     class="btn btn-danger btn-sm position-absolute top-0 end-0 p-0 px-1 {{ $mainImage ? '' : 'd-none' }}"
                                     onclick="detachImage(0, '/assets/main-photo-icon.png')">×</button>
-                        </div>
-
-                        <div class="d-flex flex-row gap-2 mt-4">
-                            <button type="button" class="dot active"></button>
-                            <button type="button" class="dot"></button>
-                            <button type="button" class="dot"></button>
-                            <button type="button" class="dot"></button>
                         </div>
                     </div>
                 </div>
