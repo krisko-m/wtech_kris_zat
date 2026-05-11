@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/css/login.css" />
     @yield('styles')
 </head>
+@yield('modals')
 <body>
 
 <main>
